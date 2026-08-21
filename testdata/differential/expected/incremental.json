@@ -1,0 +1,3251 @@
+[
+  {
+    "name": "defer: Can defer fragments containing scalar types",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "id": "1"
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "name": "Luke"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Returns label from defer directive",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "id": "1"
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ],
+            "label": "defer-label"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "name": "Luke"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Treats null defer label the same as no label",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "id": "1"
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "name": "Luke"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Can disable defer using if argument",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "id": "1",
+            "name": "Luke"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "defer: Does not disable defer with null if argument",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "id": "1"
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "name": "Luke"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Can defer fragments on the top level Query field",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": [],
+            "label": "DeferQuery"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "hero": {
+                "id": "1"
+              }
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Can defer fragments with errors on the top level Query field",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": [],
+            "label": "DeferQuery"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "hero": {
+                "name": null
+              }
+            },
+            "errors": [
+              {
+                "message": "bad",
+                "locations": [
+                  {
+                    "line": 7,
+                    "column": 11
+                  }
+                ],
+                "path": [
+                  "hero",
+                  "name"
+                ]
+              }
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Can defer a fragment within an already deferred fragment",
+    "payloads": [
+      {
+        "data": {
+          "hero": {}
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ],
+            "label": "DeferTop"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "pending": [
+          {
+            "id": "1",
+            "path": [
+              "hero"
+            ],
+            "label": "DeferNested"
+          }
+        ],
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "id": "1"
+            }
+          },
+          {
+            "id": "1",
+            "data": {
+              "friends": [
+                {
+                  "name": "Han"
+                },
+                {
+                  "name": "Leia"
+                },
+                {
+                  "name": "C-3PO"
+                }
+              ]
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Can defer a fragment that is also not deferred, deferred fragment is first",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "name": "Luke"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "defer: Can defer a fragment that is also not deferred, non-deferred fragment is first",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "name": "Luke"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "defer: Can defer an inline fragment",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "id": "1"
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ],
+            "label": "InlineDeferred"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "name": "Luke"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Does not emit empty defer fragments",
+    "payloads": [
+      {
+        "data": {
+          "hero": {}
+        }
+      }
+    ]
+  },
+  {
+    "name": "defer: Emits children of empty defer fragments",
+    "payloads": [
+      {
+        "data": {
+          "hero": {}
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "name": "Luke"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Can separately emit defer fragments with different labels with varying fields",
+    "payloads": [
+      {
+        "data": {
+          "hero": {}
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ],
+            "label": "DeferID"
+          },
+          {
+            "id": "1",
+            "path": [
+              "hero"
+            ],
+            "label": "DeferName"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "id": "1"
+            }
+          },
+          {
+            "id": "1",
+            "data": {
+              "name": "Luke"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Separately emits defer fragments with different labels with varying subfields",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": [],
+            "label": "DeferID"
+          },
+          {
+            "id": "1",
+            "path": [],
+            "label": "DeferName"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "hero": {}
+            }
+          },
+          {
+            "id": "0",
+            "data": {
+              "id": "1"
+            },
+            "subPath": [
+              "hero"
+            ]
+          },
+          {
+            "id": "1",
+            "data": {
+              "name": "Luke"
+            },
+            "subPath": [
+              "hero"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Separately emits defer fragments with different labels with varying subfields that return promises",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": [],
+            "label": "DeferID"
+          },
+          {
+            "id": "1",
+            "path": [],
+            "label": "DeferName"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "hero": {}
+            }
+          },
+          {
+            "id": "0",
+            "data": {
+              "id": "1"
+            },
+            "subPath": [
+              "hero"
+            ]
+          },
+          {
+            "id": "1",
+            "data": {
+              "name": "Luke"
+            },
+            "subPath": [
+              "hero"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Separately emits defer fragments with varying subfields of same priorities but different level of defers",
+    "payloads": [
+      {
+        "data": {
+          "hero": {}
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ],
+            "label": "DeferID"
+          },
+          {
+            "id": "1",
+            "path": [],
+            "label": "DeferName"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "id": "1"
+            }
+          },
+          {
+            "id": "1",
+            "data": {
+              "name": "Luke"
+            },
+            "subPath": [
+              "hero"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Separately emits nested defer fragments with varying subfields of same priorities but different level of defers",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": [],
+            "label": "DeferName"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "pending": [
+          {
+            "id": "1",
+            "path": [
+              "hero"
+            ],
+            "label": "DeferID"
+          }
+        ],
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "hero": {
+                "name": "Luke"
+              }
+            }
+          },
+          {
+            "id": "1",
+            "data": {
+              "id": "1"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Initiates deferred grouped field sets only if they have been released as pending",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": []
+          },
+          {
+            "id": "1",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "pending": [
+          {
+            "id": "2",
+            "path": [
+              "a"
+            ]
+          },
+          {
+            "id": "3",
+            "path": [
+              "a"
+            ]
+          }
+        ],
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "a": {}
+            }
+          },
+          {
+            "id": "1",
+            "data": {
+              "someField": "someField"
+            },
+            "subPath": [
+              "a"
+            ]
+          },
+          {
+            "id": "2",
+            "data": {
+              "b": {}
+            }
+          },
+          {
+            "id": "2",
+            "data": {
+              "c": {
+                "d": "d"
+              }
+            },
+            "subPath": [
+              "b"
+            ]
+          },
+          {
+            "id": "3",
+            "data": {
+              "e": {
+                "f": "f"
+              }
+            },
+            "subPath": [
+              "b"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          },
+          {
+            "id": "2"
+          },
+          {
+            "id": "3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Initiates unique deferred grouped field sets after those that are common to sibling defers",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": []
+          },
+          {
+            "id": "1",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "pending": [
+          {
+            "id": "2",
+            "path": [
+              "a"
+            ]
+          },
+          {
+            "id": "3",
+            "path": [
+              "a"
+            ]
+          }
+        ],
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "a": {}
+            }
+          },
+          {
+            "id": "2",
+            "data": {
+              "b": {
+                "c": {
+                  "d": "d"
+                }
+              }
+            }
+          },
+          {
+            "id": "3",
+            "data": {
+              "e": {
+                "f": "f"
+              }
+            },
+            "subPath": [
+              "b"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          },
+          {
+            "id": "2"
+          },
+          {
+            "id": "3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Can deduplicate multiple defers on the same object",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "friends": [
+              {},
+              {},
+              {}
+            ]
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero",
+              "friends",
+              0
+            ]
+          },
+          {
+            "id": "1",
+            "path": [
+              "hero",
+              "friends",
+              1
+            ]
+          },
+          {
+            "id": "2",
+            "path": [
+              "hero",
+              "friends",
+              2
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "id": "2",
+              "name": "Han"
+            }
+          },
+          {
+            "id": "1",
+            "data": {
+              "id": "3",
+              "name": "Leia"
+            }
+          },
+          {
+            "id": "2",
+            "data": {
+              "id": "4",
+              "name": "C-3PO"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          },
+          {
+            "id": "2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Deduplicates fields present in the initial payload",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "nestedObject": {
+              "deeperObject": {
+                "foo": "foo"
+              }
+            },
+            "anotherNestedObject": {
+              "deeperObject": {
+                "foo": "foo"
+              }
+            }
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "bar": "bar"
+            },
+            "subPath": [
+              "nestedObject",
+              "deeperObject"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Deduplicates fields present in a parent defer payload",
+    "payloads": [
+      {
+        "data": {
+          "hero": {}
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "pending": [
+          {
+            "id": "1",
+            "path": [
+              "hero",
+              "nestedObject",
+              "deeperObject"
+            ]
+          }
+        ],
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "nestedObject": {
+                "deeperObject": {
+                  "foo": "foo"
+                }
+              }
+            }
+          },
+          {
+            "id": "1",
+            "data": {
+              "bar": "bar"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Deduplicates fields with deferred fragments at multiple levels",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "nestedObject": {
+              "deeperObject": {
+                "foo": "foo"
+              }
+            }
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "pending": [
+          {
+            "id": "1",
+            "path": [
+              "hero",
+              "nestedObject"
+            ]
+          },
+          {
+            "id": "2",
+            "path": [
+              "hero",
+              "nestedObject",
+              "deeperObject"
+            ]
+          }
+        ],
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "bar": "bar"
+            },
+            "subPath": [
+              "nestedObject",
+              "deeperObject"
+            ]
+          },
+          {
+            "id": "1",
+            "data": {
+              "baz": "baz"
+            },
+            "subPath": [
+              "deeperObject"
+            ]
+          },
+          {
+            "id": "2",
+            "data": {
+              "bak": "bak"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          },
+          {
+            "id": "2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Deduplicates multiple fields from deferred fragments from different branches occurring at the same level",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "nestedObject": {
+              "deeperObject": {}
+            }
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero",
+              "nestedObject",
+              "deeperObject"
+            ]
+          },
+          {
+            "id": "1",
+            "path": [
+              "hero",
+              "nestedObject",
+              "deeperObject"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "foo": "foo"
+            }
+          },
+          {
+            "id": "1",
+            "data": {
+              "bar": "bar"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Deduplicate fields with deferred fragments in different branches at multiple non-overlapping levels",
+    "payloads": [
+      {
+        "data": {
+          "a": {
+            "b": {
+              "c": {
+                "d": "d"
+              }
+            }
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "a",
+              "b"
+            ]
+          },
+          {
+            "id": "1",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "e": {
+                "f": "f"
+              }
+            }
+          },
+          {
+            "id": "1",
+            "data": {
+              "g": {
+                "h": "h"
+              }
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Correctly bundles varying subfields into incremental data records unique by defer combination, ignoring fields in a fragment masked by a parent defer",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": []
+          },
+          {
+            "id": "1",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "hero": {}
+            }
+          },
+          {
+            "id": "0",
+            "data": {
+              "id": "1"
+            },
+            "subPath": [
+              "hero"
+            ]
+          },
+          {
+            "id": "1",
+            "data": {
+              "name": "Luke",
+              "shouldBeWithNameDespiteAdditionalDefer": "Luke"
+            },
+            "subPath": [
+              "hero"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Nulls cross defer boundaries, null first",
+    "payloads": [
+      {
+        "data": {
+          "a": {}
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "a"
+            ]
+          },
+          {
+            "id": "1",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "b": {
+                "c": {}
+              }
+            }
+          },
+          {
+            "id": "0",
+            "data": {
+              "d": "d"
+            },
+            "subPath": [
+              "b",
+              "c"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "1",
+            "errors": [
+              {
+                "message": "Cannot return null for non-nullable field c.nonNullErrorField.",
+                "locations": [
+                  {
+                    "line": 8,
+                    "column": 17
+                  }
+                ],
+                "path": [
+                  "a",
+                  "b",
+                  "c",
+                  "nonNullErrorField"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Nulls cross defer boundaries, value first",
+    "payloads": [
+      {
+        "data": {
+          "a": {}
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "a"
+            ]
+          },
+          {
+            "id": "1",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "b": {
+                "c": {}
+              }
+            }
+          },
+          {
+            "id": "1",
+            "data": {
+              "d": "d"
+            },
+            "subPath": [
+              "a",
+              "b",
+              "c"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "1"
+          },
+          {
+            "id": "0",
+            "errors": [
+              {
+                "message": "Cannot return null for non-nullable field c.nonNullErrorField.",
+                "locations": [
+                  {
+                    "line": 17,
+                    "column": 17
+                  }
+                ],
+                "path": [
+                  "a",
+                  "b",
+                  "c",
+                  "nonNullErrorField"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Nulls cross defer boundaries, failed fragment with slower shared child execution groups",
+    "payloads": [
+      {
+        "data": {
+          "a": {}
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "a"
+            ]
+          },
+          {
+            "id": "1",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "someField": "someField",
+              "b": {}
+            }
+          },
+          {
+            "id": "0",
+            "data": {
+              "e": {
+                "f": "f"
+              }
+            },
+            "subPath": [
+              "b"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "1",
+            "errors": [
+              {
+                "message": "Cannot return null for non-nullable field a.nonNullErrorField.",
+                "locations": [
+                  {
+                    "line": 6,
+                    "column": 13
+                  }
+                ],
+                "path": [
+                  "a",
+                  "nonNullErrorField"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Handles cancelling child deferred fragments if parent fragment fails",
+    "payloads": [
+      {
+        "data": {
+          "a": {}
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "a"
+            ]
+          },
+          {
+            "id": "1",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "b": {
+                "c": {}
+              }
+            }
+          },
+          {
+            "id": "0",
+            "data": {
+              "d": "d"
+            },
+            "subPath": [
+              "b",
+              "c"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "1",
+            "errors": [
+              {
+                "message": "Cannot return null for non-nullable field c.nonNullErrorField.",
+                "locations": [
+                  {
+                    "line": 8,
+                    "column": 17
+                  }
+                ],
+                "path": [
+                  "a",
+                  "b",
+                  "c",
+                  "nonNullErrorField"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Handles multiple erroring deferred grouped field sets",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": []
+          },
+          {
+            "id": "1",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "completed": [
+          {
+            "id": "0",
+            "errors": [
+              {
+                "message": "Cannot return null for non-nullable field c.nonNullErrorField.",
+                "locations": [
+                  {
+                    "line": 7,
+                    "column": 17
+                  }
+                ],
+                "path": [
+                  "a",
+                  "b",
+                  "c",
+                  "someError"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "1",
+            "errors": [
+              {
+                "message": "Cannot return null for non-nullable field c.nonNullErrorField.",
+                "locations": [
+                  {
+                    "line": 16,
+                    "column": 17
+                  }
+                ],
+                "path": [
+                  "a",
+                  "b",
+                  "c",
+                  "anotherError"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Handles multiple erroring deferred grouped field sets for the same fragment",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": []
+          },
+          {
+            "id": "1",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "a": {
+                "b": {
+                  "someC": {},
+                  "anotherC": {}
+                }
+              }
+            }
+          },
+          {
+            "id": "0",
+            "data": {
+              "d": "d"
+            },
+            "subPath": [
+              "a",
+              "b",
+              "someC"
+            ]
+          },
+          {
+            "id": "0",
+            "data": {
+              "d": "d"
+            },
+            "subPath": [
+              "a",
+              "b",
+              "anotherC"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "1",
+            "errors": [
+              {
+                "message": "Cannot return null for non-nullable field c.nonNullErrorField.",
+                "locations": [
+                  {
+                    "line": 19,
+                    "column": 17
+                  }
+                ],
+                "path": [
+                  "a",
+                  "b",
+                  "someC",
+                  "someError"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Cancels deferred fields when initial result exhibits null bubbling cancelling the defer",
+    "payloads": [
+      {
+        "errors": [
+          {
+            "message": "Cannot return null for non-nullable field Hero.nonNullName.",
+            "locations": [
+              {
+                "line": 4,
+                "column": 11
+              }
+            ],
+            "path": [
+              "hero",
+              "nonNullName"
+            ]
+          }
+        ],
+        "data": {
+          "hero": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "defer: Cancels deferred fields when initial result exhibits null bubbling cancelling new fields",
+    "payloads": [
+      {
+        "errors": [
+          {
+            "message": "Cannot return null for non-nullable field Hero.nonNullName.",
+            "locations": [
+              {
+                "line": 4,
+                "column": 11
+              }
+            ],
+            "path": [
+              "hero",
+              "nonNullName"
+            ]
+          }
+        ],
+        "data": {
+          "hero": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "defer: Keeps deferred work outside nulled error paths",
+    "payloads": [
+      {
+        "errors": [
+          {
+            "message": "Cannot return null for non-nullable field a.nonNullErrorField.",
+            "locations": [
+              {
+                "line": 7,
+                "column": 11
+              }
+            ],
+            "path": [
+              "a",
+              "nonNullErrorField"
+            ]
+          }
+        ],
+        "data": {
+          "a": null,
+          "g": {}
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "g"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "h": "value"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Stops late initial-path completion before publishing a deferred response",
+    "payloads": [
+      {
+        "data": {
+          "g": {}
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "g"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "h": "h"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Cancels deferred fields when deferred result exhibits null bubbling",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "hero": null
+            },
+            "errors": [
+              {
+                "message": "Cannot return null for non-nullable field Hero.nonNullName.",
+                "locations": [
+                  {
+                    "line": 5,
+                    "column": 13
+                  }
+                ],
+                "path": [
+                  "hero",
+                  "nonNullName"
+                ]
+              }
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Stops late deferred payload completion after deferred null bubbling",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {}
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Deduplicates list fields",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "friends": [
+              {
+                "name": "Han"
+              },
+              {
+                "name": "Leia"
+              },
+              {
+                "name": "C-3PO"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "defer: Does not deduplicate list fields with non-overlapping fields",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "friends": [
+              {
+                "name": "Han"
+              },
+              {
+                "name": "Leia"
+              },
+              {
+                "name": "C-3PO"
+              }
+            ]
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "id": "2"
+            },
+            "subPath": [
+              "friends",
+              0
+            ]
+          },
+          {
+            "id": "0",
+            "data": {
+              "id": "3"
+            },
+            "subPath": [
+              "friends",
+              1
+            ]
+          },
+          {
+            "id": "0",
+            "data": {
+              "id": "4"
+            },
+            "subPath": [
+              "friends",
+              2
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Deduplicates list fields that return empty lists",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "friends": []
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "defer: Deduplicates null object fields",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "nestedObject": null
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "defer: Deduplicates promise object fields",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "nestedObject": {
+              "name": "foo"
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "defer: Handles errors thrown in deferred fragments",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "id": "1"
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "name": null
+            },
+            "errors": [
+              {
+                "message": "bad",
+                "locations": [
+                  {
+                    "line": 9,
+                    "column": 9
+                  }
+                ],
+                "path": [
+                  "hero",
+                  "name"
+                ]
+              }
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Handles non-nullable errors thrown in deferred fragments",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "id": "1"
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "completed": [
+          {
+            "id": "0",
+            "errors": [
+              {
+                "message": "Cannot return null for non-nullable field Hero.nonNullName.",
+                "locations": [
+                  {
+                    "line": 9,
+                    "column": 9
+                  }
+                ],
+                "path": [
+                  "hero",
+                  "nonNullName"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: Handles non-nullable errors thrown outside deferred fragments",
+    "payloads": [
+      {
+        "errors": [
+          {
+            "message": "Cannot return null for non-nullable field Hero.nonNullName.",
+            "locations": [
+              {
+                "line": 4,
+                "column": 11
+              }
+            ],
+            "path": [
+              "hero",
+              "nonNullName"
+            ]
+          }
+        ],
+        "data": {
+          "hero": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "defer: Returns payloads from synchronous data in correct order",
+    "payloads": [
+      {
+        "data": {
+          "hero": {
+            "id": "1"
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "hero"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "pending": [
+          {
+            "id": "1",
+            "path": [
+              "hero",
+              "friends",
+              0
+            ]
+          },
+          {
+            "id": "2",
+            "path": [
+              "hero",
+              "friends",
+              1
+            ]
+          },
+          {
+            "id": "3",
+            "path": [
+              "hero",
+              "friends",
+              2
+            ]
+          }
+        ],
+        "incremental": [
+          {
+            "id": "0",
+            "data": {
+              "name": "Luke",
+              "friends": [
+                {},
+                {},
+                {}
+              ]
+            }
+          },
+          {
+            "id": "1",
+            "data": {
+              "name": "Han"
+            }
+          },
+          {
+            "id": "2",
+            "data": {
+              "name": "Leia"
+            }
+          },
+          {
+            "id": "3",
+            "data": {
+              "name": "C-3PO"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          },
+          {
+            "id": "2"
+          },
+          {
+            "id": "3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: should allow deferred execution when passed abortSignal, if not aborted",
+    "payloads": [
+      {
+        "data": {}
+      }
+    ]
+  },
+  {
+    "name": "defer: should stop deferred execution when aborted mid-execution",
+    "payloads": [
+      {
+        "data": {},
+        "pending": [
+          {
+            "id": "0",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {}
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: cancels pending deferred execution groups",
+    "payloads": [
+      {
+        "data": {
+          "scalarList": [
+            "apple",
+            "banana",
+            "coconut"
+          ]
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": []
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "data": {}
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "defer: cancels pending deferred tasks with async child stream cleanup",
+    "payloads": [
+      {
+        "data": {}
+      }
+    ]
+  },
+  {
+    "name": "defer: should ignore deferred payloads resolved after cancellation",
+    "payloads": [
+      {
+        "data": {}
+      }
+    ]
+  },
+  {
+    "name": "stream: Can stream a list field",
+    "payloads": [
+      {
+        "data": {
+          "scalarList": [
+            "apple"
+          ]
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "scalarList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              "banana",
+              "coconut"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Can use default value of initialCount",
+    "payloads": [
+      {
+        "data": {
+          "scalarList": []
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "scalarList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              "apple",
+              "banana",
+              "coconut"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Negative values of initialCount throw field errors",
+    "payloads": [
+      {
+        "errors": [
+          {
+            "message": "initialCount must be a positive integer",
+            "locations": [
+              {
+                "line": 1,
+                "column": 3
+              }
+            ],
+            "path": [
+              "scalarList"
+            ]
+          }
+        ],
+        "data": {
+          "scalarList": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "stream: Returns label from stream directive",
+    "payloads": [
+      {
+        "data": {
+          "scalarList": [
+            "apple"
+          ]
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "scalarList"
+            ],
+            "label": "scalar-stream"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              "banana",
+              "coconut"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Treats null stream label the same as no label",
+    "payloads": [
+      {
+        "data": {
+          "scalarList": [
+            "apple"
+          ]
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "scalarList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              "banana",
+              "coconut"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Can disable @stream using if argument",
+    "payloads": [
+      {
+        "data": {
+          "scalarList": [
+            "apple",
+            "banana",
+            "coconut"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "stream: Does not disable stream with null if argument",
+    "payloads": [
+      {
+        "data": {
+          "scalarList": [
+            "apple",
+            "banana"
+          ]
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "scalarList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              "coconut"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Can stream multi-dimensional lists",
+    "payloads": [
+      {
+        "data": {
+          "scalarListList": [
+            [
+              "apple",
+              "apple",
+              "apple"
+            ]
+          ]
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "scalarListList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              [
+                "banana",
+                "banana",
+                "banana"
+              ],
+              [
+                "coconut",
+                "coconut",
+                "coconut"
+              ]
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Can stream a field that returns a list of promises",
+    "payloads": [
+      {
+        "data": {
+          "friendList": [
+            {
+              "name": "Luke",
+              "id": "1"
+            },
+            {
+              "name": "Han",
+              "id": "2"
+            }
+          ]
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "friendList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              {
+                "name": "Leia",
+                "id": "3"
+              }
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Can stream in correct order with lists of promises",
+    "payloads": [
+      {
+        "data": {
+          "friendList": []
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "friendList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              {
+                "name": "Luke",
+                "id": "1"
+              },
+              {
+                "name": "Han",
+                "id": "2"
+              },
+              {
+                "name": "Leia",
+                "id": "3"
+              }
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Can handle concurrent calls to .next() without waiting",
+    "payloads": [
+      {
+        "data": {
+          "friendList": [
+            {
+              "name": "Han",
+              "id": "2"
+            },
+            {
+              "name": "Leia",
+              "id": "3"
+            }
+          ]
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "friendList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              {
+                "name": "C-3PO",
+                "id": "4"
+              }
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Stops late stream item completion after item null bubbling",
+    "payloads": [
+      {
+        "errors": [
+          {
+            "message": "Cannot return null for non-nullable field Friend.nonNullName.",
+            "locations": [
+              {
+                "line": 7,
+                "column": 11
+              }
+            ],
+            "path": [
+              "friendList",
+              0,
+              "nonNullName"
+            ]
+          }
+        ],
+        "data": {
+          "friendList": [
+            null
+          ]
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "friendList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              null,
+              null
+            ],
+            "errors": [
+              {
+                "message": "Cannot return null for non-nullable field Friend.nonNullName.",
+                "locations": [
+                  {
+                    "line": 7,
+                    "column": 11
+                  }
+                ],
+                "path": [
+                  "friendList",
+                  1,
+                  "nonNullName"
+                ]
+              },
+              {
+                "message": "Cannot return null for non-nullable field Friend.nonNullName.",
+                "locations": [
+                  {
+                    "line": 7,
+                    "column": 11
+                  }
+                ],
+                "path": [
+                  "friendList",
+                  2,
+                  "nonNullName"
+                ]
+              }
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Cancels async stream items when null bubbles past the stream",
+    "payloads": [
+      {
+        "data": {
+          "nestedObject": {
+            "nestedFriendList": [],
+            "nonNullScalarField": "nonNullScalarField"
+          }
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "nestedObject",
+              "nestedFriendList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              {
+                "name": "Han"
+              }
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Can @defer fields that are resolved after async iterable is complete",
+    "payloads": [
+      {
+        "data": {
+          "friendList": []
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "friendList"
+            ],
+            "label": "stream-label"
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "pending": [
+          {
+            "id": "1",
+            "path": [
+              "friendList",
+              0
+            ],
+            "label": "DeferName"
+          },
+          {
+            "id": "2",
+            "path": [
+              "friendList",
+              1
+            ],
+            "label": "DeferName"
+          },
+          {
+            "id": "3",
+            "path": [
+              "friendList",
+              2
+            ],
+            "label": "DeferName"
+          }
+        ],
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              {
+                "id": "2"
+              },
+              {
+                "id": "3"
+              },
+              {
+                "id": "4"
+              }
+            ]
+          },
+          {
+            "id": "1",
+            "data": {
+              "name": "Han"
+            }
+          },
+          {
+            "id": "2",
+            "data": {
+              "name": "Leia"
+            }
+          },
+          {
+            "id": "3",
+            "data": {
+              "name": "C-3PO"
+            }
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          },
+          {
+            "id": "1"
+          },
+          {
+            "id": "2"
+          },
+          {
+            "id": "3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Returns underlying async iterables when returned generator is returned",
+    "payloads": [
+      {
+        "data": {
+          "friendList": []
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "friendList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              {
+                "id": "2"
+              },
+              {
+                "id": "3"
+              },
+              {
+                "id": "4"
+              }
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: Can return async iterable when underlying iterable does not have a return method",
+    "payloads": [
+      {
+        "data": {
+          "friendList": [
+            {
+              "name": "Han",
+              "id": "2"
+            }
+          ]
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "friendList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              {
+                "name": "Leia",
+                "id": "3"
+              },
+              {
+                "name": "C-3PO",
+                "id": "4"
+              }
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: limits stream batches to the default capacity (100)",
+    "payloads": [
+      {
+        "data": {
+          "friendList": []
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "friendList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              {
+                "id": "2"
+              },
+              {
+                "id": "3"
+              },
+              {
+                "id": "4"
+              }
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: should stop streamed execution when aborted",
+    "payloads": [
+      {
+        "data": {}
+      }
+    ]
+  },
+  {
+    "name": "stream: cancels streaming when aborted during async iterator next",
+    "payloads": [
+      {
+        "data": {
+          "scalarList": []
+        },
+        "pending": [
+          {
+            "id": "0",
+            "path": [
+              "scalarList"
+            ]
+          }
+        ],
+        "hasNext": true
+      },
+      {
+        "hasNext": false,
+        "incremental": [
+          {
+            "id": "0",
+            "items": [
+              "apple",
+              "banana",
+              "coconut"
+            ]
+          }
+        ],
+        "completed": [
+          {
+            "id": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "stream: waits for async deferred nested stream item cleanup before abort cancellation settles",
+    "payloads": [
+      {
+        "data": {}
+      }
+    ]
+  },
+  {
+    "name": "stream: cancels pending stream item executors with deferred work when consumer cancels",
+    "payloads": [
+      {
+        "data": {}
+      }
+    ]
+  },
+  {
+    "name": "stream: cancels tasks and streams when aborted before initial execution finishes",
+    "payloads": [
+      {
+        "data": {}
+      }
+    ]
+  },
+  {
+    "name": "stream: cancels async stream source cleanup when aborted before initial execution finishes",
+    "payloads": [
+      {
+        "data": {}
+      }
+    ]
+  },
+  {
+    "name": "stream: should ignore repeated cancellation attempts during incremental execution",
+    "payloads": [
+      {
+        "data": {}
+      }
+    ]
+  },
+  {
+    "name": "stream: cancels stream item executors with deferred work and nested streams",
+    "payloads": [
+      {
+        "data": {}
+      }
+    ]
+  }
+]

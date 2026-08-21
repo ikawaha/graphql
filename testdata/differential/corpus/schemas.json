@@ -1,0 +1,1246 @@
+[
+ {
+  "name": "minimal",
+  "sdl": "type Query { a: String }"
+ },
+ {
+  "name": "every kind",
+  "sdl": "schema { query: Q }\ntype Q { s: S  o: O  i: I  u: U  e: E  n: Int  l: [Int!]!  f(a: In = {x: 1}): String }\nscalar S @specifiedBy(url: \"https://example.com\")\ntype O implements I { a: String }\ninterface I { a: String }\nunion U = O\nenum E { A  B @deprecated(reason: \"Gone\")  C }\ninput In { x: Int  y: String = \"d\"  z: In }\ndirective @d(a: Int) repeatable on FIELD | OBJECT"
+ },
+ {
+  "name": "descriptions",
+  "sdl": "\"\"\"The query.\"\"\"\ntype Query {\n  \"\"\"A field.\"\"\"\n  a(\n    \"\"\"An argument.\"\"\"\n    b: Int\n  ): String\n}"
+ },
+ {
+  "name": "block string descriptions",
+  "sdl": "\"\"\"\nOne\n\n  Two\n\"\"\"\ntype Query { a: String }"
+ },
+ {
+  "name": "deprecation",
+  "sdl": "type Query {\n  plain: String\n  bare: String @deprecated\n  empty: String @deprecated(reason: \"\")\n  given: String @deprecated(reason: \"Gone\")\n  withArg(a: Int @deprecated(reason: \"old\")): String\n}\nenum E { A @deprecated  B }\ninput In { f: Int @deprecated }"
+ },
+ {
+  "name": "oneOf",
+  "sdl": "type Query { a(i: In): String }\ninput In @oneOf { x: Int  y: String }"
+ },
+ {
+  "name": "interfaces implementing interfaces",
+  "sdl": "type Query { a: C }\ninterface A { x: Int }\ninterface B implements A { x: Int  y: Int }\ntype C implements B & A { x: Int  y: Int }"
+ },
+ {
+  "name": "default values of every shape",
+  "sdl": "type Query { f(a: Int = 1, b: String = \"s\", c: Boolean = false, d: E = A, e: [Int] = [1,2], g: In = {x: 1}, h: Int = null): String }\nenum E { A }\ninput In { x: Int }"
+ },
+ {
+  "name": "empty types",
+  "sdl": "type Query { a: String }\ntype Empty\ninterface EmptyI\nenum EmptyE\ninput EmptyIn"
+ },
+ {
+  "name": "custom root names",
+  "sdl": "schema { query: R  mutation: M  subscription: S }\ntype R { a: String }\ntype M { b: String }\ntype S { c: String }"
+ },
+ {
+  "name": "validation: ?",
+  "sdl": "  scalar SomeScalar\n\n  interface SomeInterface { f: SomeObject }\n\n  type SomeObject implements SomeInterface { f: SomeObject }\n\n  union SomeUnion = SomeObject\n\n  enum SomeEnum { ONLY }\n\n  input SomeInputObject { val: String = \"hello\" }\n\n  directive @SomeDirective on QUERY"
+ },
+ {
+  "name": "validation: accepts a Schema whose query type is an object type",
+  "sdl": "      type Query {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a Schema whose query type is an object type #2",
+  "sdl": "      schema {\n        query: QueryRoot\n      }\n\n      type QueryRoot {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a Schema whose query and mutation types are object types",
+  "sdl": "      type Query {\n        test: String\n      }\n\n      type Mutation {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a Schema whose query and mutation types are object types #2",
+  "sdl": "      schema {\n        query: QueryRoot\n        mutation: MutationRoot\n      }\n\n      type QueryRoot {\n        test: String\n      }\n\n      type MutationRoot {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a Schema whose query and subscription types are object types",
+  "sdl": "      type Query {\n        test: String\n      }\n\n      type Subscription {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a Schema whose query and subscription types are object types #2",
+  "sdl": "      schema {\n        query: QueryRoot\n        subscription: SubscriptionRoot\n      }\n\n      type QueryRoot {\n        test: String\n      }\n\n      type SubscriptionRoot {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a Schema without a query type",
+  "sdl": "      type Mutation {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a Schema without a query type #2",
+  "sdl": "      schema {\n        mutation: MutationRoot\n      }\n\n      type MutationRoot {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a Schema whose query root type is not an Object type",
+  "sdl": "      input Query {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a Schema whose query root type is not an Object type #2",
+  "sdl": "      schema {\n        query: SomeInputObject\n      }\n\n      input SomeInputObject {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a Schema whose mutation type is an input type",
+  "sdl": "      type Query {\n        field: String\n      }\n\n      input Mutation {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a Schema whose mutation type is an input type #2",
+  "sdl": "      schema {\n        query: Query\n        mutation: SomeInputObject\n      }\n\n      type Query {\n        field: String\n      }\n\n      input SomeInputObject {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a Schema whose subscription type is an input type",
+  "sdl": "      type Query {\n        field: String\n      }\n\n      input Subscription {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a Schema whose subscription type is an input type #2",
+  "sdl": "      schema {\n        query: Query\n        subscription: SomeInputObject\n      }\n\n      type Query {\n        field: String\n      }\n\n      input SomeInputObject {\n        test: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a Schema extended with invalid root types",
+  "sdl": "      input SomeInputObject {\n        test: String\n      }\n\n      scalar SomeScalar\n\n      enum SomeEnum {\n        ENUM_VALUE\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a Schema with different root types",
+  "sdl": "      type SomeObject1 {\n        field: String\n      }\n\n      type SomeObject2 {\n        field: String\n      }\n\n      type SomeObject3 {\n        field: String\n      }\n\n      schema {\n        query: SomeObject1\n        mutation: SomeObject2\n        subscription: SomeObject3\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a Schema where the same type is used for multiple root types",
+  "sdl": "      type SomeObject {\n        field: String\n      }\n\n      type UniqueObject {\n        field: String\n      }\n\n      schema {\n        query: SomeObject\n        mutation: UniqueObject\n        subscription: SomeObject\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a Schema where the same type is used for all root types",
+  "sdl": "      type SomeObject {\n        field: String\n      }\n\n      schema {\n        query: SomeObject\n        mutation: SomeObject\n        subscription: SomeObject\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Object type with fields object",
+  "sdl": "      type Query {\n        field: SomeObject\n      }\n\n      type SomeObject {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object type with missing fields",
+  "sdl": "      type Query {\n        test: IncompleteObject\n      }\n\n      type IncompleteObject\n    "
+ },
+ {
+  "name": "validation: accepts a Union type with member types",
+  "sdl": "      type Query {\n        test: GoodUnion\n      }\n\n      type TypeA {\n        field: String\n      }\n\n      type TypeB {\n        field: String\n      }\n\n      union GoodUnion =\n        | TypeA\n        | TypeB\n    "
+ },
+ {
+  "name": "validation: rejects a Union type with empty types",
+  "sdl": "      type Query {\n        test: BadUnion\n      }\n\n      union BadUnion\n    "
+ },
+ {
+  "name": "validation: rejects a Union type with duplicated member type",
+  "sdl": "      type Query {\n        test: BadUnion\n      }\n\n      type TypeA {\n        field: String\n      }\n\n      type TypeB {\n        field: String\n      }\n\n      union BadUnion =\n        | TypeA\n        | TypeB\n        | TypeA\n    "
+ },
+ {
+  "name": "validation: rejects a Union type with non-Object members types",
+  "sdl": "      type Query {\n        test: BadUnion\n      }\n\n      type TypeA {\n        field: String\n      }\n\n      type TypeB {\n        field: String\n      }\n\n      union BadUnion =\n        | TypeA\n        | String\n        | TypeB\n    "
+ },
+ {
+  "name": "validation: accepts an Input Object type with fields",
+  "sdl": "      type Query {\n        field(arg: SomeInputObject): String\n      }\n\n      input SomeInputObject {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Input Object type with missing fields",
+  "sdl": "      type Query {\n        field(arg: SomeInputObject): String\n      }\n\n      input SomeInputObject\n    "
+ },
+ {
+  "name": "validation: accepts an Input Object with breakable circular reference",
+  "sdl": "      type Query {\n        field(arg: SomeInputObject): String\n      }\n\n      input SomeInputObject {\n        self: SomeInputObject\n        arrayOfSelf: [SomeInputObject]\n        nonNullArrayOfSelf: [SomeInputObject]!\n        nonNullArrayOfNonNullSelf: [SomeInputObject!]!\n        intermediateSelf: AnotherInputObject\n      }\n\n      input AnotherInputObject {\n        parent: SomeInputObject\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Input Object with non-breakable circular reference",
+  "sdl": "      type Query {\n        field(arg: SomeInputObject): String\n      }\n\n      input SomeInputObject {\n        nonNullSelf: SomeInputObject!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects Input Objects with non-breakable circular reference spread across them",
+  "sdl": "      type Query {\n        field(arg: SomeInputObject): String\n      }\n\n      input SomeInputObject {\n        startLoop: AnotherInputObject!\n      }\n\n      input AnotherInputObject {\n        nextInLoop: YetAnotherInputObject!\n      }\n\n      input YetAnotherInputObject {\n        closeLoop: SomeInputObject!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects Input Objects with multiple non-breakable circular reference",
+  "sdl": "      type Query {\n        field(arg: SomeInputObject): String\n      }\n\n      input SomeInputObject {\n        startLoop: AnotherInputObject!\n      }\n\n      input AnotherInputObject {\n        closeLoop: SomeInputObject!\n        startSecondLoop: YetAnotherInputObject!\n      }\n\n      input YetAnotherInputObject {\n        closeSecondLoop: AnotherInputObject!\n        nonNullSelf: YetAnotherInputObject!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Input Object with multiple non-breakable circular references",
+  "sdl": "      type Query {\n        field(arg: A): String\n      }\n\n      input A {\n        b: B!\n        c: C!\n      }\n\n      input B {\n        a: A!\n      }\n\n      input C {\n        a: A!\n      }\n    "
+ },
+ {
+  "name": "validation: accepts Input Objects with default values without circular references (SDL)",
+  "sdl": "      type Query {\n        field(arg1: A, arg2: B): String\n      }\n\n      input A {\n        x: A = null\n        y: A = { x: null, y: null }\n        z: [A] = []\n      }\n\n      input B {\n        x: B2! = {}\n        y: String = \"abc\"\n        z: Custom = {}\n      }\n\n      input B2 {\n        x: B3 = {}\n      }\n\n      input B3 {\n        x: B = { x: { x: null } }\n      }\n\n      scalar Custom\n    "
+ },
+ {
+  "name": "validation: rejects Input Objects with default value circular reference (SDL)",
+  "sdl": "      type Query {\n        field(arg1: A, arg2: B, arg3: C, arg4: D, arg5: E): String\n      }\n\n      input A {\n        x: A = {}\n      }\n\n      input B {\n        x: B2 = {}\n      }\n\n      input B2 {\n        x: B3 = {}\n      }\n\n      input B3 {\n        x: B = {}\n      }\n\n      input C {\n        x: [C] = [{}]\n      }\n\n      input D {\n        x: D = { x: { x: {} } }\n      }\n\n      input E {\n        x: E = { x: null }\n        y: E = { y: null }\n      }\n\n      input F {\n        x: F2! = {}\n      }\n\n      input F2 {\n        x: F = { x: {} }\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Input Object type with incorrectly typed fields",
+  "sdl": "      type Query {\n        field(arg: SomeInputObject): String\n      }\n\n      type SomeObject {\n        field: String\n      }\n\n      union SomeUnion = SomeObject\n\n      input SomeInputObject {\n        badObject: SomeObject\n        badUnion: SomeUnion\n        goodInputObject: SomeInputObject\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Input Object type with required field that is deprecated",
+  "sdl": "      type Query {\n        field(arg: SomeInputObject): String\n      }\n\n      input SomeInputObject {\n        badField: String! @deprecated\n        optionalField: String @deprecated\n        anotherOptionalField: String! = \"\" @deprecated\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Enum type without values",
+  "sdl": "      type Query {\n        field: SomeEnum\n      }\n\n      enum SomeEnum\n    "
+ },
+ {
+  "name": "validation: rejects with relevant locations for a non-output type as an Object field type",
+  "sdl": "      type Query {\n        field: [SomeInputObject]\n      }\n\n      input SomeInputObject {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object implementing a non-Interface type",
+  "sdl": "      type Query {\n        test: BadObject\n      }\n\n      input SomeInputObject {\n        field: String\n      }\n\n      type BadObject implements SomeInputObject {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object implementing the same interface twice",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field: String\n      }\n\n      type AnotherObject implements AnotherInterface & AnotherInterface {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object implementing the same interface twice due to extension",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field: String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a non-output type as an Interface field type with locations",
+  "sdl": "      type Query {\n        test: SomeInterface\n      }\n\n      interface SomeInterface {\n        field: SomeInputObject\n      }\n\n      input SomeInputObject {\n        foo: String\n      }\n\n      type SomeObject implements SomeInterface {\n        field: SomeInputObject\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an interface not implemented by at least one object",
+  "sdl": "      type Query {\n        test: SomeInterface\n      }\n\n      interface SomeInterface {\n        foo: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a required argument that is deprecated",
+  "sdl": "      directive @BadDirective(\n        badArg: String! @deprecated\n        optionalArg: String @deprecated\n        anotherOptionalArg: String! = \"\" @deprecated\n      ) on FIELD\n\n      type Query {\n        test(\n          badArg: String! @deprecated\n          optionalArg: String @deprecated\n          anotherOptionalArg: String! = \"\" @deprecated\n        ): String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a non-input type as a field arg with locations",
+  "sdl": "      type Query {\n        test(arg: SomeObject): String\n      }\n\n      type SomeObject {\n        foo: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an argument with invalid default values (SDL)",
+  "sdl": "      type Query {\n        field(arg: Int = 3.14): Int\n      }\n\n      directive @bad(arg: Int = 2.718) on FIELD\n    "
+ },
+ {
+  "name": "validation: Attempts to offer a suggested fix if possible (SDL)",
+  "sdl": "      enum TestEnum {\n        ONE\n        TWO\n      }\n\n      input TestInput {\n        self: TestInput\n        string: [String]!\n        enum: [TestEnum]\n      }\n\n      type Query {\n        field(\n          argWithPossibleFix: TestInput\n          argWithInvalidPossibleFix: TestInput\n          argWithoutPossibleFix: TestInput\n        ): Int\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a non-input type as an input object field with locations",
+  "sdl": "      type Query {\n        test(arg: SomeInputObject): String\n      }\n\n      input SomeInputObject {\n        foo: SomeObject\n      }\n\n      type SomeObject {\n        bar: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Input Object field with invalid default values (SDL)",
+  "sdl": "    type Query {\n      field(arg: SomeInputObject): Int\n    }\n\n    input SomeInputObject {\n      field: Int = 3.14\n    }\n  "
+ },
+ {
+  "name": "validation: accepts a OneOf Input Object with a scalar field",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A @oneOf {\n        a: Int\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a OneOf Input Object with a recursive list field",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A @oneOf {\n        a: [A!]\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a OneOf Input Object referencing a non-OneOf input object",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A @oneOf {\n        b: B\n      }\n\n      input B {\n        x: Int\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a OneOf Input Object referencing an already checked input object",
+  "sdl": "      type Query {\n        a(arg: A): Int\n      }\n\n      input B {\n        value: Int\n      }\n\n      input A @oneOf {\n        b: B\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a OneOf Input Object with multiple acyclic input object fields",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A @oneOf {\n        b: B\n        c: C\n      }\n\n      input B {\n        value: Int\n      }\n\n      input C {\n        value: Int\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a OneOf/OneOf cycle with a scalar escape",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A @oneOf {\n        b: B\n        escape: Int\n      }\n\n      input B @oneOf {\n        a: A\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a OneOf/non-OneOf cycle with a nullable escape",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A @oneOf {\n        b: B\n      }\n\n      input B {\n        a: A\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a OneOf/non-OneOf with scalar escape",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A @oneOf {\n        b: B\n        escape: Int\n      }\n\n      input B {\n        a: A!\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a non-OneOf/non-OneOf cycle with a nullable escape",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A {\n        b: B!\n      }\n\n      input B {\n        a: A\n      }\n    "
+ },
+ {
+  "name": "validation: accepts a non-OneOf/non-OneOf cycle with a non-null list of non-null items escape",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A {\n        b: [B!]!\n      }\n\n      input B {\n        a: A!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects non-nullable fields",
+  "sdl": "      type Query {\n        test(arg: SomeInputObject): String\n      }\n\n      input SomeInputObject @oneOf {\n        a: String\n        b: String!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects fields with default values",
+  "sdl": "      type Query {\n        test(arg: SomeInputObject): String\n      }\n\n      input SomeInputObject @oneOf {\n        a: String\n        b: String = \"foo\"\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a self-referencing OneOf type with no escapes",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A @oneOf {\n        self: A\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a non-OneOf Input Object requiring an unbreakable OneOf cycle",
+  "sdl": "      type Query {\n        a(arg: A): Int\n      }\n\n      input T @oneOf {\n        self: T\n      }\n\n      input A {\n        t: T!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a mixed OneOf/non-OneOf cycle with no escapes",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A @oneOf {\n        b: B\n      }\n\n      input B {\n        a: A!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects multiple OneOf branches without duplicate cycle reports",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A @oneOf {\n        b: B\n        c: C\n      }\n\n      input B {\n        a: A!\n      }\n\n      input C {\n        a: A!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a non-OneOf/non-OneOf cycle with required scalar, list, and finite input fields",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A {\n        list: [B]!\n        finite: Finite!\n        b: B!\n      }\n\n      input B {\n        value: Int!\n        a: A!\n      }\n\n      input Finite {\n        value: Int!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a larger mixed OneOf/non-OneOf cycle with no escapes",
+  "sdl": "      type Query {\n        test(arg: A): Int\n      }\n\n      input A @oneOf {\n        b: B\n      }\n\n      input B {\n        c: C!\n      }\n\n      input C @oneOf {\n        a: A\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Object which implements an Interface",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field(input: String): String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field(input: String): String\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Object which implements an Interface along with more fields",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field(input: String): String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field(input: String): String\n        anotherField: String\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Object which implements an Interface field along with additional optional arguments",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field(input: String): String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field(input: String, anotherInput: String): String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object missing an Interface field",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field(input: String): String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        anotherField: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object with an incorrectly typed Interface field",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field(input: String): String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field(input: String): Int\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object with a differently typed Interface field",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      type A { foo: String }\n      type B { foo: String }\n\n      interface AnotherInterface {\n        field: A\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field: B\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Object with a subtyped Interface field (interface)",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field: AnotherInterface\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field: AnotherObject\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Object with a subtyped Interface field (union)",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      type SomeObject {\n        field: String\n      }\n\n      union SomeUnionType = SomeObject\n\n      interface AnotherInterface {\n        field: SomeUnionType\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field: SomeObject\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object missing an Interface argument",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field(input: String): String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object with an incorrectly typed Interface argument",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field(input: String): String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field(input: Int): String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object with both an incorrectly typed field and argument",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field(input: String): String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field(input: Int): Int\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object which implements an Interface field along with additional required arguments",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field(baseArg: String): String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field(\n          baseArg: String,\n          requiredArg: String!\n          optionalArg1: String,\n          optionalArg2: String = \"\",\n        ): String\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Object with an equivalently wrapped Interface field type",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field: [String]!\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field: [String]!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object with a non-list Interface field list type",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field: [String]\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object with a list Interface field non-list type",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field: String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field: [String]\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Object with a subset non-null Interface field type",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field: String\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field: String!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object with a superset nullable Interface field type",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface AnotherInterface {\n        field: String!\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object missing a transitive interface",
+  "sdl": "      type Query {\n        test: AnotherObject\n      }\n\n      interface SuperInterface {\n        field: String!\n      }\n\n      interface AnotherInterface implements SuperInterface {\n        field: String!\n      }\n\n      type AnotherObject implements AnotherInterface {\n        field: String!\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Interface which implements an Interface",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field(input: String): String\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field(input: String): String\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Interface which implements an Interface along with more fields",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field(input: String): String\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field(input: String): String\n        anotherField: String\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Interface which implements an Interface field along with additional optional arguments",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field(input: String): String\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field(input: String, anotherInput: String): String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Interface missing an Interface field",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field(input: String): String\n      }\n\n      interface ChildInterface implements ParentInterface {\n        anotherField: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Interface with an incorrectly typed Interface field",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field(input: String): String\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field(input: String): Int\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Interface with a differently typed Interface field",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      type A { foo: String }\n      type B { foo: String }\n\n      interface ParentInterface {\n        field: A\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field: B\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Interface with a subtyped Interface field (interface)",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field: ParentInterface\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field: ChildInterface\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Interface with a subtyped Interface field (union)",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      type SomeObject {\n        field: String\n      }\n\n      union SomeUnionType = SomeObject\n\n      interface ParentInterface {\n        field: SomeUnionType\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field: SomeObject\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Interface implementing a non-Interface type",
+  "sdl": "      type Query {\n        field: String\n      }\n\n      input SomeInputObject {\n        field: String\n      }\n\n      interface BadInterface implements SomeInputObject {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Interface missing an Interface argument",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field(input: String): String\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Interface with an incorrectly typed Interface argument",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field(input: String): String\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field(input: Int): String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Interface with both an incorrectly typed field and argument",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field(input: String): String\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field(input: Int): Int\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Interface which implements an Interface field along with additional required arguments",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field(baseArg: String): String\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field(\n          baseArg: String,\n          requiredArg: String!\n          optionalArg1: String,\n          optionalArg2: String = \"\",\n        ): String\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Interface with an equivalently wrapped Interface field type",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field: [String]!\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field: [String]!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Interface with a non-list Interface field list type",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field: [String]\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Interface with a list Interface field non-list type",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field: String\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field: [String]\n      }\n    "
+ },
+ {
+  "name": "validation: accepts an Interface with a subset non-null Interface field type",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field: String\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field: String!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Interface with a superset nullable Interface field type",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface ParentInterface {\n        field: String!\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects an Object missing a transitive interface #2",
+  "sdl": "      type Query {\n        test: ChildInterface\n      }\n\n      interface SuperInterface {\n        field: String!\n      }\n\n      interface ParentInterface implements SuperInterface {\n        field: String!\n      }\n\n      interface ChildInterface implements ParentInterface {\n        field: String!\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a self reference interface",
+  "sdl": "      type Query {\n        test: FooInterface\n      }\n\n      interface FooInterface implements FooInterface {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects a circular Interface implementation",
+  "sdl": "      type Query {\n        test: FooInterface\n      }\n\n      interface FooInterface implements BarInterface {\n        field: String\n      }\n\n      interface BarInterface implements FooInterface {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "validation: rejects deprecated implementation field when interface field is not deprecated",
+  "sdl": "      interface Node {\n        id: ID!\n      }\n\n      type Foo implements Node {\n        id: ID! @deprecated\n      }\n\n      type Query {\n        foo: Foo\n      }\n    "
+ },
+ {
+  "name": "validation: does not throw on valid schemas",
+  "sdl": "      type Query {\n        foo: String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: can use built schema for limited execution",
+  "sdl": "        type Query {\n          str: String\n        }\n      "
+ },
+ {
+  "name": "buildASTSchema: can build a schema directly from the source",
+  "sdl": "      type Query {\n        add(x: Int, y: Int): Int\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Ignores non-type system definitions",
+  "sdl": "      type Query {\n        str: String\n      }\n\n      fragment SomeFragment on Query {\n        str\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Empty type",
+  "sdl": "      type EmptyType\n    "
+ },
+ {
+  "name": "buildASTSchema: Simple type",
+  "sdl": "      type Query {\n        str: String\n        int: Int\n        float: Float\n        id: ID\n        bool: Boolean\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Supports descriptions",
+  "sdl": "      \"\"\"Do you agree that this is the most creative schema ever?\"\"\"\n      schema {\n        query: Query\n      }\n\n      \"\"\"This is a directive\"\"\"\n      directive @foo(\n        \"\"\"It has an argument\"\"\"\n        arg: Int\n      ) on FIELD\n\n      \"\"\"Who knows what inside this scalar?\"\"\"\n      scalar MysteryScalar\n\n      \"\"\"This is a input object type\"\"\"\n      input FooInput {\n        \"\"\"It has a field\"\"\"\n        field: Int\n      }\n\n      \"\"\"This is a interface type\"\"\"\n      interface Energy {\n        \"\"\"It also has a field\"\"\"\n        str: String\n      }\n\n      \"\"\"There is nothing inside!\"\"\"\n      union BlackHole\n\n      \"\"\"With an enum\"\"\"\n      enum Color {\n        RED\n\n        \"\"\"Not a creative color\"\"\"\n        GREEN\n        BLUE\n      }\n\n      \"\"\"What a great type\"\"\"\n      type Query {\n        \"\"\"And a field to boot\"\"\"\n        str: String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Type modifiers",
+  "sdl": "      type Query {\n        nonNullStr: String!\n        listOfStrings: [String]\n        listOfNonNullStrings: [String!]\n        nonNullListOfStrings: [String]!\n        nonNullListOfNonNullStrings: [String!]!\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Recursive type",
+  "sdl": "      type Query {\n        str: String\n        recurse: Query\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Two types circular",
+  "sdl": "      type TypeOne {\n        str: String\n        typeTwo: TypeTwo\n      }\n\n      type TypeTwo {\n        str: String\n        typeOne: TypeOne\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Single argument field",
+  "sdl": "      type Query {\n        str(int: Int): String\n        floatToStr(float: Float): String\n        idToStr(id: ID): String\n        booleanToStr(bool: Boolean): String\n        strToStr(bool: String): String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Simple type with multiple arguments",
+  "sdl": "      type Query {\n        str(int: Int, bool: Boolean): String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Empty interface",
+  "sdl": "      interface EmptyInterface\n    "
+ },
+ {
+  "name": "buildASTSchema: Simple type with interface",
+  "sdl": "      type Query implements WorldInterface {\n        str: String\n      }\n\n      interface WorldInterface {\n        str: String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Simple interface hierarchy",
+  "sdl": "      schema {\n        query: Child\n      }\n\n      interface Child implements Parent {\n        str: String\n      }\n\n      type Hello implements Parent & Child {\n        str: String\n      }\n\n      interface Parent {\n        str: String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Empty enum",
+  "sdl": "      enum EmptyEnum\n    "
+ },
+ {
+  "name": "buildASTSchema: Simple output enum",
+  "sdl": "      enum Hello {\n        WORLD\n      }\n\n      type Query {\n        hello: Hello\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Simple input enum",
+  "sdl": "      enum Hello {\n        WORLD\n      }\n\n      type Query {\n        str(hello: Hello): String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Multiple value enum",
+  "sdl": "      enum Hello {\n        WO\n        RLD\n      }\n\n      type Query {\n        hello: Hello\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Empty union",
+  "sdl": "      union EmptyUnion\n    "
+ },
+ {
+  "name": "buildASTSchema: Simple Union",
+  "sdl": "      union Hello = World\n\n      type Query {\n        hello: Hello\n      }\n\n      type World {\n        str: String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Multiple Union",
+  "sdl": "      union Hello = WorldOne | WorldTwo\n\n      type Query {\n        hello: Hello\n      }\n\n      type WorldOne {\n        str: String\n      }\n\n      type WorldTwo {\n        str: String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Can build recursive Union",
+  "sdl": "      union Hello = Hello\n\n      type Query {\n        hello: Hello\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Custom Scalar",
+  "sdl": "      scalar CustomScalar\n\n      type Query {\n        customScalar: CustomScalar\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Empty Input Object",
+  "sdl": "      input EmptyInputObject\n    "
+ },
+ {
+  "name": "buildASTSchema: Simple Input Object",
+  "sdl": "      input Input {\n        int: Int\n      }\n\n      type Query {\n        field(in: Input): String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Simple argument field with default",
+  "sdl": "      type Query {\n        str(int: Int = 2): String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Custom scalar argument field with default",
+  "sdl": "      scalar CustomScalar\n\n      type Query {\n        str(int: CustomScalar = 2): String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Simple type with mutation",
+  "sdl": "      schema {\n        query: HelloScalars\n        mutation: Mutation\n      }\n\n      type HelloScalars {\n        str: String\n        int: Int\n        bool: Boolean\n      }\n\n      type Mutation {\n        addHelloScalars(str: String, int: Int, bool: Boolean): HelloScalars\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Simple type with subscription",
+  "sdl": "      schema {\n        query: HelloScalars\n        subscription: Subscription\n      }\n\n      type HelloScalars {\n        str: String\n        int: Int\n        bool: Boolean\n      }\n\n      type Subscription {\n        subscribeHelloScalars(str: String, int: Int, bool: Boolean): HelloScalars\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Unreferenced type implementing referenced interface",
+  "sdl": "      type Concrete implements Interface {\n        key: String\n      }\n\n      interface Interface {\n        key: String\n      }\n\n      type Query {\n        interface: Interface\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Unreferenced interface implementing referenced interface",
+  "sdl": "      interface Child implements Parent {\n        key: String\n      }\n\n      interface Parent {\n        key: String\n      }\n\n      type Query {\n        interfaceField: Parent\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Unreferenced type implementing referenced union",
+  "sdl": "      type Concrete {\n        key: String\n      }\n\n      type Query {\n        union: Union\n      }\n\n      union Union = Concrete\n    "
+ },
+ {
+  "name": "buildASTSchema: Supports @deprecated",
+  "sdl": "      enum MyEnum {\n        VALUE\n        OLD_VALUE @deprecated\n        OTHER_VALUE @deprecated(reason: \"Terrible reasons\")\n      }\n\n      input MyInput {\n        oldInput: String @deprecated\n        otherInput: String @deprecated(reason: \"Use newInput\")\n        newInput: String\n      }\n\n      type Query {\n        field1: String @deprecated\n        field2: Int @deprecated(reason: \"Because I said so\")\n        enum: MyEnum\n        field3(oldArg: String @deprecated, arg: String): String\n        field4(oldArg: String @deprecated(reason: \"Why not?\"), arg: String): String\n        field5(arg: MyInput): String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Supports @specifiedBy",
+  "sdl": "      scalar Foo @specifiedBy(url: \"https://example.com/foo_spec\")\n\n      type Query {\n        foo: Foo @deprecated\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend scalar type",
+  "sdl": "      scalar SomeScalar\n      extend scalar SomeScalar @foo\n      extend scalar SomeScalar @bar\n\n      directive @foo on SCALAR\n      directive @bar on SCALAR\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend scalar type #2",
+  "sdl": "      scalar SomeScalar\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend object type",
+  "sdl": "      type SomeObject implements Foo {\n        first: String\n      }\n\n      extend type SomeObject implements Bar {\n        second: Int\n      }\n\n      extend type SomeObject implements Baz {\n        third: Float\n      }\n\n      interface Foo\n      interface Bar\n      interface Baz\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend interface type",
+  "sdl": "      interface SomeInterface {\n        first: String\n      }\n\n      extend interface SomeInterface {\n        second: Int\n      }\n\n      extend interface SomeInterface {\n        third: Float\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend interface type #2",
+  "sdl": "      interface SomeInterface {\n        first: String\n        second: Int\n        third: Float\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend interface type #3",
+  "sdl": "      interface SomeInterface {\n        first: String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend union type",
+  "sdl": "      union SomeUnion = FirstType\n      extend union SomeUnion = SecondType\n      extend union SomeUnion = ThirdType\n\n      type FirstType\n      type SecondType\n      type ThirdType\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend enum type",
+  "sdl": "      enum SomeEnum {\n        FIRST\n      }\n\n      extend enum SomeEnum {\n        SECOND\n      }\n\n      extend enum SomeEnum {\n        THIRD\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend enum type #2",
+  "sdl": "      enum SomeEnum {\n        FIRST\n        SECOND\n        THIRD\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend enum type #3",
+  "sdl": "      enum SomeEnum {\n        FIRST\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend input object type",
+  "sdl": "      input SomeInput {\n        first: String\n      }\n\n      extend input SomeInput {\n        second: Int\n      }\n\n      extend input SomeInput {\n        third: Float\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend input object type #2",
+  "sdl": "      input SomeInput {\n        first: String\n        second: Int\n        third: Float\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly extend input object type #3",
+  "sdl": "      input SomeInput {\n        first: String\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: Correctly assign AST nodes",
+  "sdl": "      schema {\n        query: Query\n      }\n\n      type Query {\n        testField(testArg: TestInput): TestUnion\n      }\n\n      input TestInput {\n        testInputField: TestEnum\n      }\n\n      enum TestEnum {\n        TEST_VALUE\n      }\n\n      union TestUnion = TestType\n\n      interface TestInterface {\n        interfaceField: String\n      }\n\n      type TestType implements TestInterface {\n        interfaceField: String\n      }\n\n      scalar TestScalar\n\n      directive @test(arg: TestScalar) on FIELD\n    "
+ },
+ {
+  "name": "buildASTSchema: Root operation types with custom names",
+  "sdl": "      schema {\n        query: SomeQuery\n        mutation: SomeMutation\n        subscription: SomeSubscription\n      }\n      type SomeQuery\n      type SomeMutation\n      type SomeSubscription\n    "
+ },
+ {
+  "name": "buildASTSchema: Default root operation type names",
+  "sdl": "      type Query\n      type Mutation\n      type Subscription\n    "
+ },
+ {
+  "name": "buildASTSchema: Do not override standard types",
+  "sdl": "      scalar ID\n\n      scalar __Schema\n    "
+ },
+ {
+  "name": "buildASTSchema: Allows to reference introspection types",
+  "sdl": "      type Query {\n        introspectionField: __EnumValue\n      }\n    "
+ },
+ {
+  "name": "buildASTSchema: buildSchema parses directives on directive definitions",
+  "sdl": "        type Query {\n          foo: String\n        }\n\n        directive @bar @deprecated(reason: \"Use another directive\") on FIELD_DEFINITION\n      "
+ },
+ {
+  "name": "printSchema: Prints String Field",
+  "sdl": "      type Query {\n        singleField: String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints [String] Field",
+  "sdl": "      type Query {\n        singleField: [String]\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints String! Field",
+  "sdl": "      type Query {\n        singleField: String!\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints [String]! Field",
+  "sdl": "      type Query {\n        singleField: [String]!\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints [String!] Field",
+  "sdl": "      type Query {\n        singleField: [String!]\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints [String!]! Field",
+  "sdl": "      type Query {\n        singleField: [String!]!\n      }\n    "
+ },
+ {
+  "name": "printSchema: Print Object Field",
+  "sdl": "      type Foo {\n        str: String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints String Field With Int Arg",
+  "sdl": "      type Query {\n        singleField(argOne: Int): String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints String Field With Int Arg With Default",
+  "sdl": "      type Query {\n        singleField(argOne: Int = 2): String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints String Field With String Arg With Default",
+  "sdl": "        type Query {\n          singleField(argOne: String = \"tes\\t de\\fault\"): String\n        }\n      "
+ },
+ {
+  "name": "printSchema: Prints String Field With Int Arg With Default Null",
+  "sdl": "      type Query {\n        singleField(argOne: Int = null): String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints String Field With Int! Arg",
+  "sdl": "      type Query {\n        singleField(argOne: Int!): String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints String Field With Multiple Args",
+  "sdl": "      type Query {\n        singleField(argOne: Int, argTwo: String): String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints String Field With Multiple Args, First is Default",
+  "sdl": "      type Query {\n        singleField(argOne: Int = 1, argTwo: String, argThree: Boolean): String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints String Field With Multiple Args, Second is Default",
+  "sdl": "      type Query {\n        singleField(argOne: Int, argTwo: String = \"foo\", argThree: Boolean): String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints String Field With Multiple Args, Last is Default",
+  "sdl": "      type Query {\n        singleField(argOne: Int, argTwo: String, argThree: Boolean = false): String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints schema with description",
+  "sdl": "      \"\"\"Schema description.\"\"\"\n      schema {\n        query: Query\n      }\n\n      type Query\n    "
+ },
+ {
+  "name": "printSchema: Omits schema of common names",
+  "sdl": "      type Query\n\n      type Mutation\n\n      type Subscription\n    "
+ },
+ {
+  "name": "printSchema: Prints custom query root types",
+  "sdl": "      schema {\n        query: CustomType\n      }\n\n      type CustomType\n    "
+ },
+ {
+  "name": "printSchema: Prints custom mutation root types",
+  "sdl": "      schema {\n        mutation: CustomType\n      }\n\n      type CustomType\n    "
+ },
+ {
+  "name": "printSchema: Prints custom subscription root types",
+  "sdl": "      schema {\n        subscription: CustomType\n      }\n\n      type CustomType\n    "
+ },
+ {
+  "name": "printSchema: Print Interface",
+  "sdl": "      type Bar implements Foo {\n        str: String\n      }\n\n      interface Foo {\n        str: String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Print Multiple Interface",
+  "sdl": "      type Bar implements Foo & Baz {\n        str: String\n        int: Int\n      }\n\n      interface Foo {\n        str: String\n      }\n\n      interface Baz {\n        int: Int\n      }\n    "
+ },
+ {
+  "name": "printSchema: Print Hierarchical Interface",
+  "sdl": "      type Bar implements Foo & Baz {\n        str: String\n        int: Int\n      }\n\n      interface Foo {\n        str: String\n      }\n\n      interface Baz implements Foo {\n        int: Int\n        str: String\n      }\n\n      type Query {\n        bar: Bar\n      }\n    "
+ },
+ {
+  "name": "printSchema: Print Unions",
+  "sdl": "      union SingleUnion = Foo\n\n      type Foo {\n        bool: Boolean\n      }\n\n      union MultipleUnion = Foo | Bar\n\n      type Bar {\n        str: String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Print Input Type",
+  "sdl": "      input InputType {\n        int: Int\n      }\n    "
+ },
+ {
+  "name": "printSchema: Print Input Type with @oneOf directive",
+  "sdl": "      input InputType @oneOf {\n        int: Int\n      }\n    "
+ },
+ {
+  "name": "printSchema: Custom Scalar",
+  "sdl": "      scalar Odd\n    "
+ },
+ {
+  "name": "printSchema: Custom Scalar with specifiedByURL",
+  "sdl": "      scalar Foo @specifiedBy(url: \"https://example.com/foo_spec\")\n    "
+ },
+ {
+  "name": "printSchema: Enum",
+  "sdl": "      enum RGB {\n        RED\n        GREEN\n        BLUE\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints empty types",
+  "sdl": "      enum SomeEnum\n\n      input SomeInputObject\n\n      interface SomeInterface\n\n      type SomeObject\n\n      union SomeUnion\n    "
+ },
+ {
+  "name": "printSchema: Prints an empty descriptions",
+  "sdl": "      \"\"\"\"\"\"\n      schema {\n        query: Query\n      }\n\n      \"\"\"\"\"\"\n      directive @someDirective(\n        \"\"\"\"\"\"\n        someArg: String\n\n        \"\"\"\"\"\"\n        anotherArg: String\n      ) on QUERY\n\n      \"\"\"\"\"\"\n      scalar SomeScalar\n\n      \"\"\"\"\"\"\n      interface SomeInterface {\n        \"\"\"\"\"\"\n        someField(\n          \"\"\"\"\"\"\n          someArg: String\n\n          \"\"\"\"\"\"\n          anotherArg: String\n        ): String\n\n        \"\"\"\"\"\"\n        anotherField(\n          \"\"\"\"\"\"\n          someArg: String\n\n          \"\"\"\"\"\"\n          anotherArg: String\n        ): String\n      }\n\n      \"\"\"\"\"\"\n      union SomeUnion = Query\n\n      \"\"\"\"\"\"\n      type Query {\n        \"\"\"\"\"\"\n        someField(\n          \"\"\"\"\"\"\n          someArg: String\n\n          \"\"\"\"\"\"\n          anotherArg: String\n        ): String\n\n        \"\"\"\"\"\"\n        anotherField(\n          \"\"\"\"\"\"\n          someArg: String\n\n          \"\"\"\"\"\"\n          anotherArg: String\n        ): String\n      }\n\n      \"\"\"\"\"\"\n      enum SomeEnum {\n        \"\"\"\"\"\"\n        SOME_VALUE\n\n        \"\"\"\"\"\"\n        ANOTHER_VALUE\n      }\n    "
+ },
+ {
+  "name": "printSchema: Prints a description with only whitespace",
+  "sdl": "      type Query {\n        \" \"\n        singleField: String\n      }\n    "
+ },
+ {
+  "name": "printSchema: One-line prints a short description",
+  "sdl": "      type Query {\n        \"\"\"This field is awesome\"\"\"\n        singleField: String\n      }\n    "
+ },
+ {
+  "name": "printSchema: Print Introspection Schema",
+  "sdl": "      \"\"\"\n      Directs the executor to include this field or fragment only when the \\`if\\` argument is true.\n      \"\"\"\n      directive @include(\n        \"\"\"Included when true.\"\"\"\n        if: Boolean!\n      ) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT\n\n      \"\"\"\n      Directs the executor to skip this field or fragment when the \\`if\\` argument is true.\n      \"\"\"\n      directive @skip(\n        \"\"\"Skipped when true.\"\"\"\n        if: Boolean!\n      ) on FIELD | FRAGMENT_SPREAD | INLINE_FRAGMENT\n\n      \"\"\"Marks an element of a GraphQL schema as no longer supported.\"\"\"\n      directive @deprecated(\n        \"\"\"\n        Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax, as specified by [CommonMark](https://commonmark.org/).\n        \"\"\"\n        reason: String! = \"No longer supported\"\n      ) on FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | ENUM_VALUE | DIRECTIVE_DEFINITION\n\n      \"\"\"Exposes a URL that specifies the behavior of this scalar.\"\"\"\n      directive @specifiedBy(\n        \"\"\"The URL that specifies the behavior of this scalar.\"\"\"\n        url: String!\n      ) on SCALAR\n\n      \"\"\"\n      Indicates exactly one field must be supplied and this field must not be \\`null\\`.\n      \"\"\"\n      directive @oneOf on INPUT_OBJECT\n\n      \"\"\"\n      A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.\n      \"\"\"\n      type __Schema {\n        description: String\n\n        \"\"\"A list of all types supported by this server.\"\"\"\n        types: [__Type!]!\n\n        \"\"\"The type that query operations will be rooted at.\"\"\"\n        queryType: __Type!\n\n        \"\"\"\n        If this server supports mutation, the type that mutation operations will be rooted at.\n        \"\"\"\n        mutationType: __Type\n\n        \"\"\"\n        If this server support subscription, the type that subscription operations will be rooted at.\n        \"\"\"\n        subscriptionType: __Type\n\n        \"\"\"A list of all directives supported by this server.\"\"\"\n        directives(includeDeprecated: Boolean! = false): [__Directive!]!\n      }\n\n      \"\"\"\n      The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the \\`__TypeKind\\` enum.\n\n      Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional \\`specifiedByURL\\`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.\n      \"\"\"\n      type __Type {\n        kind: __TypeKind!\n        name: String\n        description: String\n        specifiedByURL: String\n        fields(includeDeprecated: Boolean! = false): [__Field!]\n        interfaces: [__Type!]\n        possibleTypes: [__Type!]\n        enumValues(includeDeprecated: Boolean! = false): [__EnumValue!]\n        inputFields(includeDeprecated: Boolean! = false): [__InputValue!]\n        ofType: __Type\n        isOneOf: Boolean\n      }\n\n      \"\"\"An enum describing what kind of type a given \\`__Type\\` is.\"\"\"\n      enum __TypeKind {\n        \"\"\"Indicates this type is a scalar.\"\"\"\n        SCALAR\n\n        \"\"\"\n        Indicates this type is an object. \\`fields\\` and \\`interfaces\\` are valid fields.\n        \"\"\"\n        OBJECT\n\n        \"\"\"\n        Indicates this type is an interface. \\`fields\\`, \\`interfaces\\`, and \\`possibleTypes\\` are valid fields.\n        \"\"\"\n        INTERFACE\n\n        \"\"\"Indicates this type is a union. \\`possibleTypes\\` is a valid field.\"\"\"\n        UNION\n\n        \"\"\"Indicates this type is an enum. \\`enumValues\\` is a valid field.\"\"\"\n        ENUM\n\n        \"\"\"\n        Indicates this type is an input object. \\`inputFields\\` is a valid field.\n        \"\"\"\n        INPUT_OBJECT\n\n        \"\"\"Indicates this type is a list. \\`ofType\\` is a valid field.\"\"\"\n        LIST\n\n        \"\"\"Indicates this type is a non-null. \\`ofType\\` is a valid field.\"\"\"\n        NON_NULL\n      }\n\n      \"\"\"\n      Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.\n      \"\"\"\n      type __Field {\n        name: String!\n        description: String\n        args(includeDeprecated: Boolean! = false): [__InputValue!]!\n        type: __Type!\n        isDeprecated: Boolean!\n        deprecationReason: String\n      }\n\n      \"\"\"\n      Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.\n      \"\"\"\n      type __InputValue {\n        name: String!\n        description: String\n        type: __Type!\n\n        \"\"\"\n        A GraphQL-formatted string representing the default value for this input value.\n        \"\"\"\n        defaultValue: String\n        isDeprecated: Boolean!\n        deprecationReason: String\n      }\n\n      \"\"\"\n      One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.\n      \"\"\"\n      type __EnumValue {\n        name: String!\n        description: String\n        isDeprecated: Boolean!\n        deprecationReason: String\n      }\n\n      \"\"\"\n      A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.\n\n      In some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.\n      \"\"\"\n      type __Directive {\n        name: String!\n        description: String\n        isRepeatable: Boolean!\n        locations: [__DirectiveLocation!]!\n        args(includeDeprecated: Boolean! = false): [__InputValue!]!\n        isDeprecated: Boolean!\n        deprecationReason: String\n      }\n\n      \"\"\"\n      A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.\n      \"\"\"\n      enum __DirectiveLocation {\n        \"\"\"Location adjacent to a query operation.\"\"\"\n        QUERY\n\n        \"\"\"Location adjacent to a mutation operation.\"\"\"\n        MUTATION\n\n        \"\"\"Location adjacent to a subscription operation.\"\"\"\n        SUBSCRIPTION\n\n        \"\"\"Location adjacent to a field.\"\"\"\n        FIELD\n\n        \"\"\"Location adjacent to a fragment definition.\"\"\"\n        FRAGMENT_DEFINITION\n\n        \"\"\"Location adjacent to a fragment spread.\"\"\"\n        FRAGMENT_SPREAD\n\n        \"\"\"Location adjacent to an inline fragment.\"\"\"\n        INLINE_FRAGMENT\n\n        \"\"\"Location adjacent to an operation variable definition.\"\"\"\n        VARIABLE_DEFINITION\n\n        \"\"\"Location adjacent to a fragment variable definition.\"\"\"\n        FRAGMENT_VARIABLE_DEFINITION\n\n        \"\"\"Location adjacent to a schema definition.\"\"\"\n        SCHEMA\n\n        \"\"\"Location adjacent to a scalar definition.\"\"\"\n        SCALAR\n\n        \"\"\"Location adjacent to an object type definition.\"\"\"\n        OBJECT\n\n        \"\"\"Location adjacent to a field definition.\"\"\"\n        FIELD_DEFINITION\n\n        \"\"\"Location adjacent to an argument definition.\"\"\"\n        ARGUMENT_DEFINITION\n\n        \"\"\"Location adjacent to an interface definition.\"\"\"\n        INTERFACE\n\n        \"\"\"Location adjacent to a union definition.\"\"\"\n        UNION\n\n        \"\"\"Location adjacent to an enum definition.\"\"\"\n        ENUM\n\n        \"\"\"Location adjacent to an enum value definition.\"\"\"\n        ENUM_VALUE\n\n        \"\"\"Location adjacent to an input object type definition.\"\"\"\n        INPUT_OBJECT\n\n        \"\"\"Location adjacent to an input object field definition.\"\"\"\n        INPUT_FIELD_DEFINITION\n\n        \"\"\"Location adjacent to a directive definition.\"\"\"\n        DIRECTIVE_DEFINITION\n      }\n    "
+ },
+ {
+  "name": "printSchema: prints schema with description and default root operation types correctly",
+  "sdl": "      \"\"\"Test\"\"\"\n      schema {\n        query: Query\n      }\n\n      type Query {\n        a: Int\n      }\n    "
+ },
+ {
+  "name": "schema-parser: Simple type",
+  "sdl": "      type Hello {\n        world: String\n      }\n    "
+ },
+ {
+  "name": "schema-parser: parses type with description multi-line string",
+  "sdl": "      \"\"\"\n      Description\n      \"\"\"\n      # Even with comments between them\n      type Hello {\n        world: String\n      }\n    "
+ },
+ {
+  "name": "schema-parser: Simple non-null type",
+  "sdl": "      type Hello {\n        world: String!\n      }\n    "
+ },
+ {
+  "name": "schema-parser: Simple interface",
+  "sdl": "      interface Hello {\n        world: String\n      }\n    "
+ },
+ {
+  "name": "schema-parser: Simple field with arg",
+  "sdl": "      type Hello {\n        world(flag: Boolean): String\n      }\n    "
+ },
+ {
+  "name": "schema-parser: Simple field with arg with default value",
+  "sdl": "      type Hello {\n        world(flag: Boolean = true): String\n      }\n    "
+ },
+ {
+  "name": "schema-parser: Simple field with list arg",
+  "sdl": "      type Hello {\n        world(things: [String]): String\n      }\n    "
+ },
+ {
+  "name": "schema-parser: Simple field with two args",
+  "sdl": "      type Hello {\n        world(argOne: Boolean, argTwo: Int): String\n      }\n    "
+ },
+ {
+  "name": "schema-parser: Simple input object",
+  "sdl": "input Hello {\n  world: String\n}"
+ },
+ {
+  "name": "extendSchema: extends objects by adding new fields",
+  "sdl": "      type Query {\n        someObject: SomeObject\n      }\n\n      type SomeObject implements AnotherInterface & SomeInterface {\n        self: SomeObject\n        tree: [SomeObject]!\n        \"\"\"Old field description.\"\"\"\n        oldField: String\n      }\n\n      interface SomeInterface {\n        self: SomeInterface\n      }\n\n      interface AnotherInterface {\n        self: SomeObject\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends enums by adding new values",
+  "sdl": "      type Query {\n        someEnum(arg: SomeEnum): SomeEnum\n      }\n\n      directive @foo(arg: SomeEnum) on SCHEMA\n\n      enum SomeEnum {\n        \"\"\"Old value description.\"\"\"\n        OLD_VALUE\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends enums by adding new values #3",
+  "sdl": "      enum SomeEnum {\n        \"\"\"Old value description.\"\"\"\n        OLD_VALUE\n        \"\"\"New value description.\"\"\"\n        NEW_VALUE\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends unions by adding new types",
+  "sdl": "      type Query {\n        someUnion: SomeUnion\n      }\n\n      union SomeUnion = Foo | Biz\n\n      type Foo { foo: String }\n      type Biz { biz: String }\n      type Bar { bar: String }\n    "
+ },
+ {
+  "name": "extendSchema: allows extension of union by adding itself",
+  "sdl": "      union SomeUnion\n    "
+ },
+ {
+  "name": "extendSchema: allows extension of union by adding itself #3",
+  "sdl": "      union SomeUnion = SomeUnion\n    "
+ },
+ {
+  "name": "extendSchema: extends inputs by adding new fields",
+  "sdl": "      type Query {\n        someInput(arg: SomeInput): String\n      }\n\n      directive @foo(arg: SomeInput) on SCHEMA\n\n      input SomeInput {\n        \"\"\"Old field description.\"\"\"\n        oldField: String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends inputs by adding new fields #3",
+  "sdl": "      input SomeInput {\n        \"\"\"Old field description.\"\"\"\n        oldField: String\n        \"\"\"New field description.\"\"\"\n        newField: String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends scalars by adding new directives",
+  "sdl": "      type Query {\n        someScalar(arg: SomeScalar): SomeScalar\n      }\n\n      directive @foo(arg: SomeScalar) on SCALAR\n\n      input FooInput {\n        foo: SomeScalar\n      }\n\n      scalar SomeScalar\n    "
+ },
+ {
+  "name": "extendSchema: extends scalars by adding specifiedBy directive",
+  "sdl": "      type Query {\n        foo: Foo\n      }\n\n      scalar Foo\n\n      directive @foo on SCALAR\n    "
+ },
+ {
+  "name": "extendSchema: builds scalars with specifiedBy directive from extensions",
+  "sdl": "      schema {\n        query: Query\n      }\n\n      type Query {\n        foo: Foo\n      }\n\n      scalar Foo\n\n      extend scalar Foo @specifiedBy(url: \"https://example.com/foo_spec\")\n    "
+ },
+ {
+  "name": "extendSchema: correctly assign AST nodes to new and extended types",
+  "sdl": "      type Query\n\n      scalar SomeScalar\n      enum SomeEnum\n      union SomeUnion\n      input SomeInput\n      type SomeObject\n      interface SomeInterface\n\n      directive @foo on SCALAR\n    "
+ },
+ {
+  "name": "extendSchema: builds types with deprecated fields/values",
+  "sdl": "      type SomeObject {\n        deprecatedField: String @deprecated(reason: \"not used anymore\")\n      }\n\n      enum SomeEnum {\n        DEPRECATED_VALUE @deprecated(reason: \"do not use\")\n      }\n    "
+ },
+ {
+  "name": "extendSchema: adds new unused types",
+  "sdl": "      type Query {\n        dummy: String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: adds new unused types #2",
+  "sdl": "      type DummyUnionMember {\n        someField: String\n      }\n\n      enum UnusedEnum {\n        SOME_VALUE\n      }\n\n      input UnusedInput {\n        someField: String\n      }\n\n      interface UnusedInterface {\n        someField: String\n      }\n\n      type UnusedObject {\n        someField: String\n      }\n\n      union UnusedUnion = DummyUnionMember\n    "
+ },
+ {
+  "name": "extendSchema: extends objects by adding new fields with arguments",
+  "sdl": "      type SomeObject\n\n      type Query {\n        someObject: SomeObject\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends objects by adding new fields with arguments #3",
+  "sdl": "      type SomeObject {\n        newField(arg1: String, arg2: NewInputObj!): String\n      }\n\n      input NewInputObj {\n        field1: Int\n        field2: [Float]\n        field3: String!\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends objects by adding new fields with existing types",
+  "sdl": "      type Query {\n        someObject: SomeObject\n      }\n\n      type SomeObject\n      enum SomeEnum { VALUE }\n    "
+ },
+ {
+  "name": "extendSchema: extends objects by adding implemented interfaces",
+  "sdl": "      type Query {\n        someObject: SomeObject\n      }\n\n      type SomeObject {\n        foo: String\n      }\n\n      interface SomeInterface {\n        foo: String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends objects by including new types",
+  "sdl": "      type Query {\n        someObject: SomeObject\n      }\n\n      type SomeObject {\n        oldField: String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends objects by including new types #2",
+  "sdl": "      enum NewEnum {\n        VALUE\n      }\n\n      interface NewInterface {\n        baz: String\n      }\n\n      type NewObject implements NewInterface {\n        baz: String\n      }\n\n      scalar NewScalar\n\n      union NewUnion = NewObject"
+ },
+ {
+  "name": "extendSchema: extends objects by adding implemented new interfaces",
+  "sdl": "      type Query {\n        someObject: SomeObject\n      }\n\n      type SomeObject implements OldInterface {\n        oldField: String\n      }\n\n      interface OldInterface {\n        oldField: String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends different types multiple times",
+  "sdl": "      type Query {\n        someScalar: SomeScalar\n        someObject(someInput: SomeInput): SomeObject\n        someInterface: SomeInterface\n        someEnum: SomeEnum\n        someUnion: SomeUnion\n      }\n\n      scalar SomeScalar\n\n      type SomeObject implements SomeInterface {\n        oldField: String\n      }\n\n      interface SomeInterface {\n        oldField: String\n      }\n\n      enum SomeEnum {\n        OLD_VALUE\n      }\n\n      union SomeUnion = SomeObject\n\n      input SomeInput {\n        oldField: String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends different types multiple times #2",
+  "sdl": "      scalar NewScalar\n\n      scalar AnotherNewScalar\n\n      type NewObject {\n        foo: String\n      }\n\n      type AnotherNewObject {\n        foo: String\n      }\n\n      interface NewInterface {\n        newField: String\n      }\n\n      interface AnotherNewInterface {\n        anotherNewField: String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends interfaces by adding new fields",
+  "sdl": "      interface SomeInterface {\n        oldField: String\n      }\n\n      interface AnotherInterface implements SomeInterface {\n        oldField: String\n      }\n\n      type SomeObject implements SomeInterface & AnotherInterface {\n        oldField: String\n      }\n\n      type Query {\n        someInterface: SomeInterface\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends interfaces by adding new fields #3",
+  "sdl": "      interface SomeInterface {\n        oldField: String\n        newField: String\n      }\n\n      interface AnotherInterface implements SomeInterface {\n        oldField: String\n        newField: String\n      }\n\n      type SomeObject implements SomeInterface & AnotherInterface {\n        oldField: String\n        newField: String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: allows extension of interface with missing Object fields",
+  "sdl": "      type Query {\n        someInterface: SomeInterface\n      }\n\n      type SomeObject implements SomeInterface {\n        oldField: SomeInterface\n      }\n\n      interface SomeInterface {\n        oldField: SomeInterface\n      }\n    "
+ },
+ {
+  "name": "extendSchema: allows extension of interface with missing Object fields #3",
+  "sdl": "      interface SomeInterface {\n        oldField: SomeInterface\n        newField: String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends interfaces multiple times",
+  "sdl": "      type Query {\n        someInterface: SomeInterface\n      }\n\n      interface SomeInterface {\n        some: SomeInterface\n      }\n    "
+ },
+ {
+  "name": "extendSchema: extends interfaces multiple times #3",
+  "sdl": "      interface SomeInterface {\n        some: SomeInterface\n        newFieldA: Int\n        newFieldB(test: Boolean): String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: may extend mutations and subscriptions",
+  "sdl": "      type Query {\n        queryField: String\n      }\n\n      type Mutation {\n        mutationField: String\n      }\n\n      type Subscription {\n        subscriptionField: String\n      }\n    "
+ },
+ {
+  "name": "extendSchema: may extend mutations and subscriptions #3",
+  "sdl": "      type Query {\n        queryField: String\n        newQueryField: Int\n      }\n\n      type Mutation {\n        mutationField: String\n        newMutationField: Int\n      }\n\n      type Subscription {\n        subscriptionField: String\n        newSubscriptionField: Int\n      }\n    "
+ },
+ {
+  "name": "extendSchema: does not allow replacing an existing enum value",
+  "sdl": "      enum SomeEnum {\n        ONE\n      }\n    "
+ },
+ {
+  "name": "extendSchema: adds schema definition missing in the original schema",
+  "sdl": "        directive @foo on SCHEMA\n        type Foo\n      "
+ },
+ {
+  "name": "extendSchema: adds new root types via schema extension",
+  "sdl": "        type Query\n        type MutationRoot\n      "
+ },
+ {
+  "name": "extendSchema: adds directive via schema extension",
+  "sdl": "        type Query\n\n        directive @foo on SCHEMA\n      "
+ },
+ {
+  "name": "extendSchema: adds multiple new root types via schema extension",
+  "sdl": "        extend schema {\n          mutation: Mutation\n          subscription: Subscription\n        }\n\n        type Mutation\n        type Subscription\n      "
+ },
+ {
+  "name": "extendSchema: applies multiple schema extensions",
+  "sdl": "        extend schema {\n          mutation: Mutation\n        }\n        type Mutation\n\n        extend schema {\n          subscription: Subscription\n        }\n        type Subscription\n      "
+ },
+ {
+  "name": "extendSchema: preserves deprecated directives when extending other types",
+  "sdl": "            type Query {\n              foo: String\n            }\n\n            directive @isDeprecated @deprecated(reason: \"use another directive\") on FIELD_DEFINITION\n          "
+ },
+ {
+  "name": "lexicographicSortSchema: sort fields",
+  "sdl": "      input Bar {\n        barB: String!\n        barA: String\n        barC: [String]\n      }\n\n      interface FooInterface {\n        fooB: String!\n        fooA: String\n        fooC: [String]\n      }\n\n      type FooType implements FooInterface {\n        fooC: [String]\n        fooA: String\n        fooB: String!\n      }\n\n      type Query {\n        dummy(arg: Bar): FooType\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort fields #2",
+  "sdl": "      input Bar {\n        barA: String\n        barB: String!\n        barC: [String]\n      }\n\n      interface FooInterface {\n        fooA: String\n        fooB: String!\n        fooC: [String]\n      }\n\n      type FooType implements FooInterface {\n        fooA: String\n        fooB: String!\n        fooC: [String]\n      }\n\n      type Query {\n        dummy(arg: Bar): FooType\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort implemented interfaces",
+  "sdl": "      interface FooA {\n        dummy: String\n      }\n\n      interface FooB {\n        dummy: String\n      }\n\n      interface FooC implements FooB & FooA {\n        dummy: String\n      }\n\n      type Query implements FooB & FooA & FooC {\n        dummy: String\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort implemented interfaces #2",
+  "sdl": "      interface FooA {\n        dummy: String\n      }\n\n      interface FooB {\n        dummy: String\n      }\n\n      interface FooC implements FooA & FooB {\n        dummy: String\n      }\n\n      type Query implements FooA & FooB & FooC {\n        dummy: String\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort types in union",
+  "sdl": "      type FooA {\n        dummy: String\n      }\n\n      type FooB {\n        dummy: String\n      }\n\n      type FooC {\n        dummy: String\n      }\n\n      union FooUnion = FooB | FooA | FooC\n\n      type Query {\n        dummy: FooUnion\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort types in union #2",
+  "sdl": "      type FooA {\n        dummy: String\n      }\n\n      type FooB {\n        dummy: String\n      }\n\n      type FooC {\n        dummy: String\n      }\n\n      union FooUnion = FooA | FooB | FooC\n\n      type Query {\n        dummy: FooUnion\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort enum values",
+  "sdl": "      enum Foo {\n        B\n        C\n        A\n      }\n\n      type Query {\n        dummy: Foo\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort enum values #2",
+  "sdl": "      enum Foo {\n        A\n        B\n        C\n      }\n\n      type Query {\n        dummy: Foo\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort field arguments",
+  "sdl": "      type Query {\n        dummy(argB: Int!, argA: String, argC: [Float]): ID\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort field arguments #2",
+  "sdl": "      type Query {\n        dummy(argA: String, argB: Int!, argC: [Float]): ID\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort types",
+  "sdl": "      type Query {\n        dummy(arg1: FooF, arg2: FooA, arg3: FooG): FooD\n      }\n\n      type FooC implements FooE {\n        dummy: String\n      }\n\n      enum FooG {\n        enumValue\n      }\n\n      scalar FooA\n\n      input FooF {\n        dummy: String\n      }\n\n      union FooD = FooC | FooB\n\n      interface FooE {\n        dummy: String\n      }\n\n      type FooB {\n        dummy: String\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort types #2",
+  "sdl": "      scalar FooA\n\n      type FooB {\n        dummy: String\n      }\n\n      type FooC implements FooE {\n        dummy: String\n      }\n\n      union FooD = FooB | FooC\n\n      interface FooE {\n        dummy: String\n      }\n\n      input FooF {\n        dummy: String\n      }\n\n      enum FooG {\n        enumValue\n      }\n\n      type Query {\n        dummy(arg1: FooF, arg2: FooA, arg3: FooG): FooD\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort directive arguments",
+  "sdl": "      directive @test(argC: Float, argA: String, argB: Int) on FIELD\n\n      type Query {\n        dummy: String\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort directive arguments #2",
+  "sdl": "      directive @test(argA: String, argB: Int, argC: Float) on FIELD\n\n      type Query {\n        dummy: String\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort directive locations",
+  "sdl": "      directive @test(argC: Float, argA: String, argB: Int) on UNION | FIELD | ENUM\n\n      type Query {\n        dummy: String\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort directive locations #2",
+  "sdl": "      directive @test(argA: String, argB: Int, argC: Float) on ENUM | FIELD | UNION\n\n      type Query {\n        dummy: String\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort directives",
+  "sdl": "      directive @fooC on FIELD\n\n      directive @fooB on UNION\n\n      directive @fooA on ENUM\n\n      type Query {\n        dummy: String\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort directives #2",
+  "sdl": "      directive @fooA on ENUM\n\n      directive @fooB on UNION\n\n      directive @fooC on FIELD\n\n      type Query {\n        dummy: String\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort recursive types",
+  "sdl": "      interface FooC {\n        fooB: FooB\n        fooA: FooA\n        fooC: FooC\n      }\n\n      type FooB implements FooC {\n        fooB: FooB\n        fooA: FooA\n      }\n\n      type FooA implements FooC {\n        fooB: FooB\n        fooA: FooA\n      }\n\n      type Query {\n        fooC: FooC\n        fooB: FooB\n        fooA: FooA\n      }\n    "
+ },
+ {
+  "name": "lexicographicSortSchema: sort recursive types #2",
+  "sdl": "      type FooA implements FooC {\n        fooA: FooA\n        fooB: FooB\n      }\n\n      type FooB implements FooC {\n        fooA: FooA\n        fooB: FooB\n      }\n\n      interface FooC {\n        fooA: FooA\n        fooB: FooB\n        fooC: FooC\n      }\n\n      type Query {\n        fooA: FooA\n        fooB: FooB\n        fooC: FooC\n      }\n    "
+ },
+ {
+  "name": "mapSchemaConfig: can map scalar types",
+  "sdl": "          \"\"\"Some description\"\"\"\n          scalar SomeScalar\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map arguments",
+  "sdl": "        type SomeType {\n          field(arg: String): String\n        }\n      "
+ },
+ {
+  "name": "mapSchemaConfig: can map arguments #2",
+  "sdl": "          type SomeType {\n            field(\n              \"\"\"Some description\"\"\"\n              arg: String\n            ): String\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map fields",
+  "sdl": "      type SomeType {\n        field: String\n      }\n    "
+ },
+ {
+  "name": "mapSchemaConfig: can map fields #2",
+  "sdl": "          type SomeType {\n            \"\"\"Some description\"\"\"\n            field: String\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map fields with non-null return type",
+  "sdl": "      type SomeType {\n        field: String!\n      }\n    "
+ },
+ {
+  "name": "mapSchemaConfig: can map fields with non-null return type #2",
+  "sdl": "          type SomeType {\n            \"\"\"Some description\"\"\"\n            field: String!\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map fields with list return type",
+  "sdl": "      type SomeType {\n        field: [String]\n      }\n    "
+ },
+ {
+  "name": "mapSchemaConfig: can map fields with list return type #2",
+  "sdl": "          type SomeType {\n            \"\"\"Some description\"\"\"\n            field: [String]\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: maps fields after mapping arguments",
+  "sdl": "          type SomeType {\n            \"\"\"Some field description\"\"\"\n            field(\n              \"\"\"Some argument description\"\"\"\n              arg: String\n            ): String\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map object types",
+  "sdl": "          \"\"\"Some description\"\"\"\n          type SomeType\n        "
+ },
+ {
+  "name": "mapSchemaConfig: maps object types after mapping fields",
+  "sdl": "        type SomeType {\n          field: String\n        }\n      "
+ },
+ {
+  "name": "mapSchemaConfig: maps object types after mapping fields #2",
+  "sdl": "          \"\"\"Some object description\"\"\"\n          type SomeType {\n            \"\"\"Some field description\"\"\"\n            field: String\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: maps object types after mapping interfaces",
+  "sdl": "        interface SomeInterface\n        type SomeType implements SomeInterface\n      "
+ },
+ {
+  "name": "mapSchemaConfig: maps object types after mapping interfaces #2",
+  "sdl": "          \"\"\"Some interface description\"\"\"\n          interface SomeInterface\n\n          \"\"\"Some object description\"\"\"\n          type SomeType implements SomeInterface\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map interface types",
+  "sdl": "          \"\"\"Some description\"\"\"\n          interface SomeInterface\n        "
+ },
+ {
+  "name": "mapSchemaConfig: maps interface types after mapping fields",
+  "sdl": "        interface SomeInterface {\n          field: String\n        }\n      "
+ },
+ {
+  "name": "mapSchemaConfig: maps interface types after mapping fields #2",
+  "sdl": "          \"\"\"Some interface description\"\"\"\n          interface SomeInterface {\n            \"\"\"Some field description\"\"\"\n            field: String\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: maps interface types after mapping parent interfaces",
+  "sdl": "        interface SomeParentInterface\n        interface SomeInterface implements SomeParentInterface\n      "
+ },
+ {
+  "name": "mapSchemaConfig: maps interface types after mapping parent interfaces #2",
+  "sdl": "          \"\"\"Some interface description\"\"\"\n          interface SomeParentInterface\n\n          \"\"\"Some interface description\"\"\"\n          interface SomeInterface implements SomeParentInterface\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map union types",
+  "sdl": "          \"\"\"Some description\"\"\"\n          union SomeUnion\n        "
+ },
+ {
+  "name": "mapSchemaConfig: maps union types after mapping types",
+  "sdl": "        type SomeType\n        union SomeUnion = SomeType\n      "
+ },
+ {
+  "name": "mapSchemaConfig: maps union types after mapping types #2",
+  "sdl": "          \"\"\"Some type description\"\"\"\n          type SomeType\n\n          \"\"\"Some union description\"\"\"\n          union SomeUnion = SomeType\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map enum values",
+  "sdl": "        enum SomeEnum {\n          SOME_VALUE\n        }\n      "
+ },
+ {
+  "name": "mapSchemaConfig: can map enum values #2",
+  "sdl": "          enum SomeEnum {\n            \"\"\"Some description\"\"\"\n            SOME_VALUE\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map enum types",
+  "sdl": "          \"\"\"Some description\"\"\"\n          enum SomeEnum\n        "
+ },
+ {
+  "name": "mapSchemaConfig: maps enum types after mapping values",
+  "sdl": "          \"\"\"Some enum description\"\"\"\n          enum SomeEnum {\n            \"\"\"Some value description\"\"\"\n            SOME_VALUE\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map input fields",
+  "sdl": "        input SomeInput {\n          field: String\n        }\n      "
+ },
+ {
+  "name": "mapSchemaConfig: can map input fields #2",
+  "sdl": "          input SomeInput {\n            \"\"\"Some description\"\"\"\n            field: String\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map input object types",
+  "sdl": "          \"\"\"Some description\"\"\"\n          input SomeInput\n        "
+ },
+ {
+  "name": "mapSchemaConfig: maps input object types after mapping input fields",
+  "sdl": "          \"\"\"Some input object description\"\"\"\n          input SomeInput {\n            \"\"\"Some input field description\"\"\"\n            field: String\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: can map the schema",
+  "sdl": "        type Query\n\n        type Mutation\n\n        type Subscription\n\n        directive @SomeDirective on FIELD\n\n        scalar SomeScalar\n\n        type SomeType {\n          field: String\n        }\n\n        interface SomeInterface\n\n        union SomeUnion\n\n        enum SomeEnum {\n          SOME_VALUE\n        }\n\n        input SomeInput {\n          field: String\n        }\n      "
+ },
+ {
+  "name": "mapSchemaConfig: can map the schema #2",
+  "sdl": "          \"\"\"Some description\"\"\"\n          schema {\n            query: Query\n            mutation: Mutation\n            subscription: Subscription\n          }\n\n          directive @SomeDirective on FIELD\n\n          type Query\n\n          type Mutation\n\n          type Subscription\n\n          scalar SomeScalar\n\n          type SomeType {\n            field: String\n          }\n\n          interface SomeInterface\n\n          union SomeUnion\n\n          enum SomeEnum {\n            SOME_VALUE\n          }\n\n          input SomeInput {\n            field: String\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: maps the schema after mapping types and directives",
+  "sdl": "          \"\"\"Some schema description\"\"\"\n          schema {\n            query: Query\n            mutation: Mutation\n            subscription: Subscription\n          }\n\n          \"\"\"Some directive description\"\"\"\n          directive @SomeDirective on FIELD\n\n          \"\"\"Some object description\"\"\"\n          type Query\n\n          \"\"\"Some object description\"\"\"\n          type Mutation\n\n          \"\"\"Some object description\"\"\"\n          type Subscription\n\n          \"\"\"Some scalar description\"\"\"\n          scalar SomeScalar\n\n          \"\"\"Some object description\"\"\"\n          type SomeType {\n            field: String\n          }\n\n          \"\"\"Some interface description\"\"\"\n          interface SomeInterface\n\n          \"\"\"Some union description\"\"\"\n          union SomeUnion\n\n          \"\"\"Some enum description\"\"\"\n          enum SomeEnum {\n            SOME_VALUE\n          }\n\n          \"\"\"Some input object description\"\"\"\n          input SomeInput {\n            field: String\n          }\n        "
+ },
+ {
+  "name": "mapSchemaConfig: allows access to the final mapped named type via getNamedType()",
+  "sdl": "        \"\"\"Some description\"\"\"\n        type SomeType\n      "
+ },
+ {
+  "name": "mapSchemaConfig: allows adding a named type via setNamedType() and retrieving the new list via getNamedTypes",
+  "sdl": "          type SomeType\n\n          type AnotherType\n        "
+ }
+]

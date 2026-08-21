@@ -1,0 +1,5598 @@
+[
+ {
+  "name": "variable Int given null#0",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given 0#1",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given 1#2",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given -1#3",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given 1.5#4",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given \"\"#6",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given \"A\"#7",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given \"1\"#8",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given true#9",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given false#10",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given []#11",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given [1]#12",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given [1,null]#13",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given [[1]]#14",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given {}#15",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int not supplied",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = null#0",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = 0#1",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = 1#2",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = -1#3",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = 1.5#4",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = 1e3#5",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = \"\"#6",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = \"A\"#7",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = \"1\"#8",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = true#9",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = false#10",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = A#11",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = B#12",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = Z#13",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = []#14",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = [1]#15",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = [1, null]#16",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = [[1]]#17",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = {}#18",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = {x: null}#20",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int left out",
+  "sdl": "\ntype Query { f(a: Int): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given null#0",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given 0#1",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given 1#2",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given -1#3",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given 1.5#4",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given \"\"#6",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given \"A\"#7",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given \"1\"#8",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given true#9",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given false#10",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given []#11",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given [1]#12",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given [1,null]#13",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given [[1]]#14",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given {}#15",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Int! not supplied",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Int!) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = null#0",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = 0#1",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = 1#2",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = -1#3",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = 1.5#4",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = 1e3#5",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = \"\"#6",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = \"A\"#7",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = \"1\"#8",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = true#9",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = false#10",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = A#11",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = B#12",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = Z#13",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = []#14",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = [1]#15",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = [1, null]#16",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = [[1]]#17",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = {}#18",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = {x: null}#20",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Int! left out",
+  "sdl": "\ntype Query { f(a: Int!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given null#0",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given 0#1",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given 1#2",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given -1#3",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given 1.5#4",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given \"\"#6",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given \"A\"#7",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given \"1\"#8",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given true#9",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given false#10",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given []#11",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given [1]#12",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given [1,null]#13",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given [[1]]#14",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given {}#15",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Float not supplied",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Float) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = null#0",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = 0#1",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = 1#2",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = -1#3",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = 1.5#4",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = 1e3#5",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = \"\"#6",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = \"A\"#7",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = \"1\"#8",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = true#9",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = false#10",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = A#11",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = B#12",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = Z#13",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = []#14",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = [1]#15",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = [1, null]#16",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = [[1]]#17",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = {}#18",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = {x: null}#20",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Float left out",
+  "sdl": "\ntype Query { f(a: Float): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given null#0",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given 0#1",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given 1#2",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given -1#3",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given 1.5#4",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given \"\"#6",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given \"A\"#7",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given \"1\"#8",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given true#9",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given false#10",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given []#11",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given [1]#12",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given [1,null]#13",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given [[1]]#14",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given {}#15",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable String not supplied",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: String) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = null#0",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = 0#1",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = 1#2",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = -1#3",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = 1.5#4",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = 1e3#5",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = \"\"#6",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = \"A\"#7",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = \"1\"#8",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = true#9",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = false#10",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = A#11",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = B#12",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = Z#13",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = []#14",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = [1]#15",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = [1, null]#16",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = [[1]]#17",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = {}#18",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = {x: null}#20",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal String left out",
+  "sdl": "\ntype Query { f(a: String): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given null#0",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given 0#1",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given 1#2",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given -1#3",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given 1.5#4",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given \"\"#6",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given \"A\"#7",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given \"1\"#8",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given true#9",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given false#10",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given []#11",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given [1]#12",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given [1,null]#13",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given [[1]]#14",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given {}#15",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Boolean not supplied",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Boolean) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = null#0",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = 0#1",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = 1#2",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = -1#3",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = 1.5#4",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = 1e3#5",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = \"\"#6",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = \"A\"#7",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = \"1\"#8",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = true#9",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = false#10",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = A#11",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = B#12",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = Z#13",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = []#14",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = [1]#15",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = [1, null]#16",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = [[1]]#17",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = {}#18",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = {x: null}#20",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Boolean left out",
+  "sdl": "\ntype Query { f(a: Boolean): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given null#0",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given 0#1",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given 1#2",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given -1#3",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given 1.5#4",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given \"\"#6",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given \"A\"#7",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given \"1\"#8",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given true#9",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given false#10",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given []#11",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given [1]#12",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given [1,null]#13",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given [[1]]#14",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given {}#15",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable ID not supplied",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: ID) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = null#0",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = 0#1",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = 1#2",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = -1#3",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = 1.5#4",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = 1e3#5",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = \"\"#6",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = \"A\"#7",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = \"1\"#8",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = true#9",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = false#10",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = A#11",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = B#12",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = Z#13",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = []#14",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = [1]#15",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = [1, null]#16",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = [[1]]#17",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = {}#18",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = {x: null}#20",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal ID left out",
+  "sdl": "\ntype Query { f(a: ID): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given null#0",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given 0#1",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given 1#2",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given -1#3",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given 1.5#4",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given \"\"#6",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given \"A\"#7",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given \"1\"#8",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given true#9",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given false#10",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given []#11",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given [1]#12",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given [1,null]#13",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given [[1]]#14",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given {}#15",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int] not supplied",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = null#0",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = 0#1",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = 1#2",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = -1#3",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = 1.5#4",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = 1e3#5",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = \"\"#6",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = \"A\"#7",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = \"1\"#8",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = true#9",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = false#10",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = A#11",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = B#12",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = Z#13",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = []#14",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = [1]#15",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = [1, null]#16",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = [[1]]#17",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = {}#18",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = {x: null}#20",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int] left out",
+  "sdl": "\ntype Query { f(a: [Int]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given null#0",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given 0#1",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given 1#2",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given -1#3",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given 1.5#4",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given \"\"#6",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given \"A\"#7",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given \"1\"#8",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given true#9",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given false#10",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given []#11",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given [1]#12",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given [1,null]#13",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given [[1]]#14",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given {}#15",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!] not supplied",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = null#0",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = 0#1",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = 1#2",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = -1#3",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = 1.5#4",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = 1e3#5",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = \"\"#6",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = \"A\"#7",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = \"1\"#8",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = true#9",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = false#10",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = A#11",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = B#12",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = Z#13",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = []#14",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = [1]#15",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = [1, null]#16",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = [[1]]#17",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = {}#18",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = {x: null}#20",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!] left out",
+  "sdl": "\ntype Query { f(a: [Int!]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given null#0",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given 0#1",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given 1#2",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given -1#3",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given 1.5#4",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given \"\"#6",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given \"A\"#7",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given \"1\"#8",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given true#9",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given false#10",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given []#11",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given [1]#12",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given [1,null]#13",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given [[1]]#14",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given {}#15",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int]! not supplied",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int]!) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = null#0",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = 0#1",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = 1#2",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = -1#3",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = 1.5#4",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = 1e3#5",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = \"\"#6",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = \"A\"#7",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = \"1\"#8",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = true#9",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = false#10",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = A#11",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = B#12",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = Z#13",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = []#14",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = [1]#15",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = [1, null]#16",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = [[1]]#17",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = {}#18",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = {x: null}#20",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int]! left out",
+  "sdl": "\ntype Query { f(a: [Int]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given null#0",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given 0#1",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given 1#2",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given -1#3",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given 1.5#4",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given \"\"#6",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given \"A\"#7",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given \"1\"#8",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given true#9",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given false#10",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given []#11",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given [1]#12",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given [1,null]#13",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given [[1]]#14",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given {}#15",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [Int!]! not supplied",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [Int!]!) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = null#0",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = 0#1",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = 1#2",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = -1#3",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = 1.5#4",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = 1e3#5",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = \"\"#6",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = \"A\"#7",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = \"1\"#8",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = true#9",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = false#10",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = A#11",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = B#12",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = Z#13",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = []#14",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = [1]#15",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = [1, null]#16",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = [[1]]#17",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = {}#18",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = {x: null}#20",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [Int!]! left out",
+  "sdl": "\ntype Query { f(a: [Int!]!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given null#0",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given 0#1",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given 1#2",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given -1#3",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given 1.5#4",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given \"\"#6",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given \"A\"#7",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given \"1\"#8",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given true#9",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given false#10",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given []#11",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given [1]#12",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given [1,null]#13",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given [[1]]#14",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given {}#15",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable [[Int]] not supplied",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: [[Int]]) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = null#0",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = 0#1",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = 1#2",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = -1#3",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = 1.5#4",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = 1e3#5",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = \"\"#6",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = \"A\"#7",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = \"1\"#8",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = true#9",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = false#10",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = A#11",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = B#12",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = Z#13",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = []#14",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = [1]#15",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = [1, null]#16",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = [[1]]#17",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = {}#18",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = {x: null}#20",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal [[Int]] left out",
+  "sdl": "\ntype Query { f(a: [[Int]]): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given null#0",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given 0#1",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given 1#2",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given -1#3",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given 1.5#4",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given \"\"#6",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given \"A\"#7",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given \"1\"#8",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given true#9",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given false#10",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given []#11",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given [1]#12",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given [1,null]#13",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given [[1]]#14",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given {}#15",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E not supplied",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = null#0",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = 0#1",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = 1#2",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = -1#3",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = 1.5#4",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = 1e3#5",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = \"\"#6",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = \"A\"#7",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = \"1\"#8",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = true#9",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = false#10",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = A#11",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = B#12",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = Z#13",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = []#14",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = [1]#15",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = [1, null]#16",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = [[1]]#17",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = {}#18",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = {x: null}#20",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E left out",
+  "sdl": "\ntype Query { f(a: E): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given null#0",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given 0#1",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given 1#2",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given -1#3",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given 1.5#4",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given \"\"#6",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given \"A\"#7",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given \"1\"#8",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given true#9",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given false#10",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given []#11",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given [1]#12",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given [1,null]#13",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given [[1]]#14",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given {}#15",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable E! not supplied",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: E!) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = null#0",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = 0#1",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = 1#2",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = -1#3",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = 1.5#4",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = 1e3#5",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = \"\"#6",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = \"A\"#7",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = \"1\"#8",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = true#9",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = false#10",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = A#11",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = B#12",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = Z#13",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = []#14",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = [1]#15",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = [1, null]#16",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = [[1]]#17",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = {}#18",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = {x: null}#20",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal E! left out",
+  "sdl": "\ntype Query { f(a: E!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given null#0",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given 0#1",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given 1#2",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given -1#3",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given 1.5#4",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given \"\"#6",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given \"A\"#7",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given \"1\"#8",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given true#9",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given false#10",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given []#11",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given [1]#12",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given [1,null]#13",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given [[1]]#14",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given {}#15",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In not supplied",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = null#0",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = 0#1",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = 1#2",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = -1#3",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = 1.5#4",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = 1e3#5",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = \"\"#6",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = \"A\"#7",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = \"1\"#8",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = true#9",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = false#10",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = A#11",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = B#12",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = Z#13",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = []#14",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = [1]#15",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = [1, null]#16",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = [[1]]#17",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = {}#18",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = {x: null}#20",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In left out",
+  "sdl": "\ntype Query { f(a: In): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given null#0",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given 0#1",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given 1#2",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given -1#3",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given 1.5#4",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given \"\"#6",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given \"A\"#7",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given \"1\"#8",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given true#9",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given false#10",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given []#11",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given [1]#12",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given [1,null]#13",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given [[1]]#14",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given {}#15",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable In! not supplied",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: In!) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = null#0",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = 0#1",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = 1#2",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = -1#3",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = 1.5#4",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = 1e3#5",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = \"\"#6",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = \"A\"#7",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = \"1\"#8",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = true#9",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = false#10",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = A#11",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = B#12",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = Z#13",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = []#14",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = [1]#15",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = [1, null]#16",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = [[1]]#17",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = {}#18",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = {x: null}#20",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal In! left out",
+  "sdl": "\ntype Query { f(a: In!): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given null#0",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given 0#1",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": 0
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given 1#2",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": 1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given -1#3",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": -1
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given 1.5#4",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": 1.5
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given 9007199254740992#5",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": 9007199254740992
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given \"\"#6",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": ""
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given \"A\"#7",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": "A"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given \"1\"#8",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": "1"
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given true#9",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": true
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given false#10",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": false
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given []#11",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": []
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given [1]#12",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given [1,null]#13",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": [
+    1,
+    null
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given [[1]]#14",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": [
+    [
+     1
+    ]
+   ]
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given {}#15",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": {}
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given {\"x\":1}#16",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given {\"x\":null}#17",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": null
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom given {\"x\":1,\"nope\":2}#18",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "variables": {
+   "v": {
+    "x": 1,
+    "nope": 2
+   }
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "variable Custom not supplied",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "query ($v: Custom) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = null#0",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = 0#1",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 0) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = 1#2",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = -1#3",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: -1) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = 1.5#4",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1.5) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = 1e3#5",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: 1e3) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = \"\"#6",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = \"A\"#7",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"A\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = \"1\"#8",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: \"1\") }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = true#9",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: true) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = false#10",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: false) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = A#11",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: A) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = B#12",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: B) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = Z#13",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: Z) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = []#14",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: []) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = [1]#15",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = [1, null]#16",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [1, null]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = [[1]]#17",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: [[1]]) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = {}#18",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = {x: 1}#19",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = {x: null}#20",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: null}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = {x: 1, nope: 2}#21",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {x: 1, nope: 2}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = {y: \"s\"}#22",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {y: \"s\"}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom = {z: [1]}#23",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f(a: {z: [1]}) }",
+  "echoArgs": true
+ },
+ {
+  "name": "literal Custom left out",
+  "sdl": "\ntype Query { f(a: Custom): String }\nenum E { A B }\ninput In { x: Int  y: String = \"d\"  z: [Int!] }\nscalar Custom\n",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "default 1, left out",
+  "sdl": "type Query { f(a: Int = 1): String }",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "default 1, written as null",
+  "sdl": "type Query { f(a: Int = 1): String }",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "default 1, a variable not supplied",
+  "sdl": "type Query { f(a: Int = 1): String }",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "default 1, a variable given null",
+  "sdl": "type Query { f(a: Int = 1): String }",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "default null, left out",
+  "sdl": "type Query { f(a: Int = null): String }",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "default null, written as null",
+  "sdl": "type Query { f(a: Int = null): String }",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "default null, a variable not supplied",
+  "sdl": "type Query { f(a: Int = null): String }",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "default null, a variable given null",
+  "sdl": "type Query { f(a: Int = null): String }",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "default [1], left out",
+  "sdl": "type Query { f(a: Int = [1]): String }",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "default [1], written as null",
+  "sdl": "type Query { f(a: Int = [1]): String }",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "default [1], a variable not supplied",
+  "sdl": "type Query { f(a: Int = [1]): String }",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "default [1], a variable given null",
+  "sdl": "type Query { f(a: Int = [1]): String }",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ },
+ {
+  "name": "default {x: 1}, left out",
+  "sdl": "type Query { f(a: Int = {x: 1}): String }",
+  "query": "{ f }",
+  "echoArgs": true
+ },
+ {
+  "name": "default {x: 1}, written as null",
+  "sdl": "type Query { f(a: Int = {x: 1}): String }",
+  "query": "{ f(a: null) }",
+  "echoArgs": true
+ },
+ {
+  "name": "default {x: 1}, a variable not supplied",
+  "sdl": "type Query { f(a: Int = {x: 1}): String }",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "echoArgs": true
+ },
+ {
+  "name": "default {x: 1}, a variable given null",
+  "sdl": "type Query { f(a: Int = {x: 1}): String }",
+  "query": "query ($v: Int) { f(a: $v) }",
+  "variables": {
+   "v": null
+  },
+  "echoArgs": true
+ }
+]

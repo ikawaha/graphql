@@ -1,0 +1,5625 @@
+[
+ {
+  "name": "defer: Can defer fragments containing scalar types",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          id\n          ...NameFragment @defer\n        }\n      }\n      fragment NameFragment on Hero {\n        name\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Returns label from defer directive",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          id\n          ...NameFragment @defer(label: \"defer-label\")\n        }\n      }\n      fragment NameFragment on Hero {\n        name\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Treats null defer label the same as no label",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          id\n          ...NameFragment @defer(label: null)\n        }\n      }\n      fragment NameFragment on Hero {\n        name\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Can disable defer using if argument",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          id\n          ...NameFragment @defer(if: false)\n        }\n      }\n      fragment NameFragment on Hero {\n        name\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Does not disable defer with null if argument",
+  "query": "\n      query HeroNameQuery($shouldDefer: Boolean) {\n        hero {\n          id\n          ...NameFragment @defer(if: $shouldDefer)\n        }\n      }\n      fragment NameFragment on Hero {\n        name\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Can defer fragments on the top level Query field",
+  "query": "\n      query HeroNameQuery {\n        ...QueryFragment @defer(label: \"DeferQuery\")\n      }\n      fragment QueryFragment on Query {\n        hero {\n          id\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Can defer fragments with errors on the top level Query field",
+  "query": "\n      query HeroNameQuery {\n        ...QueryFragment @defer(label: \"DeferQuery\")\n      }\n      fragment QueryFragment on Query {\n        hero {\n          name\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": {
+     "__throw": "bad"
+    },
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Can defer a fragment within an already deferred fragment",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          ...TopFragment @defer(label: \"DeferTop\")\n        }\n      }\n      fragment TopFragment on Hero {\n        id\n        ...NestedFragment @defer(label: \"DeferNested\")\n      }\n      fragment NestedFragment on Hero {\n        friends {\n          name\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Can defer a fragment that is also not deferred, deferred fragment is first",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          ...TopFragment @defer(label: \"DeferTop\")\n          ...TopFragment\n        }\n      }\n      fragment TopFragment on Hero {\n        name\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Can defer a fragment that is also not deferred, non-deferred fragment is first",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          ...TopFragment\n          ...TopFragment @defer(label: \"DeferTop\")\n        }\n      }\n      fragment TopFragment on Hero {\n        name\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Can defer an inline fragment",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          id\n          ... on Hero @defer(label: \"InlineDeferred\") {\n            name\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Does not emit empty defer fragments",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          ... @defer {\n            name @skip(if: true)\n          }\n        }\n      }\n      fragment TopFragment on Hero {\n        name\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Emits children of empty defer fragments",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          ... @defer {\n            ... @defer {\n              name\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Can separately emit defer fragments with different labels with varying fields",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          ... @defer(label: \"DeferID\") {\n            id\n          }\n          ... @defer(label: \"DeferName\") {\n            name\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Separately emits defer fragments with different labels with varying subfields",
+  "query": "\n      query HeroNameQuery {\n        ... @defer(label: \"DeferID\") {\n          hero {\n            id\n          }\n        }\n        ... @defer(label: \"DeferName\") {\n          hero {\n            name\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Separately emits defer fragments with different labels with varying subfields that return promises",
+  "query": "\n      query HeroNameQuery {\n        ... @defer(label: \"DeferID\") {\n          hero {\n            id\n          }\n        }\n        ... @defer(label: \"DeferName\") {\n          hero {\n            name\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "id": "1",
+    "name": "Luke"
+   }
+  }
+ },
+ {
+  "name": "defer: Separately emits defer fragments with varying subfields of same priorities but different level of defers",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          ... @defer(label: \"DeferID\") {\n            id\n          }\n        }\n        ... @defer(label: \"DeferName\") {\n          hero {\n            name\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Separately emits nested defer fragments with varying subfields of same priorities but different level of defers",
+  "query": "\n      query HeroNameQuery {\n        ... @defer(label: \"DeferName\") {\n          hero {\n            name\n            ... @defer(label: \"DeferID\") {\n              id\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Initiates deferred grouped field sets only if they have been released as pending",
+  "query": "\n      query {\n        ... @defer {\n          a {\n            ... @defer {\n              b {\n                c { d }\n              }\n            }\n          }\n        }\n        ... @defer {\n          a {\n            someField\n            ... @defer {\n              b {\n                e { f }\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Initiates unique deferred grouped field sets after those that are common to sibling defers",
+  "query": "\n      query {\n        ... @defer {\n          a {\n            ... @defer {\n              b {\n                c { d }\n              }\n            }\n          }\n        }\n        ... @defer {\n          a {\n            ... @defer {\n              b {\n                c { d }\n                e { f }\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Can deduplicate multiple defers on the same object",
+  "query": "\n      query {\n        hero {\n          friends {\n            ... @defer {\n              ...FriendFrag\n              ... @defer {\n                ...FriendFrag\n                ... @defer {\n                  ...FriendFrag\n                  ... @defer {\n                    ...FriendFrag\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n\n      fragment FriendFrag on Friend {\n        id\n        name\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Deduplicates fields present in the initial payload",
+  "query": "\n      query {\n        hero {\n          nestedObject {\n            deeperObject {\n              foo\n            }\n          }\n          anotherNestedObject {\n            deeperObject {\n              foo\n            }\n          }\n          ... @defer {\n            nestedObject {\n              deeperObject {\n                bar\n              }\n            }\n            anotherNestedObject {\n              deeperObject {\n                foo\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "nestedObject": {
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Deduplicates fields present in a parent defer payload",
+  "query": "\n      query {\n        hero {\n          ... @defer {\n            nestedObject {\n              deeperObject {\n                foo\n                ... @defer {\n                  foo\n                  bar\n                }\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "nestedObject": {
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar"
+     }
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Deduplicates fields with deferred fragments at multiple levels",
+  "query": "\n      query {\n        hero {\n          nestedObject {\n            deeperObject {\n              foo\n            }\n          }\n          ... @defer {\n            nestedObject {\n              deeperObject {\n                foo\n                bar\n              }\n              ... @defer {\n                deeperObject {\n                  foo\n                  bar\n                  baz\n                  ... @defer {\n                    foo\n                    bar\n                    baz\n                    bak\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "nestedObject": {
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Deduplicates multiple fields from deferred fragments from different branches occurring at the same level",
+  "query": "\n      query {\n        hero {\n          nestedObject {\n            deeperObject {\n              ... @defer {\n                foo\n              }\n            }\n          }\n          ... @defer {\n            nestedObject {\n              deeperObject {\n                ... @defer {\n                  foo\n                  bar\n                }\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "nestedObject": {
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar"
+     }
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Deduplicate fields with deferred fragments in different branches at multiple non-overlapping levels",
+  "query": "\n      query {\n        a {\n          b {\n            c {\n              d\n            }\n            ... @defer {\n              e {\n                f\n              }\n            }\n          }\n        }\n        ... @defer {\n          a {\n            b {\n              e {\n                f\n              }\n            }\n          }\n          g {\n            h\n          }\n        }\n      }\n    ",
+  "root": {
+   "a": {
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   }
+  }
+ },
+ {
+  "name": "defer: Correctly bundles varying subfields into incremental data records unique by defer combination, ignoring fields in a fragment masked by a parent defer",
+  "query": "\n      query HeroNameQuery {\n        ... @defer {\n          hero {\n            id\n          }\n        }\n        ... @defer {\n          hero {\n            name\n            shouldBeWithNameDespiteAdditionalDefer: name\n            ... @defer {\n              shouldBeWithNameDespiteAdditionalDefer: name\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Nulls cross defer boundaries, null first",
+  "query": "\n      query {\n        ... @defer {\n          a {\n            someField\n            b {\n              c {\n                nonNullErrorField\n              }\n            }\n          }\n        }\n        a {\n          ... @defer {\n            b {\n              c {\n                d\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "a": {
+    "b": {
+     "c": {
+      "d": "d"
+     }
+    },
+    "someField": "someField"
+   }
+  }
+ },
+ {
+  "name": "defer: Nulls cross defer boundaries, value first",
+  "query": "\n      query {\n        ... @defer {\n          a {\n            b {\n              c {\n                d\n              }\n            }\n          }\n        }\n        a {\n          ... @defer {\n            someField\n            b {\n              c {\n                nonNullErrorField\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "a": {
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "nonNullErrorFIeld": null
+    },
+    "someField": "someField"
+   }
+  }
+ },
+ {
+  "name": "defer: Nulls cross defer boundaries, failed fragment with slower shared child execution groups",
+  "query": "\n      query {\n        ... @defer {\n          a {\n            someField\n            nonNullErrorField\n            b {\n              c {\n                d\n              }\n            }\n          }\n        }\n        a {\n          ... @defer {\n            someField\n            b {\n              e {\n                f\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "a": {
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    },
+    "someField": "someField"
+   }
+  }
+ },
+ {
+  "name": "defer: Handles cancelling child deferred fragments if parent fragment fails",
+  "query": "\n      query {\n        ... @defer {\n          a {\n            someField\n            b {\n              c {\n                nonNullErrorField\n              }\n            }\n          }\n          ... @defer {\n            a {\n              someField\n            }\n          }\n        }\n        a {\n          ... @defer {\n            b {\n              c {\n                d\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "a": {
+    "b": {
+     "c": {
+      "d": "d"
+     }
+    },
+    "someField": "someField"
+   }
+  }
+ },
+ {
+  "name": "defer: Handles multiple erroring deferred grouped field sets",
+  "query": "\n      query {\n        ... @defer {\n          a {\n            b {\n              c {\n                someError: nonNullErrorField\n              }\n            }\n          }\n        }\n        ... @defer {\n          a {\n            b {\n              c {\n                anotherError: nonNullErrorField\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "a": {
+    "b": {
+     "c": {
+      "nonNullErrorField": null
+     }
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Handles multiple erroring deferred grouped field sets for the same fragment",
+  "query": "\n      query {\n        ... @defer {\n          a {\n            b {\n              someC: c {\n                d: d\n              }\n              anotherC: c {\n                d: d\n              }\n            }\n          }\n        }\n        ... @defer {\n          a {\n            b {\n              someC: c {\n                someError: nonNullErrorField\n              }\n              anotherC: c {\n                anotherError: nonNullErrorField\n              }\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "a": {
+    "b": {
+     "c": {
+      "d": "d",
+      "nonNullErrorField": null
+     }
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Cancels deferred fields when initial result exhibits null bubbling cancelling the defer",
+  "query": "\n      query {\n        hero {\n          nonNullName\n          ... @defer {\n            name\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    },
+    "nonNullName": null
+   }
+  }
+ },
+ {
+  "name": "defer: Cancels deferred fields when initial result exhibits null bubbling cancelling new fields",
+  "query": "\n      query {\n        hero {\n          nonNullName\n        }\n        ... @defer {\n          hero {\n            name\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    },
+    "nonNullName": null
+   }
+  }
+ },
+ {
+  "name": "defer: Keeps deferred work outside nulled error paths",
+  "query": "\n      query {\n        a {\n          ... @defer {\n            someField\n          }\n          nonNullErrorField\n        }\n        g {\n          ... @defer {\n            h\n          }\n        }\n      }\n    ",
+  "root": {
+   "a": {
+    "someField": "someField",
+    "nonNullErrorField": null
+   },
+   "g": {
+    "h": "value"
+   }
+  }
+ },
+ {
+  "name": "defer: Stops late initial-path completion before publishing a deferred response",
+  "query": "\n      query {\n        parent {\n          boom\n          side {\n            value\n          }\n        }\n        g {\n          ... @defer {\n            h\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Cancels deferred fields when deferred result exhibits null bubbling",
+  "query": "\n      query {\n        ... @defer {\n          hero {\n            nonNullName\n            name\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    },
+    "nonNullName": null
+   }
+  }
+ },
+ {
+  "name": "defer: Stops late deferred payload completion after deferred null bubbling",
+  "query": "\n      query {\n        ... @defer {\n          parent {\n            side {\n              value\n            }\n            boom\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Deduplicates list fields",
+  "query": "\n      query {\n        hero {\n          friends {\n            name\n          }\n          ... @defer {\n            friends {\n              name\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Does not deduplicate list fields with non-overlapping fields",
+  "query": "\n      query {\n        hero {\n          friends {\n            name\n          }\n          ... @defer {\n            friends {\n              id\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Deduplicates list fields that return empty lists",
+  "query": "\n      query {\n        hero {\n          friends {\n            name\n          }\n          ... @defer {\n            friends {\n              name\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Deduplicates null object fields",
+  "query": "\n      query {\n        hero {\n          nestedObject {\n            name\n          }\n          ... @defer {\n            nestedObject {\n              name\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": null,
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Deduplicates promise object fields",
+  "query": "\n      query {\n        hero {\n          nestedObject {\n            name\n          }\n          ... @defer {\n            nestedObject {\n              name\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "nestedObject": {
+     "name": "foo"
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Handles errors thrown in deferred fragments",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          id\n          ...NameFragment @defer\n        }\n      }\n      fragment NameFragment on Hero {\n        name\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": {
+     "__throw": "bad"
+    },
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: Handles non-nullable errors thrown in deferred fragments",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          id\n          ...NameFragment @defer\n        }\n      }\n      fragment NameFragment on Hero {\n        nonNullName\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    },
+    "nonNullName": null
+   }
+  }
+ },
+ {
+  "name": "defer: Handles non-nullable errors thrown outside deferred fragments",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          nonNullName\n          ...NameFragment @defer\n        }\n      }\n      fragment NameFragment on Hero {\n        id\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    },
+    "nonNullName": null
+   }
+  }
+ },
+ {
+  "name": "defer: Returns payloads from synchronous data in correct order",
+  "query": "\n      query HeroNameQuery {\n        hero {\n          id\n          ...NameFragment @defer\n        }\n      }\n      fragment NameFragment on Hero {\n        name\n        friends {\n          ...NestedFragment @defer\n        }\n      }\n      fragment NestedFragment on Friend {\n        name\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: should allow deferred execution when passed abortSignal, if not aborted",
+  "query": "\n      query {\n        todo {\n          id\n          ... on Todo @defer {\n            author {\n              id\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: should stop deferred execution when aborted mid-execution",
+  "query": "\n      query {\n        ... on Query @defer {\n          todo {\n            id\n            author {\n              id\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: cancels pending deferred execution groups",
+  "query": "{ scalarList ... @defer { slowScalarList } }",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: cancels pending deferred tasks with async child stream cleanup",
+  "query": "\n      query {\n        todo {\n          id\n          ... @defer {\n            items @stream(initialCount: 0)\n            author {\n              id\n            }\n          }\n        }\n        blocker\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "defer: should ignore deferred payloads resolved after cancellation",
+  "query": "\n      query {\n        todo {\n          id\n          ... @defer {\n            author {\n              id\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: Can stream a list field",
+  "query": "{ scalarList @stream(initialCount: 1) }",
+  "root": {
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ]
+  }
+ },
+ {
+  "name": "stream: Can use default value of initialCount",
+  "query": "{ scalarList @stream }",
+  "root": {
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ]
+  }
+ },
+ {
+  "name": "stream: Negative values of initialCount throw field errors",
+  "query": "{ scalarList @stream(initialCount: -2) }",
+  "root": {
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ]
+  }
+ },
+ {
+  "name": "stream: Returns label from stream directive",
+  "query": "{ scalarList @stream(initialCount: 1, label: \"scalar-stream\") }",
+  "root": {
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ]
+  }
+ },
+ {
+  "name": "stream: Treats null stream label the same as no label",
+  "query": "{ scalarList @stream(initialCount: 1, label: null) }",
+  "root": {
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ]
+  }
+ },
+ {
+  "name": "stream: Can disable @stream using if argument",
+  "query": "{ scalarList @stream(initialCount: 0, if: false) }",
+  "root": {
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ]
+  }
+ },
+ {
+  "name": "stream: Does not disable stream with null if argument",
+  "query": "query ($shouldStream: Boolean) { scalarList @stream(initialCount: 2, if: $shouldStream) }",
+  "root": {
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ]
+  }
+ },
+ {
+  "name": "stream: Can stream multi-dimensional lists",
+  "query": "{ scalarListList @stream(initialCount: 1) }",
+  "root": {
+   "scalarListList": [
+    [
+     "apple",
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana",
+     "banana"
+    ],
+    [
+     "coconut",
+     "coconut",
+     "coconut"
+    ]
+   ]
+  }
+ },
+ {
+  "name": "stream: Can stream a field that returns a list of promises",
+  "query": "\n      query {\n        friendList @stream(initialCount: 2) {\n          name\n          id\n        }\n      }\n    ",
+  "root": {
+   "friendList": [
+    {
+     "name": "Luke",
+     "id": 1
+    },
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ]
+  }
+ },
+ {
+  "name": "stream: Can stream in correct order with lists of promises",
+  "query": "\n      query {\n        friendList @stream(initialCount: 0) {\n          name\n          id\n        }\n      }\n    ",
+  "root": {
+   "friendList": [
+    {
+     "name": "Luke",
+     "id": 1
+    },
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ]
+  }
+ },
+ {
+  "name": "stream: Can handle concurrent calls to .next() without waiting",
+  "query": "\n      query {\n        friendList @stream(initialCount: 2) {\n          name\n          id\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: Stops late stream item completion after item null bubbling",
+  "query": "\n      query {\n        friendList @stream(initialCount: 1) {\n          metadata {\n            value\n          }\n          nonNullName\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: Cancels async stream items when null bubbles past the stream",
+  "query": "\n      query {\n        nestedObject {\n          nestedFriendList @stream(initialCount: 0) {\n            name\n          }\n          nonNullScalarField\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: Can @defer fields that are resolved after async iterable is complete",
+  "query": "\n    query {\n      friendList @stream(label:\"stream-label\") {\n        ...NameFragment @defer(label: \"DeferName\")\n        id\n      }\n    }\n    fragment NameFragment on Friend {\n      name\n    }\n  ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: Returns underlying async iterables when returned generator is returned",
+  "query": "\n      query {\n        friendList @stream(initialCount: 0) {\n          id\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: Can return async iterable when underlying iterable does not have a return method",
+  "query": "\n      query {\n        friendList @stream(initialCount: 1) {\n          name\n          id\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: limits stream batches to the default capacity (100)",
+  "query": "\n      query {\n        friendList @stream {\n          id\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: should stop streamed execution when aborted",
+  "query": "\n      query {\n        todo {\n          id\n          items @stream\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: cancels streaming when aborted during async iterator next",
+  "query": "{ scalarList @stream(initialCount: 0) }",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: waits for async deferred nested stream item cleanup before abort cancellation settles",
+  "query": "\n      query {\n        todos @stream(initialCount: 0) {\n          id\n          ... @defer {\n            author {\n              id\n            }\n            items @stream(initialCount: 0)\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: cancels pending stream item executors with deferred work when consumer cancels",
+  "query": "\n      query {\n        todos @stream(initialCount: 0) {\n          id\n          ... @defer {\n            author {\n              id\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: cancels tasks and streams when aborted before initial execution finishes",
+  "query": "\n      query {\n        todo {\n          id\n          items @stream(initialCount: 0)\n          ... @defer {\n            author {\n              id\n            }\n          }\n        }\n        blocker\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: cancels async stream source cleanup when aborted before initial execution finishes",
+  "query": "\n      query {\n        todo {\n          id\n          items @stream(initialCount: 0)\n        }\n        blocker\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: should ignore repeated cancellation attempts during incremental execution",
+  "query": "\n      query {\n        todo {\n          id\n          items @stream(initialCount: 0)\n          ... @defer {\n            author {\n              id\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "name": "stream: cancels stream item executors with deferred work and nested streams",
+  "query": "\n      query {\n        todos @stream(initialCount: 0) {\n          id\n          items @stream(initialCount: 0)\n          ... @defer {\n            author {\n              id\n            }\n          }\n        }\n      }\n    ",
+  "root": {
+   "hero": {
+    "name": "Luke",
+    "id": 1,
+    "friends": [
+     {
+      "name": "Han",
+      "id": 2
+     },
+     {
+      "name": "Leia",
+      "id": 3
+     },
+     {
+      "name": "C-3PO",
+      "id": 4
+     }
+    ],
+    "nestedObject": {
+     "name": "NestedObject",
+     "deeperObject": {
+      "foo": "foo",
+      "bar": "bar",
+      "baz": "baz",
+      "bak": "bak"
+     }
+    },
+    "anotherNestedObject": {
+     "deeperObject": {
+      "foo": "foo"
+     }
+    }
+   },
+   "a": {
+    "someField": "someField",
+    "b": {
+     "c": {
+      "d": "d"
+     },
+     "e": {
+      "f": "f"
+     }
+    }
+   },
+   "g": {
+    "h": "h"
+   },
+   "scalarList": [
+    "apple",
+    "banana",
+    "coconut"
+   ],
+   "scalarListList": [
+    [
+     "apple",
+     "apple"
+    ],
+    [
+     "banana",
+     "banana"
+    ]
+   ],
+   "friendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    },
+    {
+     "name": "C-3PO",
+     "id": 4
+    }
+   ],
+   "nonNullFriendList": [
+    {
+     "name": "Han",
+     "id": 2
+    },
+    {
+     "name": "Leia",
+     "id": 3
+    }
+   ],
+   "nestedObject": {
+    "scalarField": "scalarField",
+    "nonNullScalarField": "nonNullScalarField",
+    "nestedFriendList": [
+     {
+      "name": "Han",
+      "id": 2
+     }
+    ],
+    "deeperNestedObject": {
+     "nonNullScalarField": "nonNullScalarField",
+     "deeperNestedFriendList": [
+      {
+       "name": "Han",
+       "id": 2
+      }
+     ]
+    }
+   }
+  }
+ }
+]

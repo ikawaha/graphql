@@ -1,0 +1,2312 @@
+[
+  {
+    "name": "minimal",
+    "printed": "type Query {\n  a: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "every kind",
+    "printed": "schema {\n  query: Q\n}\n\ndirective @d(a: Int) repeatable on FIELD | OBJECT\n\ntype Q {\n  s: S\n  o: O\n  i: I\n  u: U\n  e: E\n  n: Int\n  l: [Int!]!\n  f(a: In = { x: 1 }): String\n}\n\nscalar S @specifiedBy(url: \"https://example.com\")\n\ntype O implements I {\n  a: String\n}\n\ninterface I {\n  a: String\n}\n\nunion U = O\n\nenum E {\n  A\n  B @deprecated(reason: \"Gone\")\n  C\n}\n\ninput In {\n  x: Int\n  y: String = \"d\"\n  z: In\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "descriptions",
+    "printed": "\"\"\"The query.\"\"\"\ntype Query {\n  \"\"\"A field.\"\"\"\n  a(\n    \"\"\"An argument.\"\"\"\n    b: Int\n  ): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "block string descriptions",
+    "printed": "\"\"\"\nOne\n\n  Two\n\"\"\"\ntype Query {\n  a: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "deprecation",
+    "printed": "type Query {\n  plain: String\n  bare: String @deprecated\n  empty: String @deprecated(reason: \"\")\n  given: String @deprecated(reason: \"Gone\")\n  withArg(a: Int @deprecated(reason: \"old\")): String\n}\n\nenum E {\n  A @deprecated\n  B\n}\n\ninput In {\n  f: Int @deprecated\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "oneOf",
+    "printed": "type Query {\n  a(i: In): String\n}\n\ninput In @oneOf {\n  x: Int\n  y: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "interfaces implementing interfaces",
+    "printed": "type Query {\n  a: C\n}\n\ninterface A {\n  x: Int\n}\n\ninterface B implements A {\n  x: Int\n  y: Int\n}\n\ntype C implements B & A {\n  x: Int\n  y: Int\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "default values of every shape",
+    "printed": "type Query {\n  f(a: Int = 1, b: String = \"s\", c: Boolean = false, d: E = A, e: [Int] = [1, 2], g: In = { x: 1 }, h: Int = null): String\n}\n\nenum E {\n  A\n}\n\ninput In {\n  x: Int\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "empty types",
+    "printed": "type Query {\n  a: String\n}\n\ntype Empty\n\ninterface EmptyI\n\nenum EmptyE\n\ninput EmptyIn",
+    "problems": [
+      "Type Empty must define one or more fields.",
+      "Type EmptyI must define one or more fields.",
+      "Enum type EmptyE must define one or more values.",
+      "Input Object type EmptyIn must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "custom root names",
+    "printed": "schema {\n  query: R\n  mutation: M\n  subscription: S\n}\n\ntype R {\n  a: String\n}\n\ntype M {\n  b: String\n}\n\ntype S {\n  c: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: ?",
+    "printed": "directive @SomeDirective on QUERY\n\nscalar SomeScalar\n\ninterface SomeInterface {\n  f: SomeObject\n}\n\ntype SomeObject implements SomeInterface {\n  f: SomeObject\n}\n\nunion SomeUnion = SomeObject\n\nenum SomeEnum {\n  ONLY\n}\n\ninput SomeInputObject {\n  val: String = \"hello\"\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a Schema whose query type is an object type",
+    "printed": "type Query {\n  test: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a Schema whose query type is an object type #2",
+    "printed": "schema {\n  query: QueryRoot\n}\n\ntype QueryRoot {\n  test: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a Schema whose query and mutation types are object types",
+    "printed": "type Query {\n  test: String\n}\n\ntype Mutation {\n  test: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a Schema whose query and mutation types are object types #2",
+    "printed": "schema {\n  query: QueryRoot\n  mutation: MutationRoot\n}\n\ntype QueryRoot {\n  test: String\n}\n\ntype MutationRoot {\n  test: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a Schema whose query and subscription types are object types",
+    "printed": "type Query {\n  test: String\n}\n\ntype Subscription {\n  test: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a Schema whose query and subscription types are object types #2",
+    "printed": "schema {\n  query: QueryRoot\n  subscription: SubscriptionRoot\n}\n\ntype QueryRoot {\n  test: String\n}\n\ntype SubscriptionRoot {\n  test: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Schema without a query type",
+    "printed": "type Mutation {\n  test: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Schema without a query type #2",
+    "printed": "schema {\n  mutation: MutationRoot\n}\n\ntype MutationRoot {\n  test: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Schema whose query root type is not an Object type",
+    "printed": "input Query {\n  test: String\n}",
+    "problems": [
+      "Query root type must be Object type, it cannot be Query."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Schema whose query root type is not an Object type #2",
+    "printed": "schema {\n  query: SomeInputObject\n}\n\ninput SomeInputObject {\n  test: String\n}",
+    "problems": [
+      "Query root type must be Object type, it cannot be SomeInputObject."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Schema whose mutation type is an input type",
+    "printed": "type Query {\n  field: String\n}\n\ninput Mutation {\n  test: String\n}",
+    "problems": [
+      "Mutation root type must be Object type if provided, it cannot be Mutation."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Schema whose mutation type is an input type #2",
+    "printed": "schema {\n  query: Query\n  mutation: SomeInputObject\n}\n\ntype Query {\n  field: String\n}\n\ninput SomeInputObject {\n  test: String\n}",
+    "problems": [
+      "Mutation root type must be Object type if provided, it cannot be SomeInputObject."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Schema whose subscription type is an input type",
+    "printed": "type Query {\n  field: String\n}\n\ninput Subscription {\n  test: String\n}",
+    "problems": [
+      "Subscription root type must be Object type if provided, it cannot be Subscription."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Schema whose subscription type is an input type #2",
+    "printed": "schema {\n  query: Query\n  subscription: SomeInputObject\n}\n\ntype Query {\n  field: String\n}\n\ninput SomeInputObject {\n  test: String\n}",
+    "problems": [
+      "Subscription root type must be Object type if provided, it cannot be SomeInputObject."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Schema extended with invalid root types",
+    "printed": "input SomeInputObject {\n  test: String\n}\n\nscalar SomeScalar\n\nenum SomeEnum {\n  ENUM_VALUE\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a Schema with different root types",
+    "printed": "schema {\n  query: SomeObject1\n  mutation: SomeObject2\n  subscription: SomeObject3\n}\n\ntype SomeObject1 {\n  field: String\n}\n\ntype SomeObject2 {\n  field: String\n}\n\ntype SomeObject3 {\n  field: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Schema where the same type is used for multiple root types",
+    "printed": "schema {\n  query: SomeObject\n  mutation: UniqueObject\n  subscription: SomeObject\n}\n\ntype SomeObject {\n  field: String\n}\n\ntype UniqueObject {\n  field: String\n}",
+    "problems": [
+      "All root types must be different, \"SomeObject\" type is used as query and subscription root types."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Schema where the same type is used for all root types",
+    "printed": "schema {\n  query: SomeObject\n  mutation: SomeObject\n  subscription: SomeObject\n}\n\ntype SomeObject {\n  field: String\n}",
+    "problems": [
+      "All root types must be different, \"SomeObject\" type is used as query, mutation, and subscription root types."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Object type with fields object",
+    "printed": "type Query {\n  field: SomeObject\n}\n\ntype SomeObject {\n  field: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object type with missing fields",
+    "printed": "type Query {\n  test: IncompleteObject\n}\n\ntype IncompleteObject",
+    "problems": [
+      "Type IncompleteObject must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a Union type with member types",
+    "printed": "type Query {\n  test: GoodUnion\n}\n\ntype TypeA {\n  field: String\n}\n\ntype TypeB {\n  field: String\n}\n\nunion GoodUnion = TypeA | TypeB",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Union type with empty types",
+    "printed": "type Query {\n  test: BadUnion\n}\n\nunion BadUnion",
+    "problems": [
+      "Union type BadUnion must define one or more member types."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Union type with duplicated member type",
+    "printed": "type Query {\n  test: BadUnion\n}\n\ntype TypeA {\n  field: String\n}\n\ntype TypeB {\n  field: String\n}\n\nunion BadUnion = TypeA | TypeB | TypeA",
+    "problems": [
+      "Union type BadUnion can only include type TypeA once."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a Union type with non-Object members types",
+    "printed": "type Query {\n  test: BadUnion\n}\n\ntype TypeA {\n  field: String\n}\n\ntype TypeB {\n  field: String\n}\n\nunion BadUnion = TypeA | String | TypeB",
+    "problems": [
+      "Union type BadUnion can only include Object types, it cannot include String."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Input Object type with fields",
+    "printed": "type Query {\n  field(arg: SomeInputObject): String\n}\n\ninput SomeInputObject {\n  field: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Input Object type with missing fields",
+    "printed": "type Query {\n  field(arg: SomeInputObject): String\n}\n\ninput SomeInputObject",
+    "problems": [
+      "Input Object type SomeInputObject must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Input Object with breakable circular reference",
+    "printed": "type Query {\n  field(arg: SomeInputObject): String\n}\n\ninput SomeInputObject {\n  self: SomeInputObject\n  arrayOfSelf: [SomeInputObject]\n  nonNullArrayOfSelf: [SomeInputObject]!\n  nonNullArrayOfNonNullSelf: [SomeInputObject!]!\n  intermediateSelf: AnotherInputObject\n}\n\ninput AnotherInputObject {\n  parent: SomeInputObject\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Input Object with non-breakable circular reference",
+    "printed": "type Query {\n  field(arg: SomeInputObject): String\n}\n\ninput SomeInputObject {\n  nonNullSelf: SomeInputObject!\n}",
+    "problems": [
+      "Input Object SomeInputObject cannot be provided a finite value because it references itself through fields: SomeInputObject.nonNullSelf."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects Input Objects with non-breakable circular reference spread across them",
+    "printed": "type Query {\n  field(arg: SomeInputObject): String\n}\n\ninput SomeInputObject {\n  startLoop: AnotherInputObject!\n}\n\ninput AnotherInputObject {\n  nextInLoop: YetAnotherInputObject!\n}\n\ninput YetAnotherInputObject {\n  closeLoop: SomeInputObject!\n}",
+    "problems": [
+      "Input Object SomeInputObject cannot be provided a finite value because it references itself through fields: SomeInputObject.startLoop, AnotherInputObject.nextInLoop, YetAnotherInputObject.closeLoop."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects Input Objects with multiple non-breakable circular reference",
+    "printed": "type Query {\n  field(arg: SomeInputObject): String\n}\n\ninput SomeInputObject {\n  startLoop: AnotherInputObject!\n}\n\ninput AnotherInputObject {\n  closeLoop: SomeInputObject!\n  startSecondLoop: YetAnotherInputObject!\n}\n\ninput YetAnotherInputObject {\n  closeSecondLoop: AnotherInputObject!\n  nonNullSelf: YetAnotherInputObject!\n}",
+    "problems": [
+      "Input Object SomeInputObject cannot be provided a finite value because it references itself through fields: SomeInputObject.startLoop, AnotherInputObject.closeLoop.",
+      "Input Object AnotherInputObject cannot be provided a finite value because it references itself through fields: AnotherInputObject.startSecondLoop, YetAnotherInputObject.closeSecondLoop.",
+      "Input Object YetAnotherInputObject cannot be provided a finite value because it references itself through fields: YetAnotherInputObject.nonNullSelf."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Input Object with multiple non-breakable circular references",
+    "printed": "type Query {\n  field(arg: A): String\n}\n\ninput A {\n  b: B!\n  c: C!\n}\n\ninput B {\n  a: A!\n}\n\ninput C {\n  a: A!\n}",
+    "problems": [
+      "Input Object A cannot be provided a finite value because it references itself through fields: A.b, B.a.",
+      "Input Object A cannot be provided a finite value because it references itself through fields: A.c, C.a."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts Input Objects with default values without circular references (SDL)",
+    "printed": "type Query {\n  field(arg1: A, arg2: B): String\n}\n\ninput A {\n  x: A = null\n  y: A = { x: null, y: null }\n  z: [A] = []\n}\n\ninput B {\n  x: B2! = {  }\n  y: String = \"abc\"\n  z: Custom = {  }\n}\n\ninput B2 {\n  x: B3 = {  }\n}\n\ninput B3 {\n  x: B = { x: { x: null } }\n}\n\nscalar Custom",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects Input Objects with default value circular reference (SDL)",
+    "printed": "type Query {\n  field(arg1: A, arg2: B, arg3: C, arg4: D, arg5: E): String\n}\n\ninput A {\n  x: A = {  }\n}\n\ninput B {\n  x: B2 = {  }\n}\n\ninput B2 {\n  x: B3 = {  }\n}\n\ninput B3 {\n  x: B = {  }\n}\n\ninput C {\n  x: [C] = [{  }]\n}\n\ninput D {\n  x: D = { x: { x: {  } } }\n}\n\ninput E {\n  x: E = { x: null }\n  y: E = { y: null }\n}\n\ninput F {\n  x: F2! = {  }\n}\n\ninput F2 {\n  x: F = { x: {  } }\n}",
+    "problems": [
+      "Invalid circular reference. The default value of Input Object field A.x references itself.",
+      "Invalid circular reference. The default value of Input Object field B.x references itself via the default values of: B2.x, B3.x.",
+      "Invalid circular reference. The default value of Input Object field C.x references itself.",
+      "Invalid circular reference. The default value of Input Object field D.x references itself.",
+      "Invalid circular reference. The default value of Input Object field E.x references itself via the default values of: E.y.",
+      "Invalid circular reference. The default value of Input Object field F2.x references itself."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Input Object type with incorrectly typed fields",
+    "printed": "type Query {\n  field(arg: SomeInputObject): String\n}\n\ntype SomeObject {\n  field: String\n}\n\nunion SomeUnion = SomeObject\n\ninput SomeInputObject {\n  badObject: SomeObject\n  badUnion: SomeUnion\n  goodInputObject: SomeInputObject\n}",
+    "problems": [
+      "The type of SomeInputObject.badObject must be Input Type but got: SomeObject.",
+      "The type of SomeInputObject.badUnion must be Input Type but got: SomeUnion."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Input Object type with required field that is deprecated",
+    "printed": "type Query {\n  field(arg: SomeInputObject): String\n}\n\ninput SomeInputObject {\n  badField: String! @deprecated\n  optionalField: String @deprecated\n  anotherOptionalField: String! = \"\" @deprecated\n}",
+    "problems": [
+      "Required input field SomeInputObject.badField cannot be deprecated."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Enum type without values",
+    "printed": "type Query {\n  field: SomeEnum\n}\n\nenum SomeEnum",
+    "problems": [
+      "Enum type SomeEnum must define one or more values."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects with relevant locations for a non-output type as an Object field type",
+    "printed": "type Query {\n  field: [SomeInputObject]\n}\n\ninput SomeInputObject {\n  field: String\n}",
+    "problems": [
+      "The type of Query.field must be Output Type but got: [SomeInputObject]."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object implementing a non-Interface type",
+    "printed": "type Query {\n  test: BadObject\n}\n\ninput SomeInputObject {\n  field: String\n}\n\ntype BadObject implements SomeInputObject {\n  field: String\n}",
+    "problems": [
+      "Type BadObject must only implement Interface types, it cannot implement SomeInputObject."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object implementing the same interface twice",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field: String\n}\n\ntype AnotherObject implements AnotherInterface & AnotherInterface {\n  field: String\n}",
+    "problems": [
+      "Type AnotherObject can only implement AnotherInterface once."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object implementing the same interface twice due to extension",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field: String\n}\n\ntype AnotherObject implements AnotherInterface {\n  field: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a non-output type as an Interface field type with locations",
+    "printed": "type Query {\n  test: SomeInterface\n}\n\ninterface SomeInterface {\n  field: SomeInputObject\n}\n\ninput SomeInputObject {\n  foo: String\n}\n\ntype SomeObject implements SomeInterface {\n  field: SomeInputObject\n}",
+    "problems": [
+      "The type of SomeInterface.field must be Output Type but got: SomeInputObject.",
+      "The type of SomeObject.field must be Output Type but got: SomeInputObject."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an interface not implemented by at least one object",
+    "printed": "type Query {\n  test: SomeInterface\n}\n\ninterface SomeInterface {\n  foo: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a required argument that is deprecated",
+    "printed": "directive @BadDirective(badArg: String! @deprecated, optionalArg: String @deprecated, anotherOptionalArg: String! = \"\" @deprecated) on FIELD\n\ntype Query {\n  test(badArg: String! @deprecated, optionalArg: String @deprecated, anotherOptionalArg: String! = \"\" @deprecated): String\n}",
+    "problems": [
+      "Required argument @BadDirective(badArg:) cannot be deprecated.",
+      "Required argument Query.test(badArg:) cannot be deprecated."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a non-input type as a field arg with locations",
+    "printed": "type Query {\n  test(arg: SomeObject): String\n}\n\ntype SomeObject {\n  foo: String\n}",
+    "problems": [
+      "The type of Query.test(arg:) must be Input Type but got: SomeObject."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an argument with invalid default values (SDL)",
+    "printed": "directive @bad(arg: Int = 2.718) on FIELD\n\ntype Query {\n  field(arg: Int = 3.14): Int\n}",
+    "problems": [
+      "@bad(arg:) has invalid default value: Int cannot represent non-integer value: 2.718",
+      "Query.field(arg:) has invalid default value: Int cannot represent non-integer value: 3.14"
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: Attempts to offer a suggested fix if possible (SDL)",
+    "printed": "enum TestEnum {\n  ONE\n  TWO\n}\n\ninput TestInput {\n  self: TestInput\n  string: [String]!\n  enum: [TestEnum]\n}\n\ntype Query {\n  field(argWithPossibleFix: TestInput, argWithInvalidPossibleFix: TestInput, argWithoutPossibleFix: TestInput): Int\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a non-input type as an input object field with locations",
+    "printed": "type Query {\n  test(arg: SomeInputObject): String\n}\n\ninput SomeInputObject {\n  foo: SomeObject\n}\n\ntype SomeObject {\n  bar: String\n}",
+    "problems": [
+      "The type of SomeInputObject.foo must be Input Type but got: SomeObject."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Input Object field with invalid default values (SDL)",
+    "printed": "type Query {\n  field(arg: SomeInputObject): Int\n}\n\ninput SomeInputObject {\n  field: Int = 3.14\n}",
+    "problems": [
+      "SomeInputObject.field has invalid default value: Int cannot represent non-integer value: 3.14"
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a OneOf Input Object with a scalar field",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A @oneOf {\n  a: Int\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a OneOf Input Object with a recursive list field",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A @oneOf {\n  a: [A!]\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a OneOf Input Object referencing a non-OneOf input object",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A @oneOf {\n  b: B\n}\n\ninput B {\n  x: Int\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a OneOf Input Object referencing an already checked input object",
+    "printed": "type Query {\n  a(arg: A): Int\n}\n\ninput B {\n  value: Int\n}\n\ninput A @oneOf {\n  b: B\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a OneOf Input Object with multiple acyclic input object fields",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A @oneOf {\n  b: B\n  c: C\n}\n\ninput B {\n  value: Int\n}\n\ninput C {\n  value: Int\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a OneOf/OneOf cycle with a scalar escape",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A @oneOf {\n  b: B\n  escape: Int\n}\n\ninput B @oneOf {\n  a: A\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a OneOf/non-OneOf cycle with a nullable escape",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A @oneOf {\n  b: B\n}\n\ninput B {\n  a: A\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a OneOf/non-OneOf with scalar escape",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A @oneOf {\n  b: B\n  escape: Int\n}\n\ninput B {\n  a: A!\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a non-OneOf/non-OneOf cycle with a nullable escape",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A {\n  b: B!\n}\n\ninput B {\n  a: A\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts a non-OneOf/non-OneOf cycle with a non-null list of non-null items escape",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A {\n  b: [B!]!\n}\n\ninput B {\n  a: A!\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects non-nullable fields",
+    "printed": "type Query {\n  test(arg: SomeInputObject): String\n}\n\ninput SomeInputObject @oneOf {\n  a: String\n  b: String!\n}",
+    "problems": [
+      "OneOf input field SomeInputObject.b must be nullable."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects fields with default values",
+    "printed": "type Query {\n  test(arg: SomeInputObject): String\n}\n\ninput SomeInputObject @oneOf {\n  a: String\n  b: String = \"foo\"\n}",
+    "problems": [
+      "OneOf input field SomeInputObject.b cannot have a default value."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a self-referencing OneOf type with no escapes",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A @oneOf {\n  self: A\n}",
+    "problems": [
+      "Input Object A cannot be provided a finite value because it references itself through fields: A.self."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a non-OneOf Input Object requiring an unbreakable OneOf cycle",
+    "printed": "type Query {\n  a(arg: A): Int\n}\n\ninput T @oneOf {\n  self: T\n}\n\ninput A {\n  t: T!\n}",
+    "problems": [
+      "Input Object T cannot be provided a finite value because it references itself through fields: T.self."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a mixed OneOf/non-OneOf cycle with no escapes",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A @oneOf {\n  b: B\n}\n\ninput B {\n  a: A!\n}",
+    "problems": [
+      "Input Object A cannot be provided a finite value because it references itself through fields: A.b, B.a."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects multiple OneOf branches without duplicate cycle reports",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A @oneOf {\n  b: B\n  c: C\n}\n\ninput B {\n  a: A!\n}\n\ninput C {\n  a: A!\n}",
+    "problems": [
+      "Input Object A cannot be provided a finite value because it references itself through fields: A.b, B.a.",
+      "Input Object A cannot be provided a finite value because it references itself through fields: A.c, C.a."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a non-OneOf/non-OneOf cycle with required scalar, list, and finite input fields",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A {\n  list: [B]!\n  finite: Finite!\n  b: B!\n}\n\ninput B {\n  value: Int!\n  a: A!\n}\n\ninput Finite {\n  value: Int!\n}",
+    "problems": [
+      "Input Object A cannot be provided a finite value because it references itself through fields: A.b, B.a."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a larger mixed OneOf/non-OneOf cycle with no escapes",
+    "printed": "type Query {\n  test(arg: A): Int\n}\n\ninput A @oneOf {\n  b: B\n}\n\ninput B {\n  c: C!\n}\n\ninput C @oneOf {\n  a: A\n}",
+    "problems": [
+      "Input Object A cannot be provided a finite value because it references itself through fields: A.b, B.c, C.a."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Object which implements an Interface",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field(input: String): String\n}\n\ntype AnotherObject implements AnotherInterface {\n  field(input: String): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Object which implements an Interface along with more fields",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field(input: String): String\n}\n\ntype AnotherObject implements AnotherInterface {\n  field(input: String): String\n  anotherField: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Object which implements an Interface field along with additional optional arguments",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field(input: String): String\n}\n\ntype AnotherObject implements AnotherInterface {\n  field(input: String, anotherInput: String): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object missing an Interface field",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field(input: String): String\n}\n\ntype AnotherObject implements AnotherInterface {\n  anotherField: String\n}",
+    "problems": [
+      "Interface field AnotherInterface.field expected but AnotherObject does not provide it."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object with an incorrectly typed Interface field",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field(input: String): String\n}\n\ntype AnotherObject implements AnotherInterface {\n  field(input: String): Int\n}",
+    "problems": [
+      "Interface field AnotherInterface.field expects type String but AnotherObject.field is type Int."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object with a differently typed Interface field",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ntype A {\n  foo: String\n}\n\ntype B {\n  foo: String\n}\n\ninterface AnotherInterface {\n  field: A\n}\n\ntype AnotherObject implements AnotherInterface {\n  field: B\n}",
+    "problems": [
+      "Interface field AnotherInterface.field expects type A but AnotherObject.field is type B."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Object with a subtyped Interface field (interface)",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field: AnotherInterface\n}\n\ntype AnotherObject implements AnotherInterface {\n  field: AnotherObject\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Object with a subtyped Interface field (union)",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ntype SomeObject {\n  field: String\n}\n\nunion SomeUnionType = SomeObject\n\ninterface AnotherInterface {\n  field: SomeUnionType\n}\n\ntype AnotherObject implements AnotherInterface {\n  field: SomeObject\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object missing an Interface argument",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field(input: String): String\n}\n\ntype AnotherObject implements AnotherInterface {\n  field: String\n}",
+    "problems": [
+      "Interface field argument AnotherInterface.field(input:) expected but AnotherObject.field does not provide it."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object with an incorrectly typed Interface argument",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field(input: String): String\n}\n\ntype AnotherObject implements AnotherInterface {\n  field(input: Int): String\n}",
+    "problems": [
+      "Interface field argument AnotherInterface.field(input:) expects type String but AnotherObject.field(input:) is type Int."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object with both an incorrectly typed field and argument",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field(input: String): String\n}\n\ntype AnotherObject implements AnotherInterface {\n  field(input: Int): Int\n}",
+    "problems": [
+      "Interface field AnotherInterface.field expects type String but AnotherObject.field is type Int.",
+      "Interface field argument AnotherInterface.field(input:) expects type String but AnotherObject.field(input:) is type Int."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object which implements an Interface field along with additional required arguments",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field(baseArg: String): String\n}\n\ntype AnotherObject implements AnotherInterface {\n  field(baseArg: String, requiredArg: String!, optionalArg1: String, optionalArg2: String = \"\"): String\n}",
+    "problems": [
+      "Argument \"AnotherObject.field(requiredArg:)\" must not be required type \"String!\" if not provided by the Interface field \"AnotherInterface.field\"."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Object with an equivalently wrapped Interface field type",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field: [String]!\n}\n\ntype AnotherObject implements AnotherInterface {\n  field: [String]!\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object with a non-list Interface field list type",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field: [String]\n}\n\ntype AnotherObject implements AnotherInterface {\n  field: String\n}",
+    "problems": [
+      "Interface field AnotherInterface.field expects type [String] but AnotherObject.field is type String."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object with a list Interface field non-list type",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field: String\n}\n\ntype AnotherObject implements AnotherInterface {\n  field: [String]\n}",
+    "problems": [
+      "Interface field AnotherInterface.field expects type String but AnotherObject.field is type [String]."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Object with a subset non-null Interface field type",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field: String\n}\n\ntype AnotherObject implements AnotherInterface {\n  field: String!\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object with a superset nullable Interface field type",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface AnotherInterface {\n  field: String!\n}\n\ntype AnotherObject implements AnotherInterface {\n  field: String\n}",
+    "problems": [
+      "Interface field AnotherInterface.field expects type String! but AnotherObject.field is type String."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object missing a transitive interface",
+    "printed": "type Query {\n  test: AnotherObject\n}\n\ninterface SuperInterface {\n  field: String!\n}\n\ninterface AnotherInterface implements SuperInterface {\n  field: String!\n}\n\ntype AnotherObject implements AnotherInterface {\n  field: String!\n}",
+    "problems": [
+      "Type AnotherObject must implement SuperInterface because it is implemented by AnotherInterface."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Interface which implements an Interface",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field(input: String): String\n}\n\ninterface ChildInterface implements ParentInterface {\n  field(input: String): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Interface which implements an Interface along with more fields",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field(input: String): String\n}\n\ninterface ChildInterface implements ParentInterface {\n  field(input: String): String\n  anotherField: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Interface which implements an Interface field along with additional optional arguments",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field(input: String): String\n}\n\ninterface ChildInterface implements ParentInterface {\n  field(input: String, anotherInput: String): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Interface missing an Interface field",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field(input: String): String\n}\n\ninterface ChildInterface implements ParentInterface {\n  anotherField: String\n}",
+    "problems": [
+      "Interface field ParentInterface.field expected but ChildInterface does not provide it."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Interface with an incorrectly typed Interface field",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field(input: String): String\n}\n\ninterface ChildInterface implements ParentInterface {\n  field(input: String): Int\n}",
+    "problems": [
+      "Interface field ParentInterface.field expects type String but ChildInterface.field is type Int."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Interface with a differently typed Interface field",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ntype A {\n  foo: String\n}\n\ntype B {\n  foo: String\n}\n\ninterface ParentInterface {\n  field: A\n}\n\ninterface ChildInterface implements ParentInterface {\n  field: B\n}",
+    "problems": [
+      "Interface field ParentInterface.field expects type A but ChildInterface.field is type B."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Interface with a subtyped Interface field (interface)",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field: ParentInterface\n}\n\ninterface ChildInterface implements ParentInterface {\n  field: ChildInterface\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Interface with a subtyped Interface field (union)",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ntype SomeObject {\n  field: String\n}\n\nunion SomeUnionType = SomeObject\n\ninterface ParentInterface {\n  field: SomeUnionType\n}\n\ninterface ChildInterface implements ParentInterface {\n  field: SomeObject\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Interface implementing a non-Interface type",
+    "printed": "type Query {\n  field: String\n}\n\ninput SomeInputObject {\n  field: String\n}\n\ninterface BadInterface implements SomeInputObject {\n  field: String\n}",
+    "problems": [
+      "Type BadInterface must only implement Interface types, it cannot implement SomeInputObject."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Interface missing an Interface argument",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field(input: String): String\n}\n\ninterface ChildInterface implements ParentInterface {\n  field: String\n}",
+    "problems": [
+      "Interface field argument ParentInterface.field(input:) expected but ChildInterface.field does not provide it."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Interface with an incorrectly typed Interface argument",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field(input: String): String\n}\n\ninterface ChildInterface implements ParentInterface {\n  field(input: Int): String\n}",
+    "problems": [
+      "Interface field argument ParentInterface.field(input:) expects type String but ChildInterface.field(input:) is type Int."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Interface with both an incorrectly typed field and argument",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field(input: String): String\n}\n\ninterface ChildInterface implements ParentInterface {\n  field(input: Int): Int\n}",
+    "problems": [
+      "Interface field ParentInterface.field expects type String but ChildInterface.field is type Int.",
+      "Interface field argument ParentInterface.field(input:) expects type String but ChildInterface.field(input:) is type Int."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Interface which implements an Interface field along with additional required arguments",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field(baseArg: String): String\n}\n\ninterface ChildInterface implements ParentInterface {\n  field(baseArg: String, requiredArg: String!, optionalArg1: String, optionalArg2: String = \"\"): String\n}",
+    "problems": [
+      "Argument \"ChildInterface.field(requiredArg:)\" must not be required type \"String!\" if not provided by the Interface field \"ParentInterface.field\"."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Interface with an equivalently wrapped Interface field type",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field: [String]!\n}\n\ninterface ChildInterface implements ParentInterface {\n  field: [String]!\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Interface with a non-list Interface field list type",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field: [String]\n}\n\ninterface ChildInterface implements ParentInterface {\n  field: String\n}",
+    "problems": [
+      "Interface field ParentInterface.field expects type [String] but ChildInterface.field is type String."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Interface with a list Interface field non-list type",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field: String\n}\n\ninterface ChildInterface implements ParentInterface {\n  field: [String]\n}",
+    "problems": [
+      "Interface field ParentInterface.field expects type String but ChildInterface.field is type [String]."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: accepts an Interface with a subset non-null Interface field type",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field: String\n}\n\ninterface ChildInterface implements ParentInterface {\n  field: String!\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Interface with a superset nullable Interface field type",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface ParentInterface {\n  field: String!\n}\n\ninterface ChildInterface implements ParentInterface {\n  field: String\n}",
+    "problems": [
+      "Interface field ParentInterface.field expects type String! but ChildInterface.field is type String."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects an Object missing a transitive interface #2",
+    "printed": "type Query {\n  test: ChildInterface\n}\n\ninterface SuperInterface {\n  field: String!\n}\n\ninterface ParentInterface implements SuperInterface {\n  field: String!\n}\n\ninterface ChildInterface implements ParentInterface {\n  field: String!\n}",
+    "problems": [
+      "Type ChildInterface must implement SuperInterface because it is implemented by ParentInterface."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a self reference interface",
+    "printed": "type Query {\n  test: FooInterface\n}\n\ninterface FooInterface implements FooInterface {\n  field: String\n}",
+    "problems": [
+      "Type FooInterface cannot implement itself because it would create a circular reference."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects a circular Interface implementation",
+    "printed": "type Query {\n  test: FooInterface\n}\n\ninterface FooInterface implements BarInterface {\n  field: String\n}\n\ninterface BarInterface implements FooInterface {\n  field: String\n}",
+    "problems": [
+      "Type FooInterface cannot implement BarInterface because it would create a circular reference.",
+      "Type BarInterface cannot implement FooInterface because it would create a circular reference."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: rejects deprecated implementation field when interface field is not deprecated",
+    "printed": "interface Node {\n  id: ID!\n}\n\ntype Foo implements Node {\n  id: ID! @deprecated\n}\n\ntype Query {\n  foo: Foo\n}",
+    "problems": [
+      "Interface field Node.id is not deprecated, so implementation field Foo.id must not be deprecated."
+    ],
+    "error": null
+  },
+  {
+    "name": "validation: does not throw on valid schemas",
+    "printed": "type Query {\n  foo: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: can use built schema for limited execution",
+    "printed": "type Query {\n  str: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: can build a schema directly from the source",
+    "printed": "type Query {\n  add(x: Int, y: Int): Int\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Ignores non-type system definitions",
+    "printed": "type Query {\n  str: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Empty type",
+    "printed": "type EmptyType",
+    "problems": [
+      "Query root type must be provided.",
+      "Type EmptyType must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Simple type",
+    "printed": "type Query {\n  str: String\n  int: Int\n  float: Float\n  id: ID\n  bool: Boolean\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Supports descriptions",
+    "printed": "\"\"\"Do you agree that this is the most creative schema ever?\"\"\"\nschema {\n  query: Query\n}\n\n\"\"\"This is a directive\"\"\"\ndirective @foo(\n  \"\"\"It has an argument\"\"\"\n  arg: Int\n) on FIELD\n\n\"\"\"Who knows what inside this scalar?\"\"\"\nscalar MysteryScalar\n\n\"\"\"This is a input object type\"\"\"\ninput FooInput {\n  \"\"\"It has a field\"\"\"\n  field: Int\n}\n\n\"\"\"This is a interface type\"\"\"\ninterface Energy {\n  \"\"\"It also has a field\"\"\"\n  str: String\n}\n\n\"\"\"There is nothing inside!\"\"\"\nunion BlackHole\n\n\"\"\"With an enum\"\"\"\nenum Color {\n  RED\n\n  \"\"\"Not a creative color\"\"\"\n  GREEN\n  BLUE\n}\n\n\"\"\"What a great type\"\"\"\ntype Query {\n  \"\"\"And a field to boot\"\"\"\n  str: String\n}",
+    "problems": [
+      "Union type BlackHole must define one or more member types."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Type modifiers",
+    "printed": "type Query {\n  nonNullStr: String!\n  listOfStrings: [String]\n  listOfNonNullStrings: [String!]\n  nonNullListOfStrings: [String]!\n  nonNullListOfNonNullStrings: [String!]!\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Recursive type",
+    "printed": "type Query {\n  str: String\n  recurse: Query\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Two types circular",
+    "printed": "type TypeOne {\n  str: String\n  typeTwo: TypeTwo\n}\n\ntype TypeTwo {\n  str: String\n  typeOne: TypeOne\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Single argument field",
+    "printed": "type Query {\n  str(int: Int): String\n  floatToStr(float: Float): String\n  idToStr(id: ID): String\n  booleanToStr(bool: Boolean): String\n  strToStr(bool: String): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Simple type with multiple arguments",
+    "printed": "type Query {\n  str(int: Int, bool: Boolean): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Empty interface",
+    "printed": "interface EmptyInterface",
+    "problems": [
+      "Query root type must be provided.",
+      "Type EmptyInterface must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Simple type with interface",
+    "printed": "type Query implements WorldInterface {\n  str: String\n}\n\ninterface WorldInterface {\n  str: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Simple interface hierarchy",
+    "printed": "schema {\n  query: Child\n}\n\ninterface Child implements Parent {\n  str: String\n}\n\ntype Hello implements Parent & Child {\n  str: String\n}\n\ninterface Parent {\n  str: String\n}",
+    "problems": [
+      "Query root type must be Object type, it cannot be Child."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Empty enum",
+    "printed": "enum EmptyEnum",
+    "problems": [
+      "Query root type must be provided.",
+      "Enum type EmptyEnum must define one or more values."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Simple output enum",
+    "printed": "enum Hello {\n  WORLD\n}\n\ntype Query {\n  hello: Hello\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Simple input enum",
+    "printed": "enum Hello {\n  WORLD\n}\n\ntype Query {\n  str(hello: Hello): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Multiple value enum",
+    "printed": "enum Hello {\n  WO\n  RLD\n}\n\ntype Query {\n  hello: Hello\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Empty union",
+    "printed": "union EmptyUnion",
+    "problems": [
+      "Query root type must be provided.",
+      "Union type EmptyUnion must define one or more member types."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Simple Union",
+    "printed": "union Hello = World\n\ntype Query {\n  hello: Hello\n}\n\ntype World {\n  str: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Multiple Union",
+    "printed": "union Hello = WorldOne | WorldTwo\n\ntype Query {\n  hello: Hello\n}\n\ntype WorldOne {\n  str: String\n}\n\ntype WorldTwo {\n  str: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Can build recursive Union",
+    "printed": "union Hello = Hello\n\ntype Query {\n  hello: Hello\n}",
+    "problems": [
+      "Union type Hello can only include Object types, it cannot include Hello."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Custom Scalar",
+    "printed": "scalar CustomScalar\n\ntype Query {\n  customScalar: CustomScalar\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Empty Input Object",
+    "printed": "input EmptyInputObject",
+    "problems": [
+      "Query root type must be provided.",
+      "Input Object type EmptyInputObject must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Simple Input Object",
+    "printed": "input Input {\n  int: Int\n}\n\ntype Query {\n  field(in: Input): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Simple argument field with default",
+    "printed": "type Query {\n  str(int: Int = 2): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Custom scalar argument field with default",
+    "printed": "scalar CustomScalar\n\ntype Query {\n  str(int: CustomScalar = 2): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Simple type with mutation",
+    "printed": "schema {\n  query: HelloScalars\n  mutation: Mutation\n}\n\ntype HelloScalars {\n  str: String\n  int: Int\n  bool: Boolean\n}\n\ntype Mutation {\n  addHelloScalars(str: String, int: Int, bool: Boolean): HelloScalars\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Simple type with subscription",
+    "printed": "schema {\n  query: HelloScalars\n  subscription: Subscription\n}\n\ntype HelloScalars {\n  str: String\n  int: Int\n  bool: Boolean\n}\n\ntype Subscription {\n  subscribeHelloScalars(str: String, int: Int, bool: Boolean): HelloScalars\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Unreferenced type implementing referenced interface",
+    "printed": "type Concrete implements Interface {\n  key: String\n}\n\ninterface Interface {\n  key: String\n}\n\ntype Query {\n  interface: Interface\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Unreferenced interface implementing referenced interface",
+    "printed": "interface Child implements Parent {\n  key: String\n}\n\ninterface Parent {\n  key: String\n}\n\ntype Query {\n  interfaceField: Parent\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Unreferenced type implementing referenced union",
+    "printed": "type Concrete {\n  key: String\n}\n\ntype Query {\n  union: Union\n}\n\nunion Union = Concrete",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Supports @deprecated",
+    "printed": "enum MyEnum {\n  VALUE\n  OLD_VALUE @deprecated\n  OTHER_VALUE @deprecated(reason: \"Terrible reasons\")\n}\n\ninput MyInput {\n  oldInput: String @deprecated\n  otherInput: String @deprecated(reason: \"Use newInput\")\n  newInput: String\n}\n\ntype Query {\n  field1: String @deprecated\n  field2: Int @deprecated(reason: \"Because I said so\")\n  enum: MyEnum\n  field3(oldArg: String @deprecated, arg: String): String\n  field4(oldArg: String @deprecated(reason: \"Why not?\"), arg: String): String\n  field5(arg: MyInput): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Supports @specifiedBy",
+    "printed": "scalar Foo @specifiedBy(url: \"https://example.com/foo_spec\")\n\ntype Query {\n  foo: Foo @deprecated\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend scalar type",
+    "printed": "directive @foo on SCALAR\n\ndirective @bar on SCALAR\n\nscalar SomeScalar",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend scalar type #2",
+    "printed": "scalar SomeScalar",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend object type",
+    "printed": "type SomeObject implements Foo & Bar & Baz {\n  first: String\n  second: Int\n  third: Float\n}\n\ninterface Foo\n\ninterface Bar\n\ninterface Baz",
+    "problems": [
+      "Query root type must be provided.",
+      "Type Foo must define one or more fields.",
+      "Type Bar must define one or more fields.",
+      "Type Baz must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend interface type",
+    "printed": "interface SomeInterface {\n  first: String\n  second: Int\n  third: Float\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend interface type #2",
+    "printed": "interface SomeInterface {\n  first: String\n  second: Int\n  third: Float\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend interface type #3",
+    "printed": "interface SomeInterface {\n  first: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend union type",
+    "printed": "union SomeUnion = FirstType | SecondType | ThirdType\n\ntype FirstType\n\ntype SecondType\n\ntype ThirdType",
+    "problems": [
+      "Query root type must be provided.",
+      "Type FirstType must define one or more fields.",
+      "Type SecondType must define one or more fields.",
+      "Type ThirdType must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend enum type",
+    "printed": "enum SomeEnum {\n  FIRST\n  SECOND\n  THIRD\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend enum type #2",
+    "printed": "enum SomeEnum {\n  FIRST\n  SECOND\n  THIRD\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend enum type #3",
+    "printed": "enum SomeEnum {\n  FIRST\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend input object type",
+    "printed": "input SomeInput {\n  first: String\n  second: Int\n  third: Float\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend input object type #2",
+    "printed": "input SomeInput {\n  first: String\n  second: Int\n  third: Float\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly extend input object type #3",
+    "printed": "input SomeInput {\n  first: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Correctly assign AST nodes",
+    "printed": "directive @test(arg: TestScalar) on FIELD\n\ntype Query {\n  testField(testArg: TestInput): TestUnion\n}\n\ninput TestInput {\n  testInputField: TestEnum\n}\n\nenum TestEnum {\n  TEST_VALUE\n}\n\nunion TestUnion = TestType\n\ninterface TestInterface {\n  interfaceField: String\n}\n\ntype TestType implements TestInterface {\n  interfaceField: String\n}\n\nscalar TestScalar",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Root operation types with custom names",
+    "printed": "schema {\n  query: SomeQuery\n  mutation: SomeMutation\n  subscription: SomeSubscription\n}\n\ntype SomeQuery\n\ntype SomeMutation\n\ntype SomeSubscription",
+    "problems": [
+      "Type SomeQuery must define one or more fields.",
+      "Type SomeMutation must define one or more fields.",
+      "Type SomeSubscription must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Default root operation type names",
+    "printed": "type Query\n\ntype Mutation\n\ntype Subscription",
+    "problems": [
+      "Type Query must define one or more fields.",
+      "Type Mutation must define one or more fields.",
+      "Type Subscription must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Do not override standard types",
+    "printed": "",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: Allows to reference introspection types",
+    "printed": "type Query {\n  introspectionField: __EnumValue\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "buildASTSchema: buildSchema parses directives on directive definitions",
+    "printed": "directive @bar @deprecated(reason: \"Use another directive\") on FIELD_DEFINITION\n\ntype Query {\n  foo: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints String Field",
+    "printed": "type Query {\n  singleField: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints [String] Field",
+    "printed": "type Query {\n  singleField: [String]\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints String! Field",
+    "printed": "type Query {\n  singleField: String!\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints [String]! Field",
+    "printed": "type Query {\n  singleField: [String]!\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints [String!] Field",
+    "printed": "type Query {\n  singleField: [String!]\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints [String!]! Field",
+    "printed": "type Query {\n  singleField: [String!]!\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Print Object Field",
+    "printed": "type Foo {\n  str: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints String Field With Int Arg",
+    "printed": "type Query {\n  singleField(argOne: Int): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints String Field With Int Arg With Default",
+    "printed": "type Query {\n  singleField(argOne: Int = 2): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints String Field With String Arg With Default",
+    "printed": "type Query {\n  singleField(argOne: String = \"tes\\t de\\fault\"): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints String Field With Int Arg With Default Null",
+    "printed": "type Query {\n  singleField(argOne: Int = null): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints String Field With Int! Arg",
+    "printed": "type Query {\n  singleField(argOne: Int!): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints String Field With Multiple Args",
+    "printed": "type Query {\n  singleField(argOne: Int, argTwo: String): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints String Field With Multiple Args, First is Default",
+    "printed": "type Query {\n  singleField(argOne: Int = 1, argTwo: String, argThree: Boolean): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints String Field With Multiple Args, Second is Default",
+    "printed": "type Query {\n  singleField(argOne: Int, argTwo: String = \"foo\", argThree: Boolean): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints String Field With Multiple Args, Last is Default",
+    "printed": "type Query {\n  singleField(argOne: Int, argTwo: String, argThree: Boolean = false): String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints schema with description",
+    "printed": "\"\"\"Schema description.\"\"\"\nschema {\n  query: Query\n}\n\ntype Query",
+    "problems": [
+      "Type Query must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Omits schema of common names",
+    "printed": "type Query\n\ntype Mutation\n\ntype Subscription",
+    "problems": [
+      "Type Query must define one or more fields.",
+      "Type Mutation must define one or more fields.",
+      "Type Subscription must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints custom query root types",
+    "printed": "schema {\n  query: CustomType\n}\n\ntype CustomType",
+    "problems": [
+      "Type CustomType must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints custom mutation root types",
+    "printed": "schema {\n  mutation: CustomType\n}\n\ntype CustomType",
+    "problems": [
+      "Query root type must be provided.",
+      "Type CustomType must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints custom subscription root types",
+    "printed": "schema {\n  subscription: CustomType\n}\n\ntype CustomType",
+    "problems": [
+      "Query root type must be provided.",
+      "Type CustomType must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Print Interface",
+    "printed": "type Bar implements Foo {\n  str: String\n}\n\ninterface Foo {\n  str: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Print Multiple Interface",
+    "printed": "type Bar implements Foo & Baz {\n  str: String\n  int: Int\n}\n\ninterface Foo {\n  str: String\n}\n\ninterface Baz {\n  int: Int\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Print Hierarchical Interface",
+    "printed": "type Bar implements Foo & Baz {\n  str: String\n  int: Int\n}\n\ninterface Foo {\n  str: String\n}\n\ninterface Baz implements Foo {\n  int: Int\n  str: String\n}\n\ntype Query {\n  bar: Bar\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Print Unions",
+    "printed": "union SingleUnion = Foo\n\ntype Foo {\n  bool: Boolean\n}\n\nunion MultipleUnion = Foo | Bar\n\ntype Bar {\n  str: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Print Input Type",
+    "printed": "input InputType {\n  int: Int\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Print Input Type with @oneOf directive",
+    "printed": "input InputType @oneOf {\n  int: Int\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Custom Scalar",
+    "printed": "scalar Odd",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Custom Scalar with specifiedByURL",
+    "printed": "scalar Foo @specifiedBy(url: \"https://example.com/foo_spec\")",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Enum",
+    "printed": "enum RGB {\n  RED\n  GREEN\n  BLUE\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints empty types",
+    "printed": "enum SomeEnum\n\ninput SomeInputObject\n\ninterface SomeInterface\n\ntype SomeObject\n\nunion SomeUnion",
+    "problems": [
+      "Query root type must be provided.",
+      "Enum type SomeEnum must define one or more values.",
+      "Input Object type SomeInputObject must define one or more fields.",
+      "Type SomeInterface must define one or more fields.",
+      "Type SomeObject must define one or more fields.",
+      "Union type SomeUnion must define one or more member types."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints an empty descriptions",
+    "printed": "\"\"\"\"\"\"\nschema {\n  query: Query\n}\n\n\"\"\"\"\"\"\ndirective @someDirective(\n  \"\"\"\"\"\"\n  someArg: String\n\n  \"\"\"\"\"\"\n  anotherArg: String\n) on QUERY\n\n\"\"\"\"\"\"\nscalar SomeScalar\n\n\"\"\"\"\"\"\ninterface SomeInterface {\n  \"\"\"\"\"\"\n  someField(\n    \"\"\"\"\"\"\n    someArg: String\n\n    \"\"\"\"\"\"\n    anotherArg: String\n  ): String\n\n  \"\"\"\"\"\"\n  anotherField(\n    \"\"\"\"\"\"\n    someArg: String\n\n    \"\"\"\"\"\"\n    anotherArg: String\n  ): String\n}\n\n\"\"\"\"\"\"\nunion SomeUnion = Query\n\n\"\"\"\"\"\"\ntype Query {\n  \"\"\"\"\"\"\n  someField(\n    \"\"\"\"\"\"\n    someArg: String\n\n    \"\"\"\"\"\"\n    anotherArg: String\n  ): String\n\n  \"\"\"\"\"\"\n  anotherField(\n    \"\"\"\"\"\"\n    someArg: String\n\n    \"\"\"\"\"\"\n    anotherArg: String\n  ): String\n}\n\n\"\"\"\"\"\"\nenum SomeEnum {\n  \"\"\"\"\"\"\n  SOME_VALUE\n\n  \"\"\"\"\"\"\n  ANOTHER_VALUE\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Prints a description with only whitespace",
+    "printed": "type Query {\n  \" \"\n  singleField: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: One-line prints a short description",
+    "printed": "type Query {\n  \"\"\"This field is awesome\"\"\"\n  singleField: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "printSchema: Print Introspection Schema",
+    "printed": "",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "printSchema: prints schema with description and default root operation types correctly",
+    "printed": "\"\"\"Test\"\"\"\nschema {\n  query: Query\n}\n\ntype Query {\n  a: Int\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "schema-parser: Simple type",
+    "printed": "type Hello {\n  world: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "schema-parser: parses type with description multi-line string",
+    "printed": "\"\"\"Description\"\"\"\ntype Hello {\n  world: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "schema-parser: Simple non-null type",
+    "printed": "type Hello {\n  world: String!\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "schema-parser: Simple interface",
+    "printed": "interface Hello {\n  world: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "schema-parser: Simple field with arg",
+    "printed": "type Hello {\n  world(flag: Boolean): String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "schema-parser: Simple field with arg with default value",
+    "printed": "type Hello {\n  world(flag: Boolean = true): String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "schema-parser: Simple field with list arg",
+    "printed": "type Hello {\n  world(things: [String]): String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "schema-parser: Simple field with two args",
+    "printed": "type Hello {\n  world(argOne: Boolean, argTwo: Int): String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "schema-parser: Simple input object",
+    "printed": "input Hello {\n  world: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends objects by adding new fields",
+    "printed": "type Query {\n  someObject: SomeObject\n}\n\ntype SomeObject implements AnotherInterface & SomeInterface {\n  self: SomeObject\n  tree: [SomeObject]!\n\n  \"\"\"Old field description.\"\"\"\n  oldField: String\n}\n\ninterface SomeInterface {\n  self: SomeInterface\n}\n\ninterface AnotherInterface {\n  self: SomeObject\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends enums by adding new values",
+    "printed": "directive @foo(arg: SomeEnum) on SCHEMA\n\ntype Query {\n  someEnum(arg: SomeEnum): SomeEnum\n}\n\nenum SomeEnum {\n  \"\"\"Old value description.\"\"\"\n  OLD_VALUE\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends enums by adding new values #3",
+    "printed": "enum SomeEnum {\n  \"\"\"Old value description.\"\"\"\n  OLD_VALUE\n\n  \"\"\"New value description.\"\"\"\n  NEW_VALUE\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends unions by adding new types",
+    "printed": "type Query {\n  someUnion: SomeUnion\n}\n\nunion SomeUnion = Foo | Biz\n\ntype Foo {\n  foo: String\n}\n\ntype Biz {\n  biz: String\n}\n\ntype Bar {\n  bar: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: allows extension of union by adding itself",
+    "printed": "union SomeUnion",
+    "problems": [
+      "Query root type must be provided.",
+      "Union type SomeUnion must define one or more member types."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: allows extension of union by adding itself #3",
+    "printed": "union SomeUnion = SomeUnion",
+    "problems": [
+      "Query root type must be provided.",
+      "Union type SomeUnion can only include Object types, it cannot include SomeUnion."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends inputs by adding new fields",
+    "printed": "directive @foo(arg: SomeInput) on SCHEMA\n\ntype Query {\n  someInput(arg: SomeInput): String\n}\n\ninput SomeInput {\n  \"\"\"Old field description.\"\"\"\n  oldField: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends inputs by adding new fields #3",
+    "printed": "input SomeInput {\n  \"\"\"Old field description.\"\"\"\n  oldField: String\n\n  \"\"\"New field description.\"\"\"\n  newField: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends scalars by adding new directives",
+    "printed": "directive @foo(arg: SomeScalar) on SCALAR\n\ntype Query {\n  someScalar(arg: SomeScalar): SomeScalar\n}\n\ninput FooInput {\n  foo: SomeScalar\n}\n\nscalar SomeScalar",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends scalars by adding specifiedBy directive",
+    "printed": "directive @foo on SCALAR\n\ntype Query {\n  foo: Foo\n}\n\nscalar Foo",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: builds scalars with specifiedBy directive from extensions",
+    "printed": "type Query {\n  foo: Foo\n}\n\nscalar Foo @specifiedBy(url: \"https://example.com/foo_spec\")",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: correctly assign AST nodes to new and extended types",
+    "printed": "directive @foo on SCALAR\n\ntype Query\n\nscalar SomeScalar\n\nenum SomeEnum\n\nunion SomeUnion\n\ninput SomeInput\n\ntype SomeObject\n\ninterface SomeInterface",
+    "problems": [
+      "Type Query must define one or more fields.",
+      "Enum type SomeEnum must define one or more values.",
+      "Union type SomeUnion must define one or more member types.",
+      "Input Object type SomeInput must define one or more fields.",
+      "Type SomeObject must define one or more fields.",
+      "Type SomeInterface must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: builds types with deprecated fields/values",
+    "printed": "type SomeObject {\n  deprecatedField: String @deprecated(reason: \"not used anymore\")\n}\n\nenum SomeEnum {\n  DEPRECATED_VALUE @deprecated(reason: \"do not use\")\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: adds new unused types",
+    "printed": "type Query {\n  dummy: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: adds new unused types #2",
+    "printed": "type DummyUnionMember {\n  someField: String\n}\n\nenum UnusedEnum {\n  SOME_VALUE\n}\n\ninput UnusedInput {\n  someField: String\n}\n\ninterface UnusedInterface {\n  someField: String\n}\n\ntype UnusedObject {\n  someField: String\n}\n\nunion UnusedUnion = DummyUnionMember",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends objects by adding new fields with arguments",
+    "printed": "type SomeObject\n\ntype Query {\n  someObject: SomeObject\n}",
+    "problems": [
+      "Type SomeObject must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends objects by adding new fields with arguments #3",
+    "printed": "type SomeObject {\n  newField(arg1: String, arg2: NewInputObj!): String\n}\n\ninput NewInputObj {\n  field1: Int\n  field2: [Float]\n  field3: String!\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends objects by adding new fields with existing types",
+    "printed": "type Query {\n  someObject: SomeObject\n}\n\ntype SomeObject\n\nenum SomeEnum {\n  VALUE\n}",
+    "problems": [
+      "Type SomeObject must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends objects by adding implemented interfaces",
+    "printed": "type Query {\n  someObject: SomeObject\n}\n\ntype SomeObject {\n  foo: String\n}\n\ninterface SomeInterface {\n  foo: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends objects by including new types",
+    "printed": "type Query {\n  someObject: SomeObject\n}\n\ntype SomeObject {\n  oldField: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends objects by including new types #2",
+    "printed": "enum NewEnum {\n  VALUE\n}\n\ninterface NewInterface {\n  baz: String\n}\n\ntype NewObject implements NewInterface {\n  baz: String\n}\n\nscalar NewScalar\n\nunion NewUnion = NewObject",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends objects by adding implemented new interfaces",
+    "printed": "type Query {\n  someObject: SomeObject\n}\n\ntype SomeObject implements OldInterface {\n  oldField: String\n}\n\ninterface OldInterface {\n  oldField: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends different types multiple times",
+    "printed": "type Query {\n  someScalar: SomeScalar\n  someObject(someInput: SomeInput): SomeObject\n  someInterface: SomeInterface\n  someEnum: SomeEnum\n  someUnion: SomeUnion\n}\n\nscalar SomeScalar\n\ntype SomeObject implements SomeInterface {\n  oldField: String\n}\n\ninterface SomeInterface {\n  oldField: String\n}\n\nenum SomeEnum {\n  OLD_VALUE\n}\n\nunion SomeUnion = SomeObject\n\ninput SomeInput {\n  oldField: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends different types multiple times #2",
+    "printed": "scalar NewScalar\n\nscalar AnotherNewScalar\n\ntype NewObject {\n  foo: String\n}\n\ntype AnotherNewObject {\n  foo: String\n}\n\ninterface NewInterface {\n  newField: String\n}\n\ninterface AnotherNewInterface {\n  anotherNewField: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends interfaces by adding new fields",
+    "printed": "interface SomeInterface {\n  oldField: String\n}\n\ninterface AnotherInterface implements SomeInterface {\n  oldField: String\n}\n\ntype SomeObject implements SomeInterface & AnotherInterface {\n  oldField: String\n}\n\ntype Query {\n  someInterface: SomeInterface\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends interfaces by adding new fields #3",
+    "printed": "interface SomeInterface {\n  oldField: String\n  newField: String\n}\n\ninterface AnotherInterface implements SomeInterface {\n  oldField: String\n  newField: String\n}\n\ntype SomeObject implements SomeInterface & AnotherInterface {\n  oldField: String\n  newField: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: allows extension of interface with missing Object fields",
+    "printed": "type Query {\n  someInterface: SomeInterface\n}\n\ntype SomeObject implements SomeInterface {\n  oldField: SomeInterface\n}\n\ninterface SomeInterface {\n  oldField: SomeInterface\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: allows extension of interface with missing Object fields #3",
+    "printed": "interface SomeInterface {\n  oldField: SomeInterface\n  newField: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends interfaces multiple times",
+    "printed": "type Query {\n  someInterface: SomeInterface\n}\n\ninterface SomeInterface {\n  some: SomeInterface\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: extends interfaces multiple times #3",
+    "printed": "interface SomeInterface {\n  some: SomeInterface\n  newFieldA: Int\n  newFieldB(test: Boolean): String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: may extend mutations and subscriptions",
+    "printed": "type Query {\n  queryField: String\n}\n\ntype Mutation {\n  mutationField: String\n}\n\ntype Subscription {\n  subscriptionField: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: may extend mutations and subscriptions #3",
+    "printed": "type Query {\n  queryField: String\n  newQueryField: Int\n}\n\ntype Mutation {\n  mutationField: String\n  newMutationField: Int\n}\n\ntype Subscription {\n  subscriptionField: String\n  newSubscriptionField: Int\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "extendSchema: does not allow replacing an existing enum value",
+    "printed": "enum SomeEnum {\n  ONE\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: adds schema definition missing in the original schema",
+    "printed": "directive @foo on SCHEMA\n\ntype Foo",
+    "problems": [
+      "Query root type must be provided.",
+      "Type Foo must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: adds new root types via schema extension",
+    "printed": "type Query\n\ntype MutationRoot",
+    "problems": [
+      "Type Query must define one or more fields.",
+      "Type MutationRoot must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: adds directive via schema extension",
+    "printed": "directive @foo on SCHEMA\n\ntype Query",
+    "problems": [
+      "Type Query must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: adds multiple new root types via schema extension",
+    "printed": "type Mutation\n\ntype Subscription",
+    "problems": [
+      "Query root type must be provided.",
+      "Type Mutation must define one or more fields.",
+      "Type Subscription must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: applies multiple schema extensions",
+    "printed": "type Mutation\n\ntype Subscription",
+    "problems": [
+      "Query root type must be provided.",
+      "Type Mutation must define one or more fields.",
+      "Type Subscription must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "extendSchema: preserves deprecated directives when extending other types",
+    "printed": "directive @isDeprecated @deprecated(reason: \"use another directive\") on FIELD_DEFINITION\n\ntype Query {\n  foo: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort fields",
+    "printed": "input Bar {\n  barB: String!\n  barA: String\n  barC: [String]\n}\n\ninterface FooInterface {\n  fooB: String!\n  fooA: String\n  fooC: [String]\n}\n\ntype FooType implements FooInterface {\n  fooC: [String]\n  fooA: String\n  fooB: String!\n}\n\ntype Query {\n  dummy(arg: Bar): FooType\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort fields #2",
+    "printed": "input Bar {\n  barA: String\n  barB: String!\n  barC: [String]\n}\n\ninterface FooInterface {\n  fooA: String\n  fooB: String!\n  fooC: [String]\n}\n\ntype FooType implements FooInterface {\n  fooA: String\n  fooB: String!\n  fooC: [String]\n}\n\ntype Query {\n  dummy(arg: Bar): FooType\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort implemented interfaces",
+    "printed": "interface FooA {\n  dummy: String\n}\n\ninterface FooB {\n  dummy: String\n}\n\ninterface FooC implements FooB & FooA {\n  dummy: String\n}\n\ntype Query implements FooB & FooA & FooC {\n  dummy: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort implemented interfaces #2",
+    "printed": "interface FooA {\n  dummy: String\n}\n\ninterface FooB {\n  dummy: String\n}\n\ninterface FooC implements FooA & FooB {\n  dummy: String\n}\n\ntype Query implements FooA & FooB & FooC {\n  dummy: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort types in union",
+    "printed": "type FooA {\n  dummy: String\n}\n\ntype FooB {\n  dummy: String\n}\n\ntype FooC {\n  dummy: String\n}\n\nunion FooUnion = FooB | FooA | FooC\n\ntype Query {\n  dummy: FooUnion\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort types in union #2",
+    "printed": "type FooA {\n  dummy: String\n}\n\ntype FooB {\n  dummy: String\n}\n\ntype FooC {\n  dummy: String\n}\n\nunion FooUnion = FooA | FooB | FooC\n\ntype Query {\n  dummy: FooUnion\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort enum values",
+    "printed": "enum Foo {\n  B\n  C\n  A\n}\n\ntype Query {\n  dummy: Foo\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort enum values #2",
+    "printed": "enum Foo {\n  A\n  B\n  C\n}\n\ntype Query {\n  dummy: Foo\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort field arguments",
+    "printed": "type Query {\n  dummy(argB: Int!, argA: String, argC: [Float]): ID\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort field arguments #2",
+    "printed": "type Query {\n  dummy(argA: String, argB: Int!, argC: [Float]): ID\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort types",
+    "printed": "type Query {\n  dummy(arg1: FooF, arg2: FooA, arg3: FooG): FooD\n}\n\ntype FooC implements FooE {\n  dummy: String\n}\n\nenum FooG {\n  enumValue\n}\n\nscalar FooA\n\ninput FooF {\n  dummy: String\n}\n\nunion FooD = FooC | FooB\n\ninterface FooE {\n  dummy: String\n}\n\ntype FooB {\n  dummy: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort types #2",
+    "printed": "scalar FooA\n\ntype FooB {\n  dummy: String\n}\n\ntype FooC implements FooE {\n  dummy: String\n}\n\nunion FooD = FooB | FooC\n\ninterface FooE {\n  dummy: String\n}\n\ninput FooF {\n  dummy: String\n}\n\nenum FooG {\n  enumValue\n}\n\ntype Query {\n  dummy(arg1: FooF, arg2: FooA, arg3: FooG): FooD\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort directive arguments",
+    "printed": "directive @test(argC: Float, argA: String, argB: Int) on FIELD\n\ntype Query {\n  dummy: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort directive arguments #2",
+    "printed": "directive @test(argA: String, argB: Int, argC: Float) on FIELD\n\ntype Query {\n  dummy: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort directive locations",
+    "printed": "directive @test(argC: Float, argA: String, argB: Int) on UNION | FIELD | ENUM\n\ntype Query {\n  dummy: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort directive locations #2",
+    "printed": "directive @test(argA: String, argB: Int, argC: Float) on ENUM | FIELD | UNION\n\ntype Query {\n  dummy: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort directives",
+    "printed": "directive @fooC on FIELD\n\ndirective @fooB on UNION\n\ndirective @fooA on ENUM\n\ntype Query {\n  dummy: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort directives #2",
+    "printed": "directive @fooA on ENUM\n\ndirective @fooB on UNION\n\ndirective @fooC on FIELD\n\ntype Query {\n  dummy: String\n}",
+    "problems": [],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort recursive types",
+    "printed": "interface FooC {\n  fooB: FooB\n  fooA: FooA\n  fooC: FooC\n}\n\ntype FooB implements FooC {\n  fooB: FooB\n  fooA: FooA\n}\n\ntype FooA implements FooC {\n  fooB: FooB\n  fooA: FooA\n}\n\ntype Query {\n  fooC: FooC\n  fooB: FooB\n  fooA: FooA\n}",
+    "problems": [
+      "Interface field FooC.fooC expected but FooB does not provide it.",
+      "Interface field FooC.fooC expected but FooA does not provide it."
+    ],
+    "error": null
+  },
+  {
+    "name": "lexicographicSortSchema: sort recursive types #2",
+    "printed": "type FooA implements FooC {\n  fooA: FooA\n  fooB: FooB\n}\n\ntype FooB implements FooC {\n  fooA: FooA\n  fooB: FooB\n}\n\ninterface FooC {\n  fooA: FooA\n  fooB: FooB\n  fooC: FooC\n}\n\ntype Query {\n  fooA: FooA\n  fooB: FooB\n  fooC: FooC\n}",
+    "problems": [
+      "Interface field FooC.fooC expected but FooA does not provide it.",
+      "Interface field FooC.fooC expected but FooB does not provide it."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map scalar types",
+    "printed": "\"\"\"Some description\"\"\"\nscalar SomeScalar",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map arguments",
+    "printed": "type SomeType {\n  field(arg: String): String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map arguments #2",
+    "printed": "type SomeType {\n  field(\n    \"\"\"Some description\"\"\"\n    arg: String\n  ): String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map fields",
+    "printed": "type SomeType {\n  field: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map fields #2",
+    "printed": "type SomeType {\n  \"\"\"Some description\"\"\"\n  field: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map fields with non-null return type",
+    "printed": "type SomeType {\n  field: String!\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map fields with non-null return type #2",
+    "printed": "type SomeType {\n  \"\"\"Some description\"\"\"\n  field: String!\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map fields with list return type",
+    "printed": "type SomeType {\n  field: [String]\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map fields with list return type #2",
+    "printed": "type SomeType {\n  \"\"\"Some description\"\"\"\n  field: [String]\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps fields after mapping arguments",
+    "printed": "type SomeType {\n  \"\"\"Some field description\"\"\"\n  field(\n    \"\"\"Some argument description\"\"\"\n    arg: String\n  ): String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map object types",
+    "printed": "\"\"\"Some description\"\"\"\ntype SomeType",
+    "problems": [
+      "Query root type must be provided.",
+      "Type SomeType must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps object types after mapping fields",
+    "printed": "type SomeType {\n  field: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps object types after mapping fields #2",
+    "printed": "\"\"\"Some object description\"\"\"\ntype SomeType {\n  \"\"\"Some field description\"\"\"\n  field: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps object types after mapping interfaces",
+    "printed": "interface SomeInterface\n\ntype SomeType implements SomeInterface",
+    "problems": [
+      "Query root type must be provided.",
+      "Type SomeInterface must define one or more fields.",
+      "Type SomeType must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps object types after mapping interfaces #2",
+    "printed": "\"\"\"Some interface description\"\"\"\ninterface SomeInterface\n\n\"\"\"Some object description\"\"\"\ntype SomeType implements SomeInterface",
+    "problems": [
+      "Query root type must be provided.",
+      "Type SomeInterface must define one or more fields.",
+      "Type SomeType must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map interface types",
+    "printed": "\"\"\"Some description\"\"\"\ninterface SomeInterface",
+    "problems": [
+      "Query root type must be provided.",
+      "Type SomeInterface must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps interface types after mapping fields",
+    "printed": "interface SomeInterface {\n  field: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps interface types after mapping fields #2",
+    "printed": "\"\"\"Some interface description\"\"\"\ninterface SomeInterface {\n  \"\"\"Some field description\"\"\"\n  field: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps interface types after mapping parent interfaces",
+    "printed": "interface SomeParentInterface\n\ninterface SomeInterface implements SomeParentInterface",
+    "problems": [
+      "Query root type must be provided.",
+      "Type SomeParentInterface must define one or more fields.",
+      "Type SomeInterface must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps interface types after mapping parent interfaces #2",
+    "printed": "\"\"\"Some interface description\"\"\"\ninterface SomeParentInterface\n\n\"\"\"Some interface description\"\"\"\ninterface SomeInterface implements SomeParentInterface",
+    "problems": [
+      "Query root type must be provided.",
+      "Type SomeParentInterface must define one or more fields.",
+      "Type SomeInterface must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map union types",
+    "printed": "\"\"\"Some description\"\"\"\nunion SomeUnion",
+    "problems": [
+      "Query root type must be provided.",
+      "Union type SomeUnion must define one or more member types."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps union types after mapping types",
+    "printed": "type SomeType\n\nunion SomeUnion = SomeType",
+    "problems": [
+      "Query root type must be provided.",
+      "Type SomeType must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps union types after mapping types #2",
+    "printed": "\"\"\"Some type description\"\"\"\ntype SomeType\n\n\"\"\"Some union description\"\"\"\nunion SomeUnion = SomeType",
+    "problems": [
+      "Query root type must be provided.",
+      "Type SomeType must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map enum values",
+    "printed": "enum SomeEnum {\n  SOME_VALUE\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map enum values #2",
+    "printed": "enum SomeEnum {\n  \"\"\"Some description\"\"\"\n  SOME_VALUE\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map enum types",
+    "printed": "\"\"\"Some description\"\"\"\nenum SomeEnum",
+    "problems": [
+      "Query root type must be provided.",
+      "Enum type SomeEnum must define one or more values."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps enum types after mapping values",
+    "printed": "\"\"\"Some enum description\"\"\"\nenum SomeEnum {\n  \"\"\"Some value description\"\"\"\n  SOME_VALUE\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map input fields",
+    "printed": "input SomeInput {\n  field: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map input fields #2",
+    "printed": "input SomeInput {\n  \"\"\"Some description\"\"\"\n  field: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map input object types",
+    "printed": "\"\"\"Some description\"\"\"\ninput SomeInput",
+    "problems": [
+      "Query root type must be provided.",
+      "Input Object type SomeInput must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps input object types after mapping input fields",
+    "printed": "\"\"\"Some input object description\"\"\"\ninput SomeInput {\n  \"\"\"Some input field description\"\"\"\n  field: String\n}",
+    "problems": [
+      "Query root type must be provided."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map the schema",
+    "printed": "directive @SomeDirective on FIELD\n\ntype Query\n\ntype Mutation\n\ntype Subscription\n\nscalar SomeScalar\n\ntype SomeType {\n  field: String\n}\n\ninterface SomeInterface\n\nunion SomeUnion\n\nenum SomeEnum {\n  SOME_VALUE\n}\n\ninput SomeInput {\n  field: String\n}",
+    "problems": [
+      "Type Query must define one or more fields.",
+      "Type Mutation must define one or more fields.",
+      "Type Subscription must define one or more fields.",
+      "Type SomeInterface must define one or more fields.",
+      "Union type SomeUnion must define one or more member types."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: can map the schema #2",
+    "printed": "\"\"\"Some description\"\"\"\nschema {\n  query: Query\n  mutation: Mutation\n  subscription: Subscription\n}\n\ndirective @SomeDirective on FIELD\n\ntype Query\n\ntype Mutation\n\ntype Subscription\n\nscalar SomeScalar\n\ntype SomeType {\n  field: String\n}\n\ninterface SomeInterface\n\nunion SomeUnion\n\nenum SomeEnum {\n  SOME_VALUE\n}\n\ninput SomeInput {\n  field: String\n}",
+    "problems": [
+      "Type Query must define one or more fields.",
+      "Type Mutation must define one or more fields.",
+      "Type Subscription must define one or more fields.",
+      "Type SomeInterface must define one or more fields.",
+      "Union type SomeUnion must define one or more member types."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: maps the schema after mapping types and directives",
+    "printed": "\"\"\"Some schema description\"\"\"\nschema {\n  query: Query\n  mutation: Mutation\n  subscription: Subscription\n}\n\n\"\"\"Some directive description\"\"\"\ndirective @SomeDirective on FIELD\n\n\"\"\"Some object description\"\"\"\ntype Query\n\n\"\"\"Some object description\"\"\"\ntype Mutation\n\n\"\"\"Some object description\"\"\"\ntype Subscription\n\n\"\"\"Some scalar description\"\"\"\nscalar SomeScalar\n\n\"\"\"Some object description\"\"\"\ntype SomeType {\n  field: String\n}\n\n\"\"\"Some interface description\"\"\"\ninterface SomeInterface\n\n\"\"\"Some union description\"\"\"\nunion SomeUnion\n\n\"\"\"Some enum description\"\"\"\nenum SomeEnum {\n  SOME_VALUE\n}\n\n\"\"\"Some input object description\"\"\"\ninput SomeInput {\n  field: String\n}",
+    "problems": [
+      "Type Query must define one or more fields.",
+      "Type Mutation must define one or more fields.",
+      "Type Subscription must define one or more fields.",
+      "Type SomeInterface must define one or more fields.",
+      "Union type SomeUnion must define one or more member types."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: allows access to the final mapped named type via getNamedType()",
+    "printed": "\"\"\"Some description\"\"\"\ntype SomeType",
+    "problems": [
+      "Query root type must be provided.",
+      "Type SomeType must define one or more fields."
+    ],
+    "error": null
+  },
+  {
+    "name": "mapSchemaConfig: allows adding a named type via setNamedType() and retrieving the new list via getNamedTypes",
+    "printed": "type SomeType\n\ntype AnotherType",
+    "problems": [
+      "Query root type must be provided.",
+      "Type SomeType must define one or more fields.",
+      "Type AnotherType must define one or more fields."
+    ],
+    "error": null
+  }
+]

@@ -1,0 +1,490 @@
+[
+  {
+    "name": "a scalar field",
+    "data": {
+      "a": "x"
+    },
+    "errors": []
+  },
+  {
+    "name": "a field that is absent from the root",
+    "data": {
+      "a": null
+    },
+    "errors": []
+  },
+  {
+    "name": "a field given null",
+    "data": {
+      "a": null
+    },
+    "errors": []
+  },
+  {
+    "name": "a non-null field given null",
+    "data": null,
+    "errors": [
+      {
+        "message": "Cannot return null for non-nullable field Query.a.",
+        "path": [
+          "a"
+        ],
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "a non-null field inside a nullable one",
+    "data": {
+      "o": null
+    },
+    "errors": [
+      {
+        "message": "Cannot return null for non-nullable field O.a.",
+        "path": [
+          "o",
+          "a"
+        ],
+        "locations": [
+          {
+            "line": 1,
+            "column": 7
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "a non-null chain to the root",
+    "data": null,
+    "errors": [
+      {
+        "message": "Cannot return null for non-nullable field O.a.",
+        "path": [
+          "o",
+          "a"
+        ],
+        "locations": [
+          {
+            "line": 1,
+            "column": 7
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "an alias",
+    "data": {
+      "x": "v"
+    },
+    "errors": []
+  },
+  {
+    "name": "the same field twice",
+    "data": {
+      "a": "v"
+    },
+    "errors": []
+  },
+  {
+    "name": "typename",
+    "data": {
+      "__typename": "Query",
+      "a": "v"
+    },
+    "errors": []
+  },
+  {
+    "name": "a list",
+    "data": {
+      "l": [
+        1,
+        2,
+        3
+      ]
+    },
+    "errors": []
+  },
+  {
+    "name": "a list holding null",
+    "data": {
+      "l": [
+        1,
+        null,
+        3
+      ]
+    },
+    "errors": []
+  },
+  {
+    "name": "a list of non-null holding null",
+    "data": {
+      "l": null
+    },
+    "errors": [
+      {
+        "message": "Cannot return null for non-nullable field Query.l.",
+        "path": [
+          "l",
+          1
+        ],
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "a list that is null",
+    "data": {
+      "l": null
+    },
+    "errors": []
+  },
+  {
+    "name": "a nested list",
+    "data": {
+      "l": [
+        [
+          1
+        ],
+        [
+          2,
+          null
+        ]
+      ]
+    },
+    "errors": []
+  },
+  {
+    "name": "a value that is not a list",
+    "data": {
+      "l": null
+    },
+    "errors": [
+      {
+        "message": "Expected Iterable, but did not find one for field \"Query.l\".",
+        "path": [
+          "l"
+        ],
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "an enum",
+    "data": {
+      "e": "A"
+    },
+    "errors": []
+  },
+  {
+    "name": "an enum value the schema lacks",
+    "data": {
+      "e": null
+    },
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent value: \"Z\"",
+        "path": [
+          "e"
+        ],
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Int too large",
+    "data": {
+      "n": null
+    },
+    "errors": [
+      {
+        "message": "Int cannot represent non 32-bit signed integer value: 9007199254740991",
+        "path": [
+          "n"
+        ],
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Int from a float",
+    "data": {
+      "n": null
+    },
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1.5",
+        "path": [
+          "n"
+        ],
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Float from an int",
+    "data": {
+      "f": 1
+    },
+    "errors": []
+  },
+  {
+    "name": "ID from an int",
+    "data": {
+      "i": "1"
+    },
+    "errors": []
+  },
+  {
+    "name": "Boolean from a string",
+    "data": {
+      "b": null
+    },
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: \"yes\"",
+        "path": [
+          "b"
+        ],
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "String from a number",
+    "data": {
+      "s": "1"
+    },
+    "errors": []
+  },
+  {
+    "name": "an argument with a default",
+    "data": {
+      "a": 0
+    },
+    "errors": []
+  },
+  {
+    "name": "skip and include",
+    "data": {},
+    "errors": []
+  },
+  {
+    "name": "a fragment",
+    "data": {
+      "a": "v"
+    },
+    "errors": []
+  },
+  {
+    "name": "an inline fragment on the wrong type",
+    "data": {
+      "a": "v"
+    },
+    "errors": []
+  },
+  {
+    "name": "a variable",
+    "data": {
+      "a": 1
+    },
+    "errors": []
+  },
+  {
+    "name": "a variable given null",
+    "data": {
+      "a": 1
+    },
+    "errors": []
+  },
+  {
+    "name": "a variable not supplied",
+    "data": {
+      "a": 1
+    },
+    "errors": []
+  },
+  {
+    "name": "a non-null variable not supplied",
+    "errors": [
+      {
+        "message": "Variable \"$x\" has invalid value: Expected a value of non-null type \"Int!\" to be provided.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "a variable of the wrong type",
+    "errors": [
+      {
+        "message": "Variable \"$x\" has invalid value: Int cannot represent non-integer value: \"no\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "an input object variable",
+    "data": {
+      "a": 1
+    },
+    "errors": []
+  },
+  {
+    "name": "an input object missing a required field",
+    "errors": [
+      {
+        "message": "Variable \"$i\" has invalid value: Expected value of type \"In\" to include required field \"x\", found: {}.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "an unknown operation name",
+    "errors": [
+      {
+        "message": "Unknown operation named \"Nope\".",
+        "path": null,
+        "locations": []
+      }
+    ]
+  },
+  {
+    "name": "no operation at all",
+    "errors": [
+      {
+        "message": "Fragment \"F\" is never used.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "two operations with no name given",
+    "errors": [
+      {
+        "message": "Must provide operation name if query contains multiple operations.",
+        "path": null,
+        "locations": []
+      }
+    ]
+  },
+  {
+    "name": "an interface resolved by __typename",
+    "data": {
+      "i": {
+        "a": "v",
+        "__typename": "T"
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "an interface that cannot be resolved",
+    "data": {
+      "i": null
+    },
+    "errors": [
+      {
+        "message": "Abstract type \"I\" must resolve to an Object type at runtime for field \"Query.i\". Either the \"I\" type should provide a \"resolveType\" function or each possible type should provide an \"isTypeOf\" function.",
+        "path": [
+          "i"
+        ],
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "a union resolved by __typename",
+    "data": {
+      "u": {
+        "a": "v"
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "deeply nested objects",
+    "data": {
+      "o": {
+        "o": {
+          "o": {
+            "a": "deep"
+          }
+        }
+      }
+    },
+    "errors": []
+  },
+  {
+    "name": "a mutation runs in order",
+    "data": {
+      "x": "1",
+      "y": "2"
+    },
+    "errors": []
+  }
+]

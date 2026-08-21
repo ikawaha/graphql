@@ -1,0 +1,80 @@
+# The schemas graphql-js's defer and stream tests build in TypeScript, written
+# out as SDL so that both implementations read the same one. The two are merged
+# into one Query: the field names do not collide.
+directive @defer(if: Boolean = true, label: String) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+directive @stream(if: Boolean = true, label: String, initialCount: Int = 0) on FIELD
+
+type Friend {
+  id: ID
+  name: String
+  nonNullName: String!
+}
+
+type DeeperObject {
+  foo: String
+  bar: String
+  baz: String
+  bak: String
+}
+
+type NestedObject {
+  deeperObject: DeeperObject
+  name: String
+  scalarField: String
+  nonNullScalarField: String!
+  nestedFriendList: [Friend]
+  deeperNestedObject: DeeperNestedObject
+}
+
+type DeeperNestedObject {
+  nonNullScalarField: String!
+  deeperNestedFriendList: [Friend]
+}
+
+type AnotherNestedObject {
+  deeperObject: DeeperObject
+}
+
+type c {
+  d: String
+  nonNullErrorField: String!
+}
+
+type e {
+  f: String
+}
+
+type b {
+  c: c
+  e: e
+}
+
+type a {
+  b: b
+  someField: String
+  nonNullErrorField: String!
+}
+
+type g {
+  h: String
+}
+
+type Hero {
+  id: ID
+  name: String
+  nonNullName: String!
+  friends: [Friend]
+  nestedObject: NestedObject
+  anotherNestedObject: AnotherNestedObject
+}
+
+type Query {
+  hero: Hero
+  a: a
+  g: g
+  scalarList: [String]
+  scalarListList: [[String]]
+  friendList: [Friend]
+  nonNullFriendList: [Friend!]
+  nestedObject: NestedObject
+}

@@ -1,0 +1,235 @@
+[
+  {
+    "name": "one event",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": {
+            "body": "one"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "several events, in order",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": {
+            "body": "one"
+          }
+        }
+      },
+      {
+        "data": {
+          "messageAdded": {
+            "body": "two"
+          }
+        }
+      },
+      {
+        "data": {
+          "messageAdded": {
+            "body": "three"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "no events at all",
+    "payloads": []
+  },
+  {
+    "name": "an event with a field missing",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": {
+            "body": "one",
+            "sender": null
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "an event that is null",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "an alias",
+    "payloads": [
+      {
+        "data": {
+          "m": {
+            "b": "one"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "typename",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": {
+            "__typename": "Message",
+            "body": "one"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "a fragment",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": {
+            "body": "one"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "a nested object",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": {
+            "body": "one",
+            "author": {
+              "name": "Ada"
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "a nested object that is null",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": {
+            "author": null
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "a non-null field given null",
+    "payloads": [
+      {
+        "errors": [
+          {
+            "message": "Cannot return null for non-nullable field Message.nonNullBody.",
+            "locations": [
+              {
+                "line": 1,
+                "column": 31
+              }
+            ],
+            "path": [
+              "messageAdded",
+              "nonNullBody"
+            ]
+          }
+        ],
+        "data": {
+          "messageAdded": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "a list",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": {
+            "tags": [
+              "a",
+              "b"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "skip and include",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": {}
+        }
+      }
+    ]
+  },
+  {
+    "name": "an argument",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": {
+            "body": "one"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "an event of the wrong shape",
+    "payloads": [
+      {
+        "data": {
+          "messageAdded": {
+            "body": null
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "a scalar field on the event",
+    "payloads": [
+      {
+        "data": {
+          "countAdded": 1
+        }
+      },
+      {
+        "data": {
+          "countAdded": 2
+        }
+      },
+      {
+        "data": {
+          "countAdded": 3
+        }
+      }
+    ]
+  },
+  {
+    "name": "a scalar event that is null",
+    "payloads": [
+      {
+        "data": {
+          "countAdded": null
+        }
+      }
+    ]
+  }
+]

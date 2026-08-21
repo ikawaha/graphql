@@ -1,0 +1,9298 @@
+[
+  {
+    "name": "variable Int given null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Int given 0#1",
+    "data": {
+      "f": "{\"a\":0}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Int given 1#2",
+    "data": {
+      "f": "{\"a\":1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Int given -1#3",
+    "data": {
+      "f": "{\"a\":-1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Int given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non 32-bit signed integer value: 9007199254740992",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given \"A\"#7",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given []#11",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given [1]#12",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: {}",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int not supplied",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Int = null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Int = 0#1",
+    "data": {
+      "f": "{\"a\":0}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Int = 1#2",
+    "data": {
+      "f": "{\"a\":1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Int = -1#3",
+    "data": {
+      "f": "{\"a\":-1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Int = 1.5#4",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = 1e3#5",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1e3",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = \"\"#6",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = \"A\"#7",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = \"1\"#8",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = true#9",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = false#10",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = A#11",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: A",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = B#12",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: B",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = Z#13",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: Z",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = []#14",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = [1]#15",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = [1, null]#16",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = [[1]]#17",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = {}#18",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: {  }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = {x: 1}#19",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = {x: null}#20",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { y: \"s\" }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { z: [1] }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int left out",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Int! given null#0",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of non-null type \"Int!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given 0#1",
+    "data": {
+      "f": "{\"a\":0}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Int! given 1#2",
+    "data": {
+      "f": "{\"a\":1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Int! given -1#3",
+    "data": {
+      "f": "{\"a\":-1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Int! given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non 32-bit signed integer value: 9007199254740992",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given \"A\"#7",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given []#11",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given [1]#12",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: {}",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Int! not supplied",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected a value of non-null type \"Int!\" to be provided.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = null#0",
+    "errors": [
+      {
+        "message": "Expected value of non-null type \"Int!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = 0#1",
+    "data": {
+      "f": "{\"a\":0}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Int! = 1#2",
+    "data": {
+      "f": "{\"a\":1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Int! = -1#3",
+    "data": {
+      "f": "{\"a\":-1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Int! = 1.5#4",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = 1e3#5",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1e3",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = \"\"#6",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = \"A\"#7",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = \"1\"#8",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = true#9",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = false#10",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = A#11",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: A",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = B#12",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: B",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = Z#13",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: Z",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = []#14",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = [1]#15",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = [1, null]#16",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = [[1]]#17",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = {}#18",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: {  }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = {x: 1}#19",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = {x: null}#20",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { y: \"s\" }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { z: [1] }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Int! left out",
+    "errors": [
+      {
+        "message": "Argument \"Query.f(a:)\" of type \"Int!\" is required, but it was not provided.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Float given 0#1",
+    "data": {
+      "f": "{\"a\":0}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Float given 1#2",
+    "data": {
+      "f": "{\"a\":1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Float given -1#3",
+    "data": {
+      "f": "{\"a\":-1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Float given 1.5#4",
+    "data": {
+      "f": "{\"a\":1.5}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Float given 9007199254740992#5",
+    "data": {
+      "f": "{\"a\":9007199254740992}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Float given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given \"A\"#7",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given []#11",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given [1]#12",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: {}",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Float cannot represent non numeric value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Float not supplied",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Float = null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Float = 0#1",
+    "data": {
+      "f": "{\"a\":0}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Float = 1#2",
+    "data": {
+      "f": "{\"a\":1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Float = -1#3",
+    "data": {
+      "f": "{\"a\":-1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Float = 1.5#4",
+    "data": {
+      "f": "{\"a\":1.5}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Float = 1e3#5",
+    "data": {
+      "f": "{\"a\":1000}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Float = \"\"#6",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = \"A\"#7",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = \"1\"#8",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = true#9",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = false#10",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = A#11",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: A",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = B#12",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: B",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = Z#13",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: Z",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = []#14",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = [1]#15",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = [1, null]#16",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = [[1]]#17",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = {}#18",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: {  }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = {x: 1}#19",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = {x: null}#20",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: { y: \"s\" }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "Float cannot represent non numeric value: { z: [1] }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Float left out",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable String given null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable String given 0#1",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: 0",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given 1#2",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: 1",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given -1#3",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: -1",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: 9007199254740992",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given \"\"#6",
+    "data": {
+      "f": "{\"a\":\"\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable String given \"A\"#7",
+    "data": {
+      "f": "{\"a\":\"A\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable String given \"1\"#8",
+    "data": {
+      "f": "{\"a\":\"1\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable String given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given []#11",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given [1]#12",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: {}",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: String cannot represent a non string value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable String not supplied",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal String = null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal String = 0#1",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: 0",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = 1#2",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: 1",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = -1#3",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: -1",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = 1.5#4",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = 1e3#5",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: 1e3",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = \"\"#6",
+    "data": {
+      "f": "{\"a\":\"\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal String = \"A\"#7",
+    "data": {
+      "f": "{\"a\":\"A\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal String = \"1\"#8",
+    "data": {
+      "f": "{\"a\":\"1\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal String = true#9",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = false#10",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = A#11",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: A",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = B#12",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: B",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = Z#13",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: Z",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = []#14",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = [1]#15",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = [1, null]#16",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = [[1]]#17",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = {}#18",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: {  }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = {x: 1}#19",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = {x: null}#20",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: { y: \"s\" }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "String cannot represent a non string value: { z: [1] }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal String left out",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Boolean given null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Boolean given 0#1",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: 0",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given 1#2",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: 1",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given -1#3",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: -1",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: 9007199254740992",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given \"A\"#7",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given true#9",
+    "data": {
+      "f": "{\"a\":true}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Boolean given false#10",
+    "data": {
+      "f": "{\"a\":false}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Boolean given []#11",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given [1]#12",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: {}",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Boolean cannot represent a non boolean value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Boolean not supplied",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Boolean = null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Boolean = 0#1",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: 0",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = 1#2",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: 1",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = -1#3",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: -1",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = 1.5#4",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = 1e3#5",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: 1e3",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = \"\"#6",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = \"A\"#7",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = \"1\"#8",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = true#9",
+    "data": {
+      "f": "{\"a\":true}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Boolean = false#10",
+    "data": {
+      "f": "{\"a\":false}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Boolean = A#11",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: A",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = B#12",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: B",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = Z#13",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: Z",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = []#14",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = [1]#15",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = [1, null]#16",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = [[1]]#17",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = {}#18",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: {  }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = {x: 1}#19",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = {x: null}#20",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: { y: \"s\" }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "Boolean cannot represent a non boolean value: { z: [1] }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal Boolean left out",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable ID given null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable ID given 0#1",
+    "data": {
+      "f": "{\"a\":\"0\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable ID given 1#2",
+    "data": {
+      "f": "{\"a\":\"1\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable ID given -1#3",
+    "data": {
+      "f": "{\"a\":\"-1\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable ID given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: ID cannot represent value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable ID given 9007199254740992#5",
+    "data": {
+      "f": "{\"a\":\"9007199254740992\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable ID given \"\"#6",
+    "data": {
+      "f": "{\"a\":\"\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable ID given \"A\"#7",
+    "data": {
+      "f": "{\"a\":\"A\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable ID given \"1\"#8",
+    "data": {
+      "f": "{\"a\":\"1\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable ID given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: ID cannot represent value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable ID given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: ID cannot represent value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable ID given []#11",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: ID cannot represent value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable ID given [1]#12",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: ID cannot represent value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable ID given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: ID cannot represent value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable ID given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: ID cannot represent value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable ID given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: ID cannot represent value: {}",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable ID given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: ID cannot represent value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable ID given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: ID cannot represent value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable ID given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: ID cannot represent value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable ID not supplied",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal ID = null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal ID = 0#1",
+    "data": {
+      "f": "{\"a\":\"0\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal ID = 1#2",
+    "data": {
+      "f": "{\"a\":\"1\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal ID = -1#3",
+    "data": {
+      "f": "{\"a\":\"-1\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal ID = 1.5#4",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = 1e3#5",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: 1e3",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = \"\"#6",
+    "data": {
+      "f": "{\"a\":\"\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal ID = \"A\"#7",
+    "data": {
+      "f": "{\"a\":\"A\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal ID = \"1\"#8",
+    "data": {
+      "f": "{\"a\":\"1\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal ID = true#9",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = false#10",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = A#11",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: A",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = B#12",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: B",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = Z#13",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: Z",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = []#14",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: []",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = [1]#15",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = [1, null]#16",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: [1, null]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = [[1]]#17",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: [[1]]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = {}#18",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: {  }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = {x: 1}#19",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = {x: null}#20",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: { y: \"s\" }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "ID cannot represent a non-string and non-integer value: { z: [1] }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal ID left out",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int] given null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int] given 0#1",
+    "data": {
+      "f": "{\"a\":[0]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int] given 1#2",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int] given -1#3",
+    "data": {
+      "f": "{\"a\":[-1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int] given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non 32-bit signed integer value: 9007199254740992",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] given \"A\"#7",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] given []#11",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int] given [1]#12",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int] given [1,null]#13",
+    "data": {
+      "f": "{\"a\":[1,null]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int] given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value at [0]: Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: {}",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int] not supplied",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int] = null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int] = 0#1",
+    "data": {
+      "f": "{\"a\":[0]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int] = 1#2",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int] = -1#3",
+    "data": {
+      "f": "{\"a\":[-1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int] = 1.5#4",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = 1e3#5",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1e3",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = \"\"#6",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = \"A\"#7",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = \"1\"#8",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = true#9",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = false#10",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = A#11",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: A",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = B#12",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: B",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = Z#13",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: Z",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = []#14",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int] = [1]#15",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int] = [1, null]#16",
+    "data": {
+      "f": "{\"a\":[1,null]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int] = [[1]]#17",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 9
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = {}#18",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: {  }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = {x: 1}#19",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = {x: null}#20",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { y: \"s\" }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { z: [1] }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int] left out",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!] given null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!] given 0#1",
+    "data": {
+      "f": "{\"a\":[0]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!] given 1#2",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!] given -1#3",
+    "data": {
+      "f": "{\"a\":[-1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!] given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non 32-bit signed integer value: 9007199254740992",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given \"A\"#7",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given []#11",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!] given [1]#12",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!] given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value at [1]: Expected value of non-null type \"Int!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value at [0]: Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: {}",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!] not supplied",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!] = null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!] = 0#1",
+    "data": {
+      "f": "{\"a\":[0]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!] = 1#2",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!] = -1#3",
+    "data": {
+      "f": "{\"a\":[-1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!] = 1.5#4",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = 1e3#5",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1e3",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = \"\"#6",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = \"A\"#7",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = \"1\"#8",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = true#9",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = false#10",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = A#11",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: A",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = B#12",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: B",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = Z#13",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: Z",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = []#14",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!] = [1]#15",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!] = [1, null]#16",
+    "errors": [
+      {
+        "message": "Expected value of non-null type \"Int!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 12
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = [[1]]#17",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 9
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = {}#18",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: {  }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = {x: 1}#19",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = {x: null}#20",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { y: \"s\" }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { z: [1] }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!] left out",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int]! given null#0",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of non-null type \"[Int]!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given 0#1",
+    "data": {
+      "f": "{\"a\":[0]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int]! given 1#2",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int]! given -1#3",
+    "data": {
+      "f": "{\"a\":[-1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int]! given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non 32-bit signed integer value: 9007199254740992",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given \"A\"#7",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given []#11",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int]! given [1]#12",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int]! given [1,null]#13",
+    "data": {
+      "f": "{\"a\":[1,null]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int]! given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value at [0]: Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: {}",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int]! not supplied",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected a value of non-null type \"[Int]!\" to be provided.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = null#0",
+    "errors": [
+      {
+        "message": "Expected value of non-null type \"[Int]!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = 0#1",
+    "data": {
+      "f": "{\"a\":[0]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int]! = 1#2",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int]! = -1#3",
+    "data": {
+      "f": "{\"a\":[-1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int]! = 1.5#4",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = 1e3#5",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1e3",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = \"\"#6",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = \"A\"#7",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = \"1\"#8",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = true#9",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = false#10",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = A#11",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: A",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = B#12",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: B",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = Z#13",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: Z",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = []#14",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int]! = [1]#15",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int]! = [1, null]#16",
+    "data": {
+      "f": "{\"a\":[1,null]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int]! = [[1]]#17",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 9
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = {}#18",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: {  }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = {x: 1}#19",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = {x: null}#20",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { y: \"s\" }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { z: [1] }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int]! left out",
+    "errors": [
+      {
+        "message": "Argument \"Query.f(a:)\" of type \"[Int]!\" is required, but it was not provided.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given null#0",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of non-null type \"[Int!]!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given 0#1",
+    "data": {
+      "f": "{\"a\":[0]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!]! given 1#2",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!]! given -1#3",
+    "data": {
+      "f": "{\"a\":[-1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!]! given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non 32-bit signed integer value: 9007199254740992",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given \"A\"#7",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given []#11",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!]! given [1]#12",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [Int!]! given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value at [1]: Expected value of non-null type \"Int!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value at [0]: Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: {}",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [Int!]! not supplied",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected a value of non-null type \"[Int!]!\" to be provided.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = null#0",
+    "errors": [
+      {
+        "message": "Expected value of non-null type \"[Int!]!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = 0#1",
+    "data": {
+      "f": "{\"a\":[0]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!]! = 1#2",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!]! = -1#3",
+    "data": {
+      "f": "{\"a\":[-1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!]! = 1.5#4",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = 1e3#5",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1e3",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = \"\"#6",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = \"A\"#7",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = \"1\"#8",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = true#9",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = false#10",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = A#11",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: A",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = B#12",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: B",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = Z#13",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: Z",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = []#14",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!]! = [1]#15",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [Int!]! = [1, null]#16",
+    "errors": [
+      {
+        "message": "Expected value of non-null type \"Int!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 12
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = [[1]]#17",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 9
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = {}#18",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: {  }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = {x: 1}#19",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = {x: null}#20",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { y: \"s\" }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { z: [1] }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [Int!]! left out",
+    "errors": [
+      {
+        "message": "Argument \"Query.f(a:)\" of type \"[Int!]!\" is required, but it was not provided.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] given null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [[Int]] given 0#1",
+    "data": {
+      "f": "{\"a\":[[0]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [[Int]] given 1#2",
+    "data": {
+      "f": "{\"a\":[[1]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [[Int]] given -1#3",
+    "data": {
+      "f": "{\"a\":[[-1]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [[Int]] given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non 32-bit signed integer value: 9007199254740992",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] given \"A\"#7",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] given []#11",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [[Int]] given [1]#12",
+    "data": {
+      "f": "{\"a\":[[1]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [[Int]] given [1,null]#13",
+    "data": {
+      "f": "{\"a\":[[1],null]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [[Int]] given [[1]]#14",
+    "data": {
+      "f": "{\"a\":[[1]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable [[Int]] given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: {}",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable [[Int]] not supplied",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [[Int]] = null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [[Int]] = 0#1",
+    "data": {
+      "f": "{\"a\":[[0]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [[Int]] = 1#2",
+    "data": {
+      "f": "{\"a\":[[1]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [[Int]] = -1#3",
+    "data": {
+      "f": "{\"a\":[[-1]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [[Int]] = 1.5#4",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1.5",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = 1e3#5",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: 1e3",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = \"\"#6",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = \"A\"#7",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"A\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = \"1\"#8",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: \"1\"",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = true#9",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: true",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = false#10",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: false",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = A#11",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: A",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = B#12",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: B",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = Z#13",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: Z",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = []#14",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [[Int]] = [1]#15",
+    "data": {
+      "f": "{\"a\":[[1]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [[Int]] = [1, null]#16",
+    "data": {
+      "f": "{\"a\":[[1],null]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [[Int]] = [[1]]#17",
+    "data": {
+      "f": "{\"a\":[[1]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal [[Int]] = {}#18",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: {  }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = {x: 1}#19",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = {x: null}#20",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: null }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { x: 1, nope: 2 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { y: \"s\" }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "Int cannot represent non-integer value: { z: [1] }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal [[Int]] left out",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable E given null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable E given 0#1",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: 0. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given 1#2",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: 1. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given -1#3",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: -1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: 1.5.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: 9007199254740992.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Value \"\" does not exist in \"E\" enum. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given \"A\"#7",
+    "data": {
+      "f": "{\"a\":\"A\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable E given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Value \"1\" does not exist in \"E\" enum. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: true.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: false.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given []#11",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: [].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given [1]#12",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: [1].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: [1, null].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: [[1]].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: {}.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: { x: 1 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: { x: null }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: { x: 1, nope: 2 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E not supplied",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal E = null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal E = 0#1",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: 0. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = 1#2",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: 1. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = -1#3",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: -1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = 1.5#4",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: 1.5.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = 1e3#5",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: 1e3.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = \"\"#6",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: \"\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = \"A\"#7",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: \"A\". Did you mean the enum value \"A\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = \"1\"#8",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: \"1\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = true#9",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: true.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = false#10",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: false.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = A#11",
+    "data": {
+      "f": "{\"a\":\"A\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal E = B#12",
+    "data": {
+      "f": "{\"a\":\"B\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal E = Z#13",
+    "errors": [
+      {
+        "message": "Value \"Z\" does not exist in \"E\" enum. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = []#14",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: [].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = [1]#15",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: [1].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = [1, null]#16",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: [1, null].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = [[1]]#17",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: [[1]].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = {}#18",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: {  }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = {x: 1}#19",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: { x: 1 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = {x: null}#20",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: { x: null }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: { x: 1, nope: 2 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: { y: \"s\" }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: { z: [1] }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E left out",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable E! given null#0",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of non-null type \"E!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given 0#1",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: 0. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given 1#2",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: 1. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given -1#3",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: -1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: 1.5.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: 9007199254740992.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Value \"\" does not exist in \"E\" enum. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given \"A\"#7",
+    "data": {
+      "f": "{\"a\":\"A\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable E! given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Value \"1\" does not exist in \"E\" enum. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: true.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: false.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given []#11",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: [].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given [1]#12",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: [1].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: [1, null].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: [[1]].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given {}#15",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: {}.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given {\"x\":1}#16",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: { x: 1 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given {\"x\":null}#17",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: { x: null }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Enum \"E\" cannot represent non-string value: { x: 1, nope: 2 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable E! not supplied",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected a value of non-null type \"E!\" to be provided.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = null#0",
+    "errors": [
+      {
+        "message": "Expected value of non-null type \"E!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = 0#1",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: 0. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = 1#2",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: 1. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = -1#3",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: -1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = 1.5#4",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: 1.5.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = 1e3#5",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: 1e3.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = \"\"#6",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: \"\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = \"A\"#7",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: \"A\". Did you mean the enum value \"A\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = \"1\"#8",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: \"1\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = true#9",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: true.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = false#10",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: false.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = A#11",
+    "data": {
+      "f": "{\"a\":\"A\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal E! = B#12",
+    "data": {
+      "f": "{\"a\":\"B\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal E! = Z#13",
+    "errors": [
+      {
+        "message": "Value \"Z\" does not exist in \"E\" enum. Did you mean the enum value \"A\" or \"B\"?",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = []#14",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: [].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = [1]#15",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: [1].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = [1, null]#16",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: [1, null].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = [[1]]#17",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: [[1]].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = {}#18",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: {  }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = {x: 1}#19",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: { x: 1 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = {x: null}#20",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: { x: null }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: { x: 1, nope: 2 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = {y: \"s\"}#22",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: { y: \"s\" }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! = {z: [1]}#23",
+    "errors": [
+      {
+        "message": "Enum \"E\" cannot represent non-enum value: { z: [1] }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal E! left out",
+    "errors": [
+      {
+        "message": "Argument \"Query.f(a:)\" of type \"E!\" is required, but it was not provided.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable In given 0#1",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: 0.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given 1#2",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: 1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given -1#3",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: -1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: 1.5.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: 9007199254740992.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: \"\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given \"A\"#7",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: \"A\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: \"1\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: true.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: false.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given []#11",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: [].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given [1]#12",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: [1].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: [1, null].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: [[1]].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In given {}#15",
+    "data": {
+      "f": "{\"a\":{\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable In given {\"x\":1}#16",
+    "data": {
+      "f": "{\"a\":{\"x\":1,\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable In given {\"x\":null}#17",
+    "data": {
+      "f": "{\"a\":{\"x\":null,\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable In given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" not to include unknown field \"nope\", found: { x: 1, nope: 2 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In not supplied",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In = null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In = 0#1",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: 0.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = 1#2",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: 1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = -1#3",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: -1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = 1.5#4",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: 1.5.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = 1e3#5",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: 1e3.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = \"\"#6",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: \"\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = \"A\"#7",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: \"A\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = \"1\"#8",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: \"1\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = true#9",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: true.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = false#10",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: false.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = A#11",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: A.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = B#12",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: B.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = Z#13",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: Z.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = []#14",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: [].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = [1]#15",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: [1].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = [1, null]#16",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: [1, null].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = [[1]]#17",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: [[1]].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = {}#18",
+    "data": {
+      "f": "{\"a\":{\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In = {x: 1}#19",
+    "data": {
+      "f": "{\"a\":{\"x\":1,\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In = {x: null}#20",
+    "data": {
+      "f": "{\"a\":{\"x\":null,\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" not to include unknown field \"nope\", found: { x: 1, nope: 2 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 15
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In = {y: \"s\"}#22",
+    "data": {
+      "f": "{\"a\":{\"y\":\"s\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In = {z: [1]}#23",
+    "data": {
+      "f": "{\"a\":{\"y\":\"d\",\"z\":[1]}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In left out",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable In! given null#0",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of non-null type \"In!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given 0#1",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: 0.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given 1#2",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: 1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given -1#3",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: -1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given 1.5#4",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: 1.5.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given 9007199254740992#5",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: 9007199254740992.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given \"\"#6",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: \"\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given \"A\"#7",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: \"A\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given \"1\"#8",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: \"1\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given true#9",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: true.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given false#10",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: false.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given []#11",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: [].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given [1]#12",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: [1].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given [1,null]#13",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: [1, null].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given [[1]]#14",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" to be an object, found: [[1]].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! given {}#15",
+    "data": {
+      "f": "{\"a\":{\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable In! given {\"x\":1}#16",
+    "data": {
+      "f": "{\"a\":{\"x\":1,\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable In! given {\"x\":null}#17",
+    "data": {
+      "f": "{\"a\":{\"x\":null,\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable In! given {\"x\":1,\"nope\":2}#18",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected value of type \"In\" not to include unknown field \"nope\", found: { x: 1, nope: 2 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable In! not supplied",
+    "errors": [
+      {
+        "message": "Variable \"$v\" has invalid value: Expected a value of non-null type \"In!\" to be provided.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = null#0",
+    "errors": [
+      {
+        "message": "Expected value of non-null type \"In!\" not to be null.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = 0#1",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: 0.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = 1#2",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: 1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = -1#3",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: -1.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = 1.5#4",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: 1.5.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = 1e3#5",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: 1e3.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = \"\"#6",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: \"\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = \"A\"#7",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: \"A\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = \"1\"#8",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: \"1\".",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = true#9",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: true.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = false#10",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: false.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = A#11",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: A.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = B#12",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: B.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = Z#13",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: Z.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = []#14",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: [].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = [1]#15",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: [1].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = [1, null]#16",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: [1, null].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = [[1]]#17",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" to be an object, found: [[1]].",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = {}#18",
+    "data": {
+      "f": "{\"a\":{\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In! = {x: 1}#19",
+    "data": {
+      "f": "{\"a\":{\"x\":1,\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In! = {x: null}#20",
+    "data": {
+      "f": "{\"a\":{\"x\":null,\"y\":\"d\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In! = {x: 1, nope: 2}#21",
+    "errors": [
+      {
+        "message": "Expected value of type \"In\" not to include unknown field \"nope\", found: { x: 1, nope: 2 }.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 15
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "literal In! = {y: \"s\"}#22",
+    "data": {
+      "f": "{\"a\":{\"y\":\"s\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In! = {z: [1]}#23",
+    "data": {
+      "f": "{\"a\":{\"y\":\"d\",\"z\":[1]}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal In! left out",
+    "errors": [
+      {
+        "message": "Argument \"Query.f(a:)\" of type \"In!\" is required, but it was not provided.",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "variable Custom given null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given 0#1",
+    "data": {
+      "f": "{\"a\":0}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given 1#2",
+    "data": {
+      "f": "{\"a\":1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given -1#3",
+    "data": {
+      "f": "{\"a\":-1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given 1.5#4",
+    "data": {
+      "f": "{\"a\":1.5}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given 9007199254740992#5",
+    "data": {
+      "f": "{\"a\":9007199254740992}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given \"\"#6",
+    "data": {
+      "f": "{\"a\":\"\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given \"A\"#7",
+    "data": {
+      "f": "{\"a\":\"A\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given \"1\"#8",
+    "data": {
+      "f": "{\"a\":\"1\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given true#9",
+    "data": {
+      "f": "{\"a\":true}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given false#10",
+    "data": {
+      "f": "{\"a\":false}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given []#11",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given [1]#12",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given [1,null]#13",
+    "data": {
+      "f": "{\"a\":[1,null]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given [[1]]#14",
+    "data": {
+      "f": "{\"a\":[[1]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given {}#15",
+    "data": {
+      "f": "{\"a\":{}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given {\"x\":1}#16",
+    "data": {
+      "f": "{\"a\":{\"x\":1}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given {\"x\":null}#17",
+    "data": {
+      "f": "{\"a\":{\"x\":null}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom given {\"x\":1,\"nope\":2}#18",
+    "data": {
+      "f": "{\"a\":{\"nope\":2,\"x\":1}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "variable Custom not supplied",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = null#0",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = 0#1",
+    "data": {
+      "f": "{\"a\":0}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = 1#2",
+    "data": {
+      "f": "{\"a\":1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = -1#3",
+    "data": {
+      "f": "{\"a\":-1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = 1.5#4",
+    "data": {
+      "f": "{\"a\":1.5}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = 1e3#5",
+    "data": {
+      "f": "{\"a\":1000}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = \"\"#6",
+    "data": {
+      "f": "{\"a\":\"\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = \"A\"#7",
+    "data": {
+      "f": "{\"a\":\"A\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = \"1\"#8",
+    "data": {
+      "f": "{\"a\":\"1\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = true#9",
+    "data": {
+      "f": "{\"a\":true}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = false#10",
+    "data": {
+      "f": "{\"a\":false}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = A#11",
+    "data": {
+      "f": "{\"a\":\"A\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = B#12",
+    "data": {
+      "f": "{\"a\":\"B\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = Z#13",
+    "data": {
+      "f": "{\"a\":\"Z\"}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = []#14",
+    "data": {
+      "f": "{\"a\":[]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = [1]#15",
+    "data": {
+      "f": "{\"a\":[1]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = [1, null]#16",
+    "data": {
+      "f": "{\"a\":[1,null]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = [[1]]#17",
+    "data": {
+      "f": "{\"a\":[[1]]}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = {}#18",
+    "data": {
+      "f": "{\"a\":{}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = {x: 1}#19",
+    "data": {
+      "f": "{\"a\":{\"x\":1}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = {x: null}#20",
+    "data": {
+      "f": "{\"a\":{\"x\":null}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = {x: 1, nope: 2}#21",
+    "data": {
+      "f": "{\"a\":{\"nope\":2,\"x\":1}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = {y: \"s\"}#22",
+    "data": {
+      "f": "{\"a\":{\"y\":\"s\"}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom = {z: [1]}#23",
+    "data": {
+      "f": "{\"a\":{\"z\":[1]}}"
+    },
+    "errors": []
+  },
+  {
+    "name": "literal Custom left out",
+    "data": {
+      "f": "{}"
+    },
+    "errors": []
+  },
+  {
+    "name": "default 1, left out",
+    "data": {
+      "f": "{\"a\":1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "default 1, written as null",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "default 1, a variable not supplied",
+    "data": {
+      "f": "{\"a\":1}"
+    },
+    "errors": []
+  },
+  {
+    "name": "default 1, a variable given null",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "default null, left out",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "default null, written as null",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "default null, a variable not supplied",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "default null, a variable given null",
+    "data": {
+      "f": "{\"a\":null}"
+    },
+    "errors": []
+  },
+  {
+    "name": "default [1], left out",
+    "errors": [
+      {
+        "message": "Query.f(a:) has invalid default value: Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 25
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "default [1], written as null",
+    "errors": [
+      {
+        "message": "Query.f(a:) has invalid default value: Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 25
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "default [1], a variable not supplied",
+    "errors": [
+      {
+        "message": "Query.f(a:) has invalid default value: Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 25
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "default [1], a variable given null",
+    "errors": [
+      {
+        "message": "Query.f(a:) has invalid default value: Int cannot represent non-integer value: [1]",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 25
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "default {x: 1}, left out",
+    "errors": [
+      {
+        "message": "Query.f(a:) has invalid default value: Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 25
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "default {x: 1}, written as null",
+    "errors": [
+      {
+        "message": "Query.f(a:) has invalid default value: Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 25
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "default {x: 1}, a variable not supplied",
+    "errors": [
+      {
+        "message": "Query.f(a:) has invalid default value: Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 25
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "default {x: 1}, a variable given null",
+    "errors": [
+      {
+        "message": "Query.f(a:) has invalid default value: Int cannot represent non-integer value: { x: 1 }",
+        "path": null,
+        "locations": [
+          {
+            "line": 1,
+            "column": 25
+          }
+        ]
+      }
+    ]
+  }
+]

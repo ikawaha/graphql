@@ -1,0 +1,23 @@
+# The schema the subscription corpus runs against. Every subscription field
+# takes its events from the root value, which is where both implementations
+# look when the field has no subscriber of its own.
+type Author {
+  name: String
+}
+
+type Message {
+  body: String
+  nonNullBody: String!
+  sender: String
+  tags: [String]
+  author: Author
+}
+
+type Query {
+  a: String
+}
+
+type Subscription {
+  messageAdded: Message
+  countAdded: Int
+}

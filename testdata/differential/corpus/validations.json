@@ -1,0 +1,2206 @@
+[
+ {
+  "name": "a valid document",
+  "query": "{ dog { name } }"
+ },
+ {
+  "name": "an unknown field",
+  "query": "{ dog { nam } }"
+ },
+ {
+  "name": "an unknown field with a near miss",
+  "query": "{ dog { barkVolum } }"
+ },
+ {
+  "name": "a field on the wrong type",
+  "query": "{ dog { meowVolume } }"
+ },
+ {
+  "name": "a leaf with a selection",
+  "query": "{ dog { name { first } } }"
+ },
+ {
+  "name": "a composite without a selection",
+  "query": "{ dog }"
+ },
+ {
+  "name": "an unknown argument",
+  "query": "{ dog { doesKnowCommand(command: SIT) } }"
+ },
+ {
+  "name": "a required argument left out",
+  "query": "{ dog { doesKnowCommand } }"
+ },
+ {
+  "name": "an argument of the wrong type",
+  "query": "{ dog { doesKnowCommand(dogCommand: 1) } }"
+ },
+ {
+  "name": "an unknown enum value",
+  "query": "{ dog { doesKnowCommand(dogCommand: JUMP) } }"
+ },
+ {
+  "name": "an unknown directive",
+  "query": "{ dog @nope { name } }"
+ },
+ {
+  "name": "a directive in the wrong place",
+  "query": "query @include(if: true) { dog { name } }"
+ },
+ {
+  "name": "a directive twice",
+  "query": "{ dog @include(if: true) @include(if: false) { name } }"
+ },
+ {
+  "name": "an unknown fragment",
+  "query": "{ ...Nope }"
+ },
+ {
+  "name": "an unused fragment",
+  "query": "{ dog { name } } fragment F on Dog { name }"
+ },
+ {
+  "name": "a fragment cycle",
+  "query": "{ dog { ...A } } fragment A on Dog { ...B } fragment B on Dog { ...A }"
+ },
+ {
+  "name": "a fragment on an unknown type",
+  "query": "{ dog { ...F } } fragment F on Nope { name }"
+ },
+ {
+  "name": "a fragment on a leaf type",
+  "query": "{ dog { ...F } } fragment F on String { name }"
+ },
+ {
+  "name": "a spread that cannot match",
+  "query": "{ dog { ...F } } fragment F on Cat { meowVolume }"
+ },
+ {
+  "name": "an undefined variable",
+  "query": "{ dog { doesKnowCommand(dogCommand: $c) } }"
+ },
+ {
+  "name": "an unused variable",
+  "query": "query ($c: DogCommand) { dog { name } }"
+ },
+ {
+  "name": "a variable of a non-input type",
+  "query": "query ($d: Dog) { dog { name } }"
+ },
+ {
+  "name": "a variable in the wrong position",
+  "query": "query ($b: Boolean) { dog { doesKnowCommand(dogCommand: $b) } }"
+ },
+ {
+  "name": "two variables of the same name",
+  "query": "query ($a: Int, $a: Int) { dog { name } }"
+ },
+ {
+  "name": "two arguments of the same name",
+  "query": "{ dog { doesKnowCommand(dogCommand: SIT, dogCommand: HEEL) } }"
+ },
+ {
+  "name": "two input fields of the same name",
+  "query": "{ complicatedArgs { complexArgField(complexArg: {requiredField: true, requiredField: false}) } }"
+ },
+ {
+  "name": "two anonymous operations",
+  "query": "{ dog { name } } { dog { name } }"
+ },
+ {
+  "name": "an anonymous operation beside a named one",
+  "query": "{ dog { name } } query Q { dog { name } }"
+ },
+ {
+  "name": "two operations of the same name",
+  "query": "query Q { dog { name } } query Q { dog { name } }"
+ },
+ {
+  "name": "fields that cannot be merged",
+  "query": "{ dog { name: nickname  name: barkVolume } }"
+ },
+ {
+  "name": "fields that cannot be merged across fragments",
+  "query": "{ dog { ...A ...B } } fragment A on Dog { x: name } fragment B on Dog { x: barkVolume }"
+ },
+ {
+  "name": "a subscription with two root fields",
+  "query": "subscription S { newMessage { body } disallowedSecondRootField }"
+ },
+ {
+  "name": "an introspection field in a subscription",
+  "query": "subscription S { __typename }"
+ },
+ {
+  "name": "a non-executable definition",
+  "query": "{ dog { name } } type T { a: String }"
+ },
+ {
+  "name": "several things wrong at once",
+  "query": "query Q($a: Nope, $b: Int) { dog { nam meowVolume doesKnowCommand } ...Missing }"
+ },
+ {
+  "name": "deep introspection",
+  "query": "{ __schema { types { fields { type { fields { type { fields { type { name } } } } } } } } }"
+ },
+ {
+  "name": "an operation type the schema lacks",
+  "query": "mutation { dog { name } }"
+ },
+ {
+  "name": "a null for a non-null argument",
+  "query": "{ dog { doesKnowCommand(dogCommand: null) } }"
+ },
+ {
+  "name": "a list for a scalar argument",
+  "query": "{ dog { doesKnowCommand(dogCommand: [SIT]) } }"
+ },
+ {
+  "name": "an input object missing a required field",
+  "query": "{ complicatedArgs { complexArgField(complexArg: {}) } }"
+ },
+ {
+  "name": "an input object with an unknown field",
+  "query": "{ complicatedArgs { complexArgField(complexArg: {requiredField: true, nope: 1}) } }"
+ },
+ {
+  "name": "DeferStreamDirectiveLabelRule: Defer fragments with no label",
+  "query": "\n      {\n        dog {\n          ...dogFragmentA @defer\n          ...dogFragmentB @defer\n        }\n      }\n      fragment dogFragmentA on Dog {\n        name\n      }\n      fragment dogFragmentB on Dog {\n        nickname\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveLabelRule: Defer fragments, one with label, one without",
+  "query": "\n      {\n        dog {\n          ...dogFragmentA @defer(label: \"fragA\")\n          ...dogFragmentB @defer\n        }\n      }\n      fragment dogFragmentA on Dog {\n        name\n      }\n      fragment dogFragmentB on Dog {\n        nickname\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveLabelRule: Defer fragment with null label",
+  "query": "\n      {\n        dog {\n          ...dogFragmentA @defer(label: null)\n        }\n      }\n      fragment dogFragmentA on Dog {\n        name\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveLabelRule: Defer fragment with variable label",
+  "query": "\n    query($label: String) {\n      dog {\n        ...dogFragmentA @defer(label: $label)\n        ...dogFragmentB @defer(label: \"fragA\")\n      }\n    }\n    fragment dogFragmentA on Dog {\n      name\n    }\n    fragment dogFragmentB on Dog {\n      nickname\n    }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveLabelRule: Defer fragments with different labels",
+  "query": "\n    {\n      dog {\n        ...dogFragmentA @defer(label: \"fragB\")\n        ...dogFragmentB @defer(label: \"fragA\")\n      }\n    }\n    fragment dogFragmentA on Dog {\n      name\n    }\n    fragment dogFragmentB on Dog {\n      nickname\n    }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveLabelRule: Defer fragments with same label",
+  "query": "\n    {\n      dog {\n        ...dogFragmentA @defer(label: \"fragA\")\n        ...dogFragmentB @defer(label: \"fragA\")\n      }\n    }\n    fragment dogFragmentA on Dog {\n      name\n    }\n    fragment dogFragmentB on Dog {\n      nickname\n    }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveLabelRule: Defer and stream with no label",
+  "query": "\n      {\n        dog {\n          ...dogFragment @defer\n        }\n        pets @stream(initialCount: 0) @stream {\n          name\n        }\n      }\n      fragment dogFragment on Dog {\n        name\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveLabelRule: Stream with null label",
+  "query": "\n      {\n        pets @stream(label: null) {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveLabelRule: Stream with variable label",
+  "query": "\n      query ($label: String!) {\n        dog {\n          ...dogFragment @defer\n        }\n        pets @stream(initialCount: 0) @stream(label: $label) {\n          name\n        }\n      }\n      fragment dogFragment on Dog {\n        name\n      }\n      "
+ },
+ {
+  "name": "DeferStreamDirectiveLabelRule: Defer and stream with the same label",
+  "query": "\n      {\n        dog {\n          ...dogFragment @defer(label: \"MyLabel\")\n        }\n        pets @stream(initialCount: 0) @stream(label: \"MyLabel\") {\n          name\n        }\n      }\n      fragment dogFragment on Dog {\n        name\n      }\n      "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Defer fragment spread on root query field",
+  "query": "\n      {\n        ...rootQueryFragment @defer\n      }\n      fragment rootQueryFragment on QueryRoot {\n        message {\n          body\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Defer inline fragment spread on root query field",
+  "query": "\n      {\n        ... @defer {\n          message {\n            body\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Defer fragment spread on root mutation field",
+  "query": "\n      mutation {\n        ...rootFragment @defer\n        ...otherFragment\n      }\n      fragment otherFragment on MutationRoot {\n        ...rootFragment\n        mutationListField {\n          body\n        }\n      }\n      fragment rootFragment on MutationRoot {\n        mutationField {\n          body\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Fragment spread cycle on root mutation field",
+  "query": "\n      mutation {\n        ...rootFragment\n      }\n      fragment rootFragment on MutationRoot {\n        ...otherFragment\n      }\n      fragment otherFragment on MutationRoot {\n        ...rootFragment\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Self-referencing fragment spread on root mutation field",
+  "query": "\n      mutation {\n        ...rootFragment\n      }\n      fragment rootFragment on MutationRoot {\n        ...rootFragment\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Defer inline fragment spread on root mutation field",
+  "query": "\n      mutation {\n        ... @defer {\n          mutationField {\n            body\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Defer fragment spread on root mutation field interface",
+  "query": "\n      mutation {\n        ...rootFragment\n      }\n      fragment rootFragment on Root {\n        ... @defer {\n          rootField {\n            body\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Defer fragment spread on nested mutation field",
+  "query": "\n      mutation {\n        mutationField {\n          ... @defer {\n            body\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Defer fragment spread on root subscription field interface",
+  "query": "\n      subscription {\n        ...rootFragment\n      }\n      fragment rootFragment on Root {\n        ... @defer {\n            rootField {\n              body\n            }\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Defer fragment spread on root subscription field",
+  "query": "\n      subscription {\n        ...rootFragment @defer\n      }\n      fragment rootFragment on SubscriptionRoot {\n        subscriptionField {\n          body\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Defer inline fragment spread on root subscription field",
+  "query": "\n      subscription {\n        ... @defer {\n          subscriptionField {\n            body\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Defer fragment spread on nested subscription field",
+  "query": "\n      subscription {\n        subscriptionField {\n          ...nestedFragment @defer\n        }\n      }\n      fragment nestedFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Stream field on root query field",
+  "query": "\n      {\n        messages @stream {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Stream field on fragment on root query field",
+  "query": "\n      {\n        ...rootFragment\n      }\n      fragment rootFragment on QueryType {\n        messages @stream {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Stream field on root mutation field",
+  "query": "\n      mutation {\n        mutationListField @stream {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Stream field on fragment on root mutation field",
+  "query": "\n      mutation {\n        ...rootFragment\n      }\n      fragment rootFragment on MutationRoot {\n        mutationListField @stream {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Stream field on root subscription field",
+  "query": "\n      subscription {\n        subscriptionListField @stream {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnRootFieldRule: Stream field on fragment on root subscription field",
+  "query": "\n      subscription {\n        ...rootFragment\n      }\n      fragment rootFragment on SubscriptionRoot {\n        subscriptionListField @stream {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread nested in query operation",
+  "query": "\n      {\n        message {\n          ...myFragment @defer\n        }\n      }\n      fragment myFragment on Message {\n        message {\n          body\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread on mutation field",
+  "query": "\n      mutation {\n        mutationField {\n          ...myFragment @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread on subscription field",
+  "query": "\n      subscription {\n        subscriptionField {\n          ...myFragment @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread with boolean true if argument",
+  "query": "\n      subscription {\n        subscriptionField {\n          ...myFragment @defer(if: true)\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread with boolean false if argument",
+  "query": "\n      subscription {\n        subscriptionField {\n          ...myFragment @defer(if: false)\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread on query in multi operation document",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...myFragment\n        }\n      }\n      query MyQuery {\n        message {\n          ...myFragment @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread on subscription in multi operation document",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...myFragment @defer\n        }\n      }\n      query MyQuery {\n        message {\n          ...myFragment @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread with invalid if argument",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...myFragment @defer(if: \"Oops\")\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread with @skip directive",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...myFragment @skip @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread with @skip(if: true) directive",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...myFragment @skip(if: true) @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread with @skip(if: false) directive",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...myFragment @skip(if: false) @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer in fragment spread nested under @skip(if: true) directive",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...outerFragment @skip(if: true)\n        }\n      }\n      fragment outerFragment on Message {\n        ...myFragment @defer\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer in fragment spread nested under @skip(if: false) directive",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...outerFragment @skip(if: false)\n        }\n      }\n      fragment outerFragment on Message {\n        ...myFragment @defer\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer in fragment spread nested under @skip(if: $variable) directive",
+  "query": "\n      subscription MySubscription($variable: Boolean) {\n        subscriptionField {\n          ...outerFragment @skip(if: $variable)\n        }\n      }\n      fragment outerFragment on Message {\n        ...myFragment @defer\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread with @skip(if: $variable) directive",
+  "query": "\n      subscription MySubscription($variable: Boolean) {\n        subscriptionField {\n          ...myFragment @skip(if: $variable) @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread with @include directive",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...myFragment @include @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread with @include(if: true) directive",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...myFragment @include(if: true) @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread with @include(if: false) directive",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...myFragment @include(if: false) @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer in fragment spread nested under @include(if: true) directive",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...outerFragment @include(if: true)\n        }\n      }\n      fragment outerFragment on Message {\n        ...myFragment @defer\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer in fragment spread nested under @include(if: false) directive",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          ...outerFragment @include(if: false)\n        }\n      }\n      fragment outerFragment on Message {\n        ...myFragment @defer\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer in fragment spread nested under @include(if: $variable) directive",
+  "query": "\n      subscription MySubscription($variable: Boolean) {\n        subscriptionField {\n          ...outerFragment @include(if: $variable)\n        }\n      }\n      fragment outerFragment on Message {\n        ...myFragment @defer\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Defer fragment spread with @include(if: $variable) directive",
+  "query": "\n      subscription MySubscription ($variable: Boolean) {\n        subscriptionField {\n          ...myFragment @include(if: $variable) @defer\n        }\n      }\n      fragment myFragment on Message {\n        body\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Stream on mutation field",
+  "query": "\n      mutation {\n        mutationField {\n          messages @stream\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Stream on fragment on mutation field",
+  "query": "\n      mutation {\n        mutationField {\n          ...myFragment\n        }\n      }\n      fragment myFragment on Message {\n        messages @stream\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Stream on subscription field",
+  "query": "\n      subscription {\n        subscriptionField {\n          messages @stream\n        }\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Stream on fragment on subscription field",
+  "query": "\n      subscription {\n        subscriptionField {\n          ...myFragment\n        }\n      }\n      fragment myFragment on Message {\n        messages @stream\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Stream on fragment on query in multi operation document",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          message\n        }\n      }\n      query MyQuery {\n        message {\n          ...myFragment\n        }\n      }\n      fragment myFragment on Message {\n        messages @stream\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Stream on subscription in multi operation document",
+  "query": "\n      query MyQuery {\n        message {\n          ...myFragment\n        }\n      }\n      subscription MySubscription {\n        subscriptionField {\n          message {\n            ...myFragment\n          }\n        }\n      }\n      fragment myFragment on Message {\n        messages @stream\n      }\n    "
+ },
+ {
+  "name": "DeferStreamDirectiveOnValidOperationsRule: Stream on subscription in document with fragment used multiple times",
+  "query": "\n      subscription MySubscription {\n        subscriptionField {\n          message {\n            ...myOtherFragment\n            ...myFragment  # not visited twice\n          }\n        }\n      }\n      fragment myOtherFragment on Message {\n        ...myFragment\n      }\n      fragment myFragment on Message {\n        messages @stream\n      }\n    "
+ },
+ {
+  "name": "ExecutableDefinitionsRule: with only operation",
+  "query": "\n      query Foo {\n        dog {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "ExecutableDefinitionsRule: with operation and fragment",
+  "query": "\n      query Foo {\n        dog {\n          name\n          ...Frag\n        }\n      }\n\n      fragment Frag on Dog {\n        name\n      }\n    "
+ },
+ {
+  "name": "ExecutableDefinitionsRule: with type definition",
+  "query": "\n      query Foo {\n        dog {\n          name\n        }\n      }\n\n      type Cow {\n        name: String\n      }\n\n      extend type Dog {\n        color: String\n      }\n    "
+ },
+ {
+  "name": "ExecutableDefinitionsRule: with schema definition",
+  "query": "\n      schema {\n        query: Query\n      }\n\n      type Query {\n        test: String\n      }\n\n      extend schema @directive\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Object field selection",
+  "query": "\n      fragment objectFieldSelection on Dog {\n        __typename\n        name\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Aliased object field selection",
+  "query": "\n      fragment aliasedObjectFieldSelection on Dog {\n        tn : __typename\n        otherName : name\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Interface field selection",
+  "query": "\n      fragment interfaceFieldSelection on Pet {\n        __typename\n        name\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Aliased interface field selection",
+  "query": "\n      fragment interfaceFieldSelection on Pet {\n        otherName : name\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Lying alias selection",
+  "query": "\n      fragment lyingAliasSelection on Dog {\n        name : nickname\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Ignores fields on unknown type",
+  "query": "\n      fragment unknownSelection on UnknownType {\n        unknownField\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: reports errors when type is known again",
+  "query": "\n      fragment typeKnownAgain on Pet {\n        unknown_pet_field {\n          ... on Cat {\n            unknown_cat_field\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Field not defined on fragment",
+  "query": "\n      fragment fieldNotDefined on Dog {\n        meowVolume\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Ignores deeply unknown field",
+  "query": "\n      fragment deepFieldNotDefined on Dog {\n        unknown_field {\n          deeper_unknown_field\n        }\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Sub-field not defined",
+  "query": "\n      fragment subFieldNotDefined on Human {\n        pets {\n          unknown_field\n        }\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Field not defined on inline fragment",
+  "query": "\n      fragment fieldNotDefined on Pet {\n        ... on Dog {\n          meowVolume\n        }\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Aliased field target not defined",
+  "query": "\n      fragment aliasedFieldTargetNotDefined on Dog {\n        volume : mooVolume\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Aliased lying field target not defined",
+  "query": "\n      fragment aliasedLyingFieldTargetNotDefined on Dog {\n        barkVolume : kawVolume\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Not defined on interface",
+  "query": "\n      fragment notDefinedOnInterface on Pet {\n        tailLength\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Defined on implementors but not on interface",
+  "query": "\n      fragment definedOnImplementorsButNotInterface on Pet {\n        nickname\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Meta field selection on union",
+  "query": "\n      fragment directFieldSelectionOnUnion on CatOrDog {\n        __typename\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Direct field selection on union",
+  "query": "\n      fragment directFieldSelectionOnUnion on CatOrDog {\n        directField\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: Defined on implementors queried on union",
+  "query": "\n      fragment definedOnImplementorsQueriedOnUnion on CatOrDog {\n        name\n      }\n    "
+ },
+ {
+  "name": "FieldsOnCorrectTypeRule: valid field in inline fragment",
+  "query": "\n      fragment objectFieldSelection on Pet {\n        ... on Dog {\n          name\n        }\n        ... {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "FragmentsOnCompositeTypesRule: object is valid fragment type",
+  "query": "\n      fragment validFragment on Dog {\n        barks\n      }\n    "
+ },
+ {
+  "name": "FragmentsOnCompositeTypesRule: interface is valid fragment type",
+  "query": "\n      fragment validFragment on Pet {\n        name\n      }\n    "
+ },
+ {
+  "name": "FragmentsOnCompositeTypesRule: object is valid inline fragment type",
+  "query": "\n      fragment validFragment on Pet {\n        ... on Dog {\n          barks\n        }\n      }\n    "
+ },
+ {
+  "name": "FragmentsOnCompositeTypesRule: interface is valid inline fragment type",
+  "query": "\n      fragment validFragment on Mammal {\n        ... on Canine {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "FragmentsOnCompositeTypesRule: inline fragment without type is valid",
+  "query": "\n      fragment validFragment on Pet {\n        ... {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "FragmentsOnCompositeTypesRule: union is valid fragment type",
+  "query": "\n      fragment validFragment on CatOrDog {\n        __typename\n      }\n    "
+ },
+ {
+  "name": "FragmentsOnCompositeTypesRule: scalar is invalid fragment type",
+  "query": "\n      fragment scalarFragment on Boolean {\n        bad\n      }\n    "
+ },
+ {
+  "name": "FragmentsOnCompositeTypesRule: enum is invalid fragment type",
+  "query": "\n      fragment scalarFragment on FurColor {\n        bad\n      }\n    "
+ },
+ {
+  "name": "FragmentsOnCompositeTypesRule: input object is invalid fragment type",
+  "query": "\n      fragment inputFragment on ComplexInput {\n        stringField\n      }\n    "
+ },
+ {
+  "name": "FragmentsOnCompositeTypesRule: scalar is invalid inline fragment type",
+  "query": "\n      fragment invalidFragment on Pet {\n        ... on String {\n          barks\n        }\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: single arg is known",
+  "query": "\n      fragment argOnRequiredArg on Dog {\n        doesKnowCommand(dogCommand: SIT)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: multiple args are known",
+  "query": "\n      fragment multipleArgs on ComplicatedArgs {\n        multipleReqs(req1: 1, req2: 2)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: ignores args of unknown fields",
+  "query": "\n      fragment argOnUnknownField on Dog {\n        unknownField(unknownArg: SIT)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: multiple args in reverse order are known",
+  "query": "\n      fragment multipleArgsReverseOrder on ComplicatedArgs {\n        multipleReqs(req2: 2, req1: 1)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: no args on optional arg",
+  "query": "\n      fragment noArgOnOptionalArg on Dog {\n        isHouseTrained\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: args are known deeply",
+  "query": "\n      {\n        dog {\n          doesKnowCommand(dogCommand: SIT)\n        }\n        human {\n          pet {\n            ... on Dog {\n              doesKnowCommand(dogCommand: SIT)\n            }\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: directive args are known",
+  "query": "\n      {\n        dog @skip(if: true)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: fragment args are known",
+  "query": "\n      {\n        dog {\n          ...withArg(dogCommand: SIT)\n        }\n      }\n      fragment withArg($dogCommand: DogCommand) on Dog {\n        doesKnowCommand(dogCommand: $dogCommand)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: field args are invalid",
+  "query": "\n      {\n        dog @skip(unless: true)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: directive without args is valid",
+  "query": "\n      {\n        dog @onField\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: arg passed to directive without arg is reported",
+  "query": "\n      {\n        dog @onField(if: true)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: misspelled directive args are reported",
+  "query": "\n      {\n        dog @skip(iff: true)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: arg passed to fragment without arg is reported",
+  "query": "\n      {\n        dog {\n          ...withoutArg(unknown: true)\n        }\n      }\n      fragment withoutArg on Dog {\n        doesKnowCommand\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: misspelled fragment args are reported",
+  "query": "\n      {\n        dog {\n          ...withArg(command: SIT)\n        }\n      }\n      fragment withArg($dogCommand: DogCommand) on Dog {\n        doesKnowCommand(dogCommand: $dogCommand)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: invalid arg name",
+  "query": "\n      fragment invalidArgName on Dog {\n        doesKnowCommand(unknown: true)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: misspelled arg name is reported",
+  "query": "\n      fragment invalidArgName on Dog {\n        doesKnowCommand(DogCommand: true)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: unknown args amongst known args",
+  "query": "\n      fragment oneGoodArgOneInvalidArg on Dog {\n        doesKnowCommand(whoKnows: 1, dogCommand: SIT, unknown: true)\n      }\n    "
+ },
+ {
+  "name": "KnownArgumentNamesRule: unknown args deeply",
+  "query": "\n      {\n        dog {\n          doesKnowCommand(unknown: true)\n        }\n        human {\n          pet {\n            ... on Dog {\n              doesKnowCommand(unknown: true)\n            }\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "KnownDirectivesRule: with no directives",
+  "query": "\n      query Foo {\n        name\n        ...Frag\n      }\n\n      fragment Frag on Dog {\n        name\n      }\n    "
+ },
+ {
+  "name": "KnownDirectivesRule: with standard directives",
+  "query": "\n      {\n        human @skip(if: false) {\n          name\n          pets {\n            ... on Dog @include(if: true) {\n              name\n            }\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "KnownDirectivesRule: with unknown directive",
+  "query": "\n      {\n        human @unknown(directive: \"value\") {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "KnownDirectivesRule: with many unknown directives",
+  "query": "\n      {\n        __typename @unknown\n        human @unknown {\n          name\n          pets @unknown {\n            name\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "KnownDirectivesRule: with well placed directives",
+  "query": "\n      query ($var: Boolean @onVariableDefinition) @onQuery {\n        human @onField {\n          ...Frag @onFragmentSpread\n          ... @onInlineFragment {\n            name @onField\n          }\n        }\n      }\n\n      mutation @onMutation {\n        someField @onField\n      }\n\n      subscription @onSubscription {\n        someField @onField\n      }\n\n      fragment Frag(\n        $arg: Int @onFragmentVariableDefinition\n      ) on Human @onFragmentDefinition {\n        name @onField\n      }\n    "
+ },
+ {
+  "name": "KnownDirectivesRule: with misplaced directives",
+  "query": "\n      query ($var: Boolean @onQuery) @onMutation {\n        human @onQuery {\n          ...Frag @onQuery\n          ... @onQuery {\n            name @onQuery\n          }\n        }\n      }\n\n      mutation @onQuery {\n        someField @onQuery\n      }\n\n      subscription @onQuery {\n        someField @onQuery\n      }\n\n      fragment Frag($arg: Int @onVariableDefinition) on Human @onQuery {\n        name @onQuery\n      }\n    "
+ },
+ {
+  "name": "KnownFragmentNamesRule: known fragment names are valid",
+  "query": "\n      {\n        human(id: 4) {\n          ...HumanFields1\n          ... on Human {\n            ...HumanFields2\n          }\n          ... {\n            name\n          }\n        }\n      }\n      fragment HumanFields1 on Human {\n        name\n        ...HumanFields3\n      }\n      fragment HumanFields2 on Human {\n        name\n      }\n      fragment HumanFields3 on Human {\n        name\n      }\n    "
+ },
+ {
+  "name": "KnownFragmentNamesRule: unknown fragment names are invalid",
+  "query": "\n      {\n        human(id: 4) {\n          ...UnknownFragment1\n          ... on Human {\n            ...UnknownFragment2\n          }\n        }\n      }\n      fragment HumanFields on Human {\n        name\n        ...UnknownFragment3\n      }\n    "
+ },
+ {
+  "name": "KnownOperationTypesRules: one known operation",
+  "query": "\n      { field }\n    "
+ },
+ {
+  "name": "KnownOperationTypesRules: unknown mutation operation",
+  "query": "\n      mutation { field }\n    "
+ },
+ {
+  "name": "KnownOperationTypesRules: unknown subscription operation",
+  "query": "\n      subscription { field }\n    "
+ },
+ {
+  "name": "KnownOperationTypesRules: mixture of known and unknown operations",
+  "query": "\n      query { field }\n      mutation { field }\n      subscription { field }\n  "
+ },
+ {
+  "name": "KnownTypeNamesRule: known type names are valid",
+  "query": "\n      query Foo(\n        $var: String\n        $required: [Int!]!\n        $introspectionType: __EnumValue\n      ) {\n        user(id: 4) {\n          pets { ... on Pet { name }, ...PetFields, ... { name } }\n        }\n      }\n\n      fragment PetFields on Pet {\n        name\n      }\n    "
+ },
+ {
+  "name": "KnownTypeNamesRule: unknown type names are invalid",
+  "query": "\n      query Foo($var: [JumbledUpLetters!]!) {\n        user(id: 4) {\n          name\n          pets { ... on Badger { name }, ...PetFields }\n        }\n      }\n      fragment PetFields on Peat {\n        name\n      }\n    "
+ },
+ {
+  "name": "LoneAnonymousOperationRule: no operations",
+  "query": "\n      fragment fragA on Type {\n        field\n      }\n    "
+ },
+ {
+  "name": "LoneAnonymousOperationRule: one anon operation",
+  "query": "\n      {\n        field\n      }\n    "
+ },
+ {
+  "name": "LoneAnonymousOperationRule: multiple named operations",
+  "query": "\n      query Foo {\n        field\n      }\n\n      query Bar {\n        field\n      }\n    "
+ },
+ {
+  "name": "LoneAnonymousOperationRule: anon operation with fragment",
+  "query": "\n      {\n        ...Foo\n      }\n      fragment Foo on Type {\n        field\n      }\n    "
+ },
+ {
+  "name": "LoneAnonymousOperationRule: multiple anon operations",
+  "query": "\n      {\n        fieldA\n      }\n      {\n        fieldB\n      }\n    "
+ },
+ {
+  "name": "LoneAnonymousOperationRule: anon operation with a mutation",
+  "query": "\n      {\n        fieldA\n      }\n      mutation Foo {\n        fieldB\n      }\n    "
+ },
+ {
+  "name": "LoneAnonymousOperationRule: anon operation with a subscription",
+  "query": "\n      {\n        fieldA\n      }\n      subscription Foo {\n        fieldB\n      }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 flat fields introspection query",
+  "query": "\n    {\n      __type(name: \"Query\") {\n        trueFields: fields(includeDeprecated: true) {\n          name\n        }\n        falseFields: fields(includeDeprecated: false) {\n          name\n        }\n        omittedFields: fields {\n          name\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 fields deep introspection query from __schema",
+  "query": "\n    {\n      __schema {\n        types {\n          fields {\n            type {\n              fields {\n                type {\n                  fields {\n                    name\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 interfaces deep introspection query from __schema",
+  "query": "\n    {\n      __schema {\n        types {\n          interfaces {\n            interfaces {\n              interfaces {\n                name\n              }\n            }\n          }\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 possibleTypes deep introspection query from __schema",
+  "query": "\n    {\n      __schema {\n        types {\n          possibleTypes {\n            possibleTypes {\n              possibleTypes {\n                name\n              }\n            }\n          }\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 inputFields deep introspection query from __schema",
+  "query": "\n    {\n      __schema {\n        types {\n          inputFields {\n            type {\n              inputFields {\n                type {\n                  inputFields {\n                    type {\n                      name\n                    }\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 fields deep introspection query from multiple __schema",
+  "query": "\n    {\n      one: __schema {\n        types {\n          fields {\n            type {\n              fields {\n                type {\n                  fields {\n                    name\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n      two: __schema {\n        types {\n          fields {\n            type {\n              fields {\n                type {\n                  fields {\n                    name\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n      three: __schema {\n        types {\n          fields {\n            type {\n              fields {\n                type {\n                  fields {\n                    name\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 fields deep introspection query from __type",
+  "query": "\n    {\n      __type(name: \"Query\") {\n        types {\n          fields {\n            type {\n              fields {\n                type {\n                  fields {\n                    name\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 fields deep introspection query from multiple __type",
+  "query": "\n    {\n      one: __type(name: \"Query\") {\n        types {\n          fields {\n            type {\n              fields {\n                type {\n                  fields {\n                    name\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n      two: __type(name: \"Query\") {\n        types {\n          fields {\n            type {\n              fields {\n                type {\n                  fields {\n                    name\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n      three: __type(name: \"Query\") {\n        types {\n          fields {\n            type {\n              fields {\n                type {\n                  fields {\n                    name\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 1 fields deep with 3 fields introspection query",
+  "query": "\n    {\n      __schema {\n        types {\n          fields {\n            type {\n              oneFields: fields {\n                name\n              }\n              twoFields: fields {\n                name\n              }\n              threeFields: fields {\n                name\n              }\n            }\n          }\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 fields deep from varying parents introspection query",
+  "query": "\n    {\n      __schema {\n        types {\n          fields {\n            type {\n              fields {\n                type {\n                  ofType {\n                    fields {\n                      name\n                    }\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 fields deep introspection query with inline fragments",
+  "query": "\n    query test {\n      __schema {\n        types {\n          ... on __Type {\n            fields {\n              type {\n                ... on __Type {\n                  ofType {\n                    fields {\n                      type {\n                        ... on __Type {\n                          fields {\n                            name\n                          }\n                        }\n                      }\n                    }\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 fields deep introspection query with fragments",
+  "query": "\n    query test {\n      __schema {\n        types {\n          ...One\n        }\n      }\n    }\n\n    fragment One on __Type {\n      fields {\n        type {\n          ...Two\n        }\n      }\n    }\n\n    fragment Two on __Type {\n      fields {\n        type {\n          ...Three\n        }\n      }\n    }\n\n    fragment Three on __Type {\n      fields {\n        name\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: 3 fields deep inside inline fragment on query",
+  "query": "\n    {\n      ... {\n        __schema { types { fields { type { fields { type { fields { name } } } } } } }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: opts out if fragment is missing",
+  "query": "\n    query test {\n      __schema {\n        types {\n          ...Missing\n        }\n      }\n    }\n    "
+ },
+ {
+  "name": "MaxIntrospectionDepthRule: opts out if fragment is missing",
+  "query": "\n    query test {\n      __schema {\n        types {\n          ...Cycle\n        }\n      }\n    }\n    fragment Cycle on __Type {\n      ...Cycle\n    }\n    "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: ignores fields that are not deprecated",
+  "query": "\n        {\n          normalField\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: ignores unknown fields",
+  "query": "\n        {\n          unknownField\n        }\n\n        fragment UnknownFragment on UnknownType {\n          deprecatedField\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: reports error when a deprecated field is selected",
+  "query": "\n        {\n          deprecatedField\n        }\n\n        fragment QueryFragment on Query {\n          deprecatedField\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: ignores arguments that are not deprecated",
+  "query": "\n        {\n          normalField(normalArg: \"\")\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: ignores unknown arguments",
+  "query": "\n        {\n          someField(unknownArg: \"\")\n          unknownField(deprecatedArg: \"\")\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: reports error when a deprecated argument is used",
+  "query": "\n        {\n          someField(deprecatedArg: \"\")\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: ignores arguments that are not deprecated",
+  "query": "\n        {\n          someField @someDirective(normalArg: \"\")\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: ignores unknown arguments",
+  "query": "\n        {\n          someField @someDirective(unknownArg: \"\")\n          someField @unknownDirective(deprecatedArg: \"\")\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: reports error when a deprecated argument is used",
+  "query": "\n        {\n          someField @someDirective(deprecatedArg: \"\")\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: ignores input fields that are not deprecated",
+  "query": "\n        {\n          someField(\n            someArg: { normalField: \"\" }\n          ) @someDirective(someArg: { normalField: \"\" })\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: ignores unknown input fields",
+  "query": "\n        {\n          someField(\n            someArg: { unknownField: \"\" }\n          )\n\n          someField(\n            unknownArg: { unknownField: \"\" }\n          )\n\n          unknownField(\n            unknownArg: { unknownField: \"\" }\n          )\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: reports error when a deprecated input field is used",
+  "query": "\n        {\n          someField(\n            someArg: { deprecatedField: \"\" }\n          ) @someDirective(someArg: { deprecatedField: \"\" })\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: ignores enum values that are not deprecated",
+  "query": "\n        {\n          normalField(enumArg: NORMAL_VALUE)\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: ignores unknown enum values",
+  "query": "\n        query (\n          $unknownValue: EnumType = UNKNOWN_VALUE\n          $unknownType: UnknownType = UNKNOWN_VALUE\n        ) {\n          someField(enumArg: UNKNOWN_VALUE)\n          someField(unknownArg: UNKNOWN_VALUE)\n          unknownField(unknownArg: UNKNOWN_VALUE)\n        }\n\n        fragment SomeFragment on Query {\n          someField(enumArg: UNKNOWN_VALUE)\n        }\n      "
+ },
+ {
+  "name": "NoDeprecatedCustomRule: reports error when a deprecated enum value is used",
+  "query": "\n        query (\n          $variable: EnumType = DEPRECATED_VALUE\n        ) {\n          someField(enumArg: DEPRECATED_VALUE)\n        }\n      "
+ },
+ {
+  "name": "NoFragmentCyclesRule: single reference is valid",
+  "query": "\n      fragment fragA on Dog { ...fragB }\n      fragment fragB on Dog { name }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: spreading twice is not circular",
+  "query": "\n      fragment fragA on Dog { ...fragB, ...fragB }\n      fragment fragB on Dog { name }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: spreading twice indirectly is not circular",
+  "query": "\n      fragment fragA on Dog { ...fragB, ...fragC }\n      fragment fragB on Dog { ...fragC }\n      fragment fragC on Dog { name }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: double spread within abstract types",
+  "query": "\n      fragment nameFragment on Pet {\n        ... on Dog { name }\n        ... on Cat { name }\n      }\n\n      fragment spreadsInAnon on Pet {\n        ... on Dog { ...nameFragment }\n        ... on Cat { ...nameFragment }\n      }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: does not false positive on unknown fragment",
+  "query": "\n      fragment nameFragment on Pet {\n        ...UnknownFragment\n      }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: spreading recursively within field fails",
+  "query": "\n      fragment fragA on Human { relatives { ...fragA } },\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: no spreading itself directly",
+  "query": "\n      fragment fragA on Dog { ...fragA }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: no spreading itself directly within inline fragment",
+  "query": "\n      fragment fragA on Pet {\n        ... on Dog {\n          ...fragA\n        }\n      }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: no spreading itself indirectly",
+  "query": "\n      fragment fragA on Dog { ...fragB }\n      fragment fragB on Dog { ...fragA }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: no spreading itself indirectly reports opposite order",
+  "query": "\n      fragment fragB on Dog { ...fragA }\n      fragment fragA on Dog { ...fragB }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: no spreading itself indirectly within inline fragment",
+  "query": "\n      fragment fragA on Pet {\n        ... on Dog {\n          ...fragB\n        }\n      }\n      fragment fragB on Pet {\n        ... on Dog {\n          ...fragA\n        }\n      }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: no spreading itself deeply",
+  "query": "\n      fragment fragA on Dog { ...fragB }\n      fragment fragB on Dog { ...fragC }\n      fragment fragC on Dog { ...fragO }\n      fragment fragX on Dog { ...fragY }\n      fragment fragY on Dog { ...fragZ }\n      fragment fragZ on Dog { ...fragO }\n      fragment fragO on Dog { ...fragP }\n      fragment fragP on Dog { ...fragA, ...fragX }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: no spreading itself deeply two paths",
+  "query": "\n      fragment fragA on Dog { ...fragB, ...fragC }\n      fragment fragB on Dog { ...fragA }\n      fragment fragC on Dog { ...fragA }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: no spreading itself deeply two paths -- alt traverse order",
+  "query": "\n      fragment fragA on Dog { ...fragC }\n      fragment fragB on Dog { ...fragC }\n      fragment fragC on Dog { ...fragA, ...fragB }\n    "
+ },
+ {
+  "name": "NoFragmentCyclesRule: no spreading itself deeply and immediately",
+  "query": "\n      fragment fragA on Dog { ...fragB }\n      fragment fragB on Dog { ...fragB, ...fragC }\n      fragment fragC on Dog { ...fragA, ...fragB }\n    "
+ },
+ {
+  "name": "NoSchemaIntrospectionCustomRule: ignores valid fields including __typename",
+  "query": "\n      {\n        someQuery {\n          __typename\n          someField\n        }\n      }\n    "
+ },
+ {
+  "name": "NoSchemaIntrospectionCustomRule: ignores fields not in the schema",
+  "query": "\n      {\n        __introspect\n      }\n    "
+ },
+ {
+  "name": "NoSchemaIntrospectionCustomRule: reports error when a field with an introspection type is requested",
+  "query": "\n      {\n        __schema {\n          queryType {\n            name\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "NoSchemaIntrospectionCustomRule: reports error when a field with an introspection type is requested and aliased",
+  "query": "\n      {\n        s: __schema {\n          queryType {\n            name\n          }\n        }\n      }\n      "
+ },
+ {
+  "name": "NoSchemaIntrospectionCustomRule: reports error when using a fragment with a field with an introspection type",
+  "query": "\n      {\n        ...QueryFragment\n      }\n\n      fragment QueryFragment on Query {\n        __schema {\n          queryType {\n            name\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "NoSchemaIntrospectionCustomRule: reports error for non-standard introspection fields",
+  "query": "\n      {\n        someQuery {\n          introspectionField\n        }\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: all variables defined",
+  "query": "\n      query Foo($a: String, $b: String, $c: String) {\n        field(a: $a, b: $b, c: $c)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: all variables deeply defined",
+  "query": "\n      query Foo($a: String, $b: String, $c: String) {\n        field(a: $a) {\n          field(b: $b) {\n            field(c: $c)\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: all variables deeply in inline fragments defined",
+  "query": "\n      query Foo($a: String, $b: String, $c: String) {\n        ... on Type {\n          field(a: $a) {\n            field(b: $b) {\n              ... on Type {\n                field(c: $c)\n              }\n            }\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: all variables in fragments deeply defined",
+  "query": "\n      query Foo($a: String, $b: String, $c: String) {\n        ...FragA\n      }\n      fragment FragA on Type {\n        field(a: $a) {\n          ...FragB\n        }\n      }\n      fragment FragB on Type {\n        field(b: $b) {\n          ...FragC\n        }\n      }\n      fragment FragC on Type {\n        field(c: $c)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: variable within single fragment defined in multiple operations",
+  "query": "\n      query Foo($a: String) {\n        ...FragA\n      }\n      query Bar($a: String) {\n        ...FragA\n      }\n      fragment FragA on Type {\n        field(a: $a)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: variable within fragments defined in operations",
+  "query": "\n      query Foo($a: String) {\n        ...FragA\n      }\n      query Bar($b: String) {\n        ...FragB\n      }\n      fragment FragA on Type {\n        field(a: $a)\n      }\n      fragment FragB on Type {\n        field(b: $b)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: variable within recursive fragment defined",
+  "query": "\n      query Foo($a: String) {\n        ...FragA\n      }\n      fragment FragA on Type {\n        field(a: $a) {\n          ...FragA\n        }\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: variable not defined",
+  "query": "\n      query Foo($a: String, $b: String, $c: String) {\n        field(a: $a, b: $b, c: $c, d: $d)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: variable not defined by un-named query",
+  "query": "\n      {\n        field(a: $a)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: multiple variables not defined",
+  "query": "\n      query Foo($b: String) {\n        field(a: $a, b: $b, c: $c)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: variable in fragment not defined by un-named query",
+  "query": "\n      {\n        ...FragA\n      }\n      fragment FragA on Type {\n        field(a: $a)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: variable in fragment not defined by operation",
+  "query": "\n      query Foo($a: String, $b: String) {\n        ...FragA\n      }\n      fragment FragA on Type {\n        field(a: $a) {\n          ...FragB\n        }\n      }\n      fragment FragB on Type {\n        field(b: $b) {\n          ...FragC\n        }\n      }\n      fragment FragC on Type {\n        field(c: $c)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: multiple variables in fragments not defined",
+  "query": "\n      query Foo($b: String) {\n        ...FragA\n      }\n      fragment FragA on Type {\n        field(a: $a) {\n          ...FragB\n        }\n      }\n      fragment FragB on Type {\n        field(b: $b) {\n          ...FragC\n        }\n      }\n      fragment FragC on Type {\n        field(c: $c)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: single variable in fragment not defined by multiple operations",
+  "query": "\n      query Foo($a: String) {\n        ...FragAB\n      }\n      query Bar($a: String) {\n        ...FragAB\n      }\n      fragment FragAB on Type {\n        field(a: $a, b: $b)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: variables in fragment not defined by multiple operations",
+  "query": "\n      query Foo($b: String) {\n        ...FragAB\n      }\n      query Bar($a: String) {\n        ...FragAB\n      }\n      fragment FragAB on Type {\n        field(a: $a, b: $b)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: variable in fragment used by other operation",
+  "query": "\n      query Foo($b: String) {\n        ...FragA\n      }\n      query Bar($a: String) {\n        ...FragB\n      }\n      fragment FragA on Type {\n        field(a: $a)\n      }\n      fragment FragB on Type {\n        field(b: $b)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: multiple undefined variables produce multiple errors",
+  "query": "\n      query Foo($b: String) {\n        ...FragAB\n      }\n      query Bar($a: String) {\n        ...FragAB\n      }\n      fragment FragAB on Type {\n        field1(a: $a, b: $b)\n        ...FragC\n        field3(a: $a, b: $b)\n      }\n      fragment FragC on Type {\n        field2(c: $c)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: fragment defined arguments are not undefined variables",
+  "query": "\n      query Foo {\n        ...FragA\n      }\n      fragment FragA($a: String) on Type {\n        field1(a: $a)\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: defined variables used as fragment arguments are not undefined variables",
+  "query": "\n      query Foo($b: String) {\n        ...FragA(a: $b)\n      }\n      fragment FragA($a: String) on Type {\n        field1\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: variables used as fragment arguments may be undefined variables",
+  "query": "\n      query Foo {\n        ...FragA(a: $a)\n      }\n      fragment FragA($a: String) on Type {\n        field1\n      }\n    "
+ },
+ {
+  "name": "NoUndefinedVariablesRule: variables shadowed by parent fragment arguments are still undefined variables",
+  "query": "\n      query Foo {\n        ...FragA\n      }\n      fragment FragA($a: String) on Type {\n        ...FragB\n      }\n      fragment FragB on Type {\n        field1(a: $a)\n      }\n    "
+ },
+ {
+  "name": "NoUnusedFragmentsRule: all fragment names are used",
+  "query": "\n      {\n        human(id: 4) {\n          ...HumanFields1\n          ... on Human {\n            ...HumanFields2\n          }\n        }\n      }\n      fragment HumanFields1 on Human {\n        name\n        ...HumanFields3\n      }\n      fragment HumanFields2 on Human {\n        name\n      }\n      fragment HumanFields3 on Human {\n        name\n      }\n    "
+ },
+ {
+  "name": "NoUnusedFragmentsRule: all fragment names are used by multiple operations",
+  "query": "\n      query Foo {\n        human(id: 4) {\n          ...HumanFields1\n        }\n      }\n      query Bar {\n        human(id: 4) {\n          ...HumanFields2\n        }\n      }\n      fragment HumanFields1 on Human {\n        name\n        ...HumanFields3\n      }\n      fragment HumanFields2 on Human {\n        name\n      }\n      fragment HumanFields3 on Human {\n        name\n      }\n    "
+ },
+ {
+  "name": "NoUnusedFragmentsRule: contains unknown fragments",
+  "query": "\n      query Foo {\n        human(id: 4) {\n          ...HumanFields1\n        }\n      }\n      query Bar {\n        human(id: 4) {\n          ...HumanFields2\n        }\n      }\n      fragment HumanFields1 on Human {\n        name\n        ...HumanFields3\n      }\n      fragment HumanFields2 on Human {\n        name\n      }\n      fragment HumanFields3 on Human {\n        name\n      }\n      fragment Unused1 on Human {\n        name\n      }\n      fragment Unused2 on Human {\n        name\n      }\n    "
+ },
+ {
+  "name": "NoUnusedFragmentsRule: contains unknown fragments with ref cycle",
+  "query": "\n      query Foo {\n        human(id: 4) {\n          ...HumanFields1\n        }\n      }\n      query Bar {\n        human(id: 4) {\n          ...HumanFields2\n        }\n      }\n      fragment HumanFields1 on Human {\n        name\n        ...HumanFields3\n      }\n      fragment HumanFields2 on Human {\n        name\n      }\n      fragment HumanFields3 on Human {\n        name\n      }\n      fragment Unused1 on Human {\n        name\n        ...Unused2\n      }\n      fragment Unused2 on Human {\n        name\n        ...Unused1\n      }\n    "
+ },
+ {
+  "name": "NoUnusedFragmentsRule: contains unknown and undef fragments",
+  "query": "\n      query Foo {\n        human(id: 4) {\n          ...bar\n        }\n      }\n      fragment foo on Human {\n        name\n      }\n    "
+ },
+ {
+  "name": "NoUnusedVariablesRule: uses all variables",
+  "query": "\n      query ($a: String, $b: String, $c: String) {\n        field(a: $a, b: $b, c: $c)\n      }\n    "
+ },
+ {
+  "name": "NoUnusedVariablesRule: variable not used",
+  "query": "\n      query ($a: String, $b: String, $c: String) {\n        field(a: $a, b: $b)\n      }\n    "
+ },
+ {
+  "name": "NoUnusedVariablesRule: multiple variables not used",
+  "query": "\n      query Foo($a: String, $b: String, $c: String) {\n        field(b: $b)\n      }\n    "
+ },
+ {
+  "name": "NoUnusedVariablesRule: variable not used in fragments",
+  "query": "\n      query Foo($a: String, $b: String, $c: String) {\n        ...FragA\n      }\n      fragment FragA on Type {\n        field(a: $a) {\n          ...FragB\n        }\n      }\n      fragment FragB on Type {\n        field(b: $b) {\n          ...FragC\n        }\n      }\n      fragment FragC on Type {\n        field\n      }\n    "
+ },
+ {
+  "name": "NoUnusedVariablesRule: multiple variables not used in fragments",
+  "query": "\n      query Foo($a: String, $b: String, $c: String) {\n        ...FragA\n      }\n      fragment FragA on Type {\n        field {\n          ...FragB\n        }\n      }\n      fragment FragB on Type {\n        field(b: $b) {\n          ...FragC\n        }\n      }\n      fragment FragC on Type {\n        field\n      }\n    "
+ },
+ {
+  "name": "NoUnusedVariablesRule: variable not used by unreferenced fragment",
+  "query": "\n      query Foo($b: String) {\n        ...FragA\n      }\n      fragment FragA on Type {\n        field(a: $a)\n      }\n      fragment FragB on Type {\n        field(b: $b)\n      }\n    "
+ },
+ {
+  "name": "NoUnusedVariablesRule: defined variables used as fragment arguments are not unused variables",
+  "query": "\n      query Foo($b: String) {\n        ...FragA(a: $b)\n      }\n      fragment FragA($a: String) on Type {\n        field1(a: $a)\n      }\n    "
+ },
+ {
+  "name": "NoUnusedVariablesRule: unused fragment variables are reported",
+  "query": "\n      query Foo {\n        ...FragA(a: \"value\")\n      }\n      fragment FragA($a: String) on Type {\n        field1\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: unique fields",
+  "query": "\n      fragment uniqueFields on Dog {\n        name\n        nickname\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: identical fields",
+  "query": "\n      fragment mergeIdenticalFields on Dog {\n        name\n        name\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: identical fields with identical args",
+  "query": "\n      fragment mergeIdenticalFieldsWithIdenticalArgs on Dog {\n        doesKnowCommand(dogCommand: SIT)\n        doesKnowCommand(dogCommand: SIT)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: identical fields with identical directives",
+  "query": "\n      fragment mergeSameFieldsWithSameDirectives on Dog {\n        name @include(if: true)\n        name @include(if: true)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different args with different aliases",
+  "query": "\n      fragment differentArgsWithDifferentAliases on Dog {\n        knowsSit: doesKnowCommand(dogCommand: SIT)\n        knowsDown: doesKnowCommand(dogCommand: DOWN)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different directives with different aliases",
+  "query": "\n      fragment differentDirectivesWithDifferentAliases on Dog {\n        nameIfTrue: name @include(if: true)\n        nameIfFalse: name @include(if: false)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different skip/include directives accepted",
+  "query": "\n      fragment differentDirectivesWithDifferentAliases on Dog {\n        name @include(if: true)\n        name @include(if: false)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: stream directive used on different instances of the same field",
+  "query": "\n      fragment differentDirectivesWithDifferentAliases on Dog {\n        name @stream(label: \"streamLabel\", initialCount: 1)\n        name @stream(label: \"streamLabel\", initialCount: 1)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different stream directive label",
+  "query": "\n      fragment conflictingArgs on Dog {\n        name @stream(label: \"streamLabel\", initialCount: 1)\n        name @stream(label: \"anotherLabel\", initialCount: 1)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different stream directive initialCount",
+  "query": "\n      fragment conflictingArgs on Dog {\n        name @stream(label: \"streamLabel\", initialCount: 1)\n        name @stream(label: \"streamLabel\", initialCount: 2)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different stream directive first missing args",
+  "query": "\n      fragment conflictingArgs on Dog {\n        name @stream\n        name @stream(label: \"streamLabel\", initialCount: 1)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different stream directive second missing args",
+  "query": "\n      fragment conflictingArgs on Dog {\n        name @stream(label: \"streamLabel\", initialCount: 1)\n        name @stream\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different stream directive extra argument",
+  "query": "\n      fragment conflictingArgs on Dog {\n        name @stream(label: \"streamLabel\", initialCount: 1)\n        name @stream(label: \"streamLabel\", initialCount: 1, extraArg: true)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: mix of stream and no stream",
+  "query": "\n      fragment conflictingArgs on Dog {\n        name @stream\n        name\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different stream directive both missing args",
+  "query": "\n      fragment conflictingArgs on Dog {\n        name @stream\n        name @stream\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: Same aliases with different field targets",
+  "query": "\n      fragment sameAliasesWithDifferentFieldTargets on Dog {\n        fido: name\n        fido: nickname\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: Same aliases allowed on non-overlapping fields",
+  "query": "\n      fragment sameAliasesWithDifferentFieldTargets on Pet {\n        ... on Dog {\n          name\n        }\n        ... on Cat {\n          name: nickname\n        }\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: Alias masking direct field access",
+  "query": "\n      fragment aliasMaskingDirectFieldAccess on Dog {\n        name: nickname\n        name\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different args, second adds an argument",
+  "query": "\n      fragment conflictingArgs on Dog {\n        doesKnowCommand\n        doesKnowCommand(dogCommand: HEEL)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different args, second missing an argument",
+  "query": "\n      fragment conflictingArgs on Dog {\n        doesKnowCommand(dogCommand: SIT)\n        doesKnowCommand\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: different args, first has two, second missing one",
+  "query": "\n      fragment conflictingArgs on Dog {\n        doesKnowCommand(dogCommand: SIT, atExpertLevel: true)\n        doesKnowCommand(dogCommand: SIT)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: conflicting arg values",
+  "query": "\n      fragment conflictingArgs on Dog {\n        doesKnowCommand(dogCommand: SIT)\n        doesKnowCommand(dogCommand: HEEL)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: conflicting arg names",
+  "query": "\n      fragment conflictingArgs on Dog {\n        isAtLocation(x: 0)\n        isAtLocation(y: 0)\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: allows different args where no conflict is possible",
+  "query": "\n      fragment conflictingArgs on Pet {\n        ... on Dog {\n          name(surname: true)\n        }\n        ... on Cat {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: encounters conflict in fragments",
+  "query": "\n      {\n        ...A\n        ...B\n      }\n      fragment A on Type {\n        x: a\n      }\n      fragment B on Type {\n        x: b\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: reports each conflict once",
+  "query": "\n      {\n        f1 {\n          ...A\n          ...B\n        }\n        f2 {\n          ...B\n          ...A\n        }\n        f3 {\n          ...A\n          ...B\n          x: c\n        }\n      }\n      fragment A on Type {\n        x: a\n      }\n      fragment B on Type {\n        x: b\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: deep conflict",
+  "query": "\n      {\n        field {\n          x: a\n        },\n        field {\n          x: b\n        }\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: deep conflict with multiple issues",
+  "query": "\n      {\n        field {\n          x: a\n          y: c\n        },\n        field {\n          x: b\n          y: d\n        }\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: does not compare subfields of incompatible parent calls",
+  "query": "\n      fragment incompatibleParents on Dog {\n        parent: mother {\n          value: name\n        }\n        parent: father {\n          value: mother { name }\n        }\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: still compares subfields of each compatible parent-call group",
+  "query": "\n      fragment mixedParents on Dog {\n        parent: mother {\n          value: name\n        }\n        parent: mother {\n          value: mother { name }\n        }\n        parent: father { name }\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: does not compare subfields after a stream conflict",
+  "query": "\n      fragment streamBarrier on Dog {\n        parent: mother @stream { value: name }\n        parent: mother { value: father }\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: very deep conflict",
+  "query": "\n      {\n        field {\n          deepField {\n            x: a\n          }\n        },\n        field {\n          deepField {\n            x: b\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: reports deep conflict to nearest common ancestor",
+  "query": "\n      {\n        field {\n          deepField {\n            x: a\n          }\n          deepField {\n            x: b\n          }\n        },\n        field {\n          deepField {\n            y\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: reports deep conflict to nearest common ancestor in fragments",
+  "query": "\n      {\n        field {\n          ...F\n        }\n        field {\n          ...F\n        }\n      }\n      fragment F on T {\n        deepField {\n          deeperField {\n            x: a\n          }\n          deeperField {\n            x: b\n          }\n        },\n        deepField {\n          deeperField {\n            y\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: reports deep conflict in nested fragments",
+  "query": "\n      {\n        field {\n          ...I\n        }\n        field {\n          ...F\n        }\n      }\n      fragment F on T {\n        x: a\n        ...G\n      }\n      fragment G on T {\n        y: c\n      }\n      fragment I on T {\n        y: d\n        ...J\n      }\n      fragment J on T {\n        x: b\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: reports deep conflict after nested fragments",
+  "query": "\n      fragment F on T {\n        ...G\n      }\n      fragment G on T {\n        ...H\n      }\n      fragment H on T {\n        x: a\n      }\n      {\n        x: b\n        ...F\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: ignores unknown fragments",
+  "query": "\n      {\n        field\n        ...Unknown\n        ...Known\n      }\n\n      fragment Known on T {\n        field\n        ...OtherUnknown\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: does not infinite loop on recursive fragment",
+  "query": "\n      {\n        ...fragA\n      }\n\n      fragment fragA on Human { name, relatives { name, ...fragA } }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: does not infinite loop on immediately recursive fragment",
+  "query": "\n      {\n        ...fragA\n      }\n\n      fragment fragA on Human { name, ...fragA }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: does not infinite loop on recursive fragment with a field named after fragment",
+  "query": "\n      {\n        ...fragA\n        fragA\n      }\n\n      fragment fragA on Query { ...fragA }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: finds invalid cases even with field named after fragment",
+  "query": "\n      {\n        fragA\n        ...fragA\n      }\n\n      fragment fragA on Type {\n        fragA: b\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: does not infinite loop on transitively recursive fragment",
+  "query": "\n      {\n        ...fragA\n        fragB\n      }\n\n      fragment fragA on Human { name, ...fragB }\n      fragment fragB on Human { name, ...fragC }\n      fragment fragC on Human { name, ...fragA }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: finds invalid case even with immediately recursive fragment",
+  "query": "\n      fragment sameAliasesWithDifferentFieldTargets on Dog {\n        ...sameAliasesWithDifferentFieldTargets\n        fido: name\n        fido: nickname\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: does not infinite loop on recursive fragments separated by fields",
+  "query": "\n      {\n        ...fragA\n        ...fragB\n      }\n\n      fragment fragA on T {\n        x {\n          ...fragA\n          x {\n            ...fragA\n          }\n        }\n      }\n\n      fragment fragB on T {\n        x {\n          ...fragB\n          x {\n            ...fragB\n          }\n        }\n      }\n    "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: allows conflicting spreads at different depths",
+  "query": "\n        query ValidDifferingFragmentArgs($command1: DogCommand, $command2: DogCommand) {\n          dog {\n            ...DoesKnowCommand(command: $command1)\n            mother {\n              ...DoesKnowCommand(command: $command2)\n            }\n          }\n        }\n        fragment DoesKnowCommand($command: DogCommand) on Dog {\n          doesKnowCommand(dogCommand: $command)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: encounters conflict in fragments",
+  "query": "\n        {\n          ...WithArgs(x: 3)\n          ...WithArgs(x: 4)\n        }\n        fragment WithArgs($x: Int) on Type {\n          a(x: $x)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: allows operations with overlapping fields with arguments using identical operation variables",
+  "query": "\n        query ($y: Int = 1) {\n          a(x: $y)\n          ...WithArgs(x: 1)\n        }\n        fragment WithArgs($x: Int = 1) on Type {\n          a(x: $y)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: rejects overlapping fields whose variables have different definitions",
+  "query": "\n        query ($y: Int = 1) {\n          a(x: $y)\n          ...WithArgs(x: $y)\n        }\n        fragment WithArgs($x: Int) on Type {\n          a(x: $x)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: rejects overlapping fields with different nested variable definitions",
+  "query": "\n        query ($z: Int = 1) {\n          a(x: $z)\n          ...WithArgs(y: $z)\n        }\n        fragment WithArgs($y: Int) on Type {\n          ...NestedWithArgs(x: $y)\n        }\n        fragment NestedWithArgs($x: Int) on Type {\n          a(x: $x)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: rejects a fragment variable even when its default matches a literal",
+  "query": "\n        query {\n          a(x: 1)\n          ...WithArgs\n        }\n        fragment WithArgs($x: Int = 1) on Type {\n          a(x: $x)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: keeps an omitted fragment variable distinct from a shadowed operation variable",
+  "query": "\n        query ($x: Int) {\n          a(x: $x)\n          ...WithArgs\n        }\n        fragment WithArgs($x: Int) on Type {\n          a(x: $x)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: raises errors with overlapping fields with arguments that conflict via operation variables even with defaults and fragment variable defaults",
+  "query": "\n        query ($y: Int = 1) {\n          a(x: $y)\n          ...WithArgs\n        }\n        fragment WithArgs($x: Int = 1) on Type {\n          a(x: $x)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: rejects overlapping fields using list variables with different definitions",
+  "query": "\n        query Query($stringListVarY: [String]) {\n          complicatedArgs {\n            stringListArgField(stringListArg: $stringListVarY)\n            ...WithArgs(stringListVarX: $stringListVarY)\n          }\n        }\n        fragment WithArgs($stringListVarX: [String]) on Type {\n          stringListArgField(stringListArg: $stringListVarX)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: rejects nested list values with different variable definitions",
+  "query": "\n        query Query($stringListVarY: [String]) {\n          complicatedArgs {\n            stringListArgField(stringListArg: [$stringListVarY, \"fixed\"])\n            ...WithArgs(stringListVarX: $stringListVarY)\n          }\n        }\n        fragment WithArgs($stringListVarX: [String]) on Type {\n          stringListArgField(stringListArg: [$stringListVarX, \"fixed\"])\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: rejects overlapping fields using input object variables with different definitions",
+  "query": "\n        query Query($complexVarY: ComplexInput) {\n          complicatedArgs {\n            complexArgField(complexArg: $complexVarY)\n            ...WithArgs(complexVarX: $complexVarY)\n          }\n        }\n        fragment WithArgs($complexVarX: ComplexInput) on Type {\n          complexArgField(complexArg: $complexVarX)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: rejects nested input values with different variable definitions",
+  "query": "\n        query Query($boolVarY: Boolean) {\n          complicatedArgs {\n            complexArgField(complexArg: {requiredArg: $boolVarY})\n            ...WithArgs(boolVarX: $boolVarY)\n          }\n        }\n        fragment WithArgs($boolVarX: Boolean) on Type {\n          complexArgField(complexArg: {requiredArg: $boolVarX})\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: rejects fragment spreads whose variables have different definitions",
+  "query": "\n        query Query($value: Int) {\n          ...A(value: $value)\n          ...B(value: $value)\n        }\n        fragment A($value: Int) on Type {\n          ...Shared(size: $value)\n        }\n        fragment B($value: Int) on Type {\n          ...Shared(size: $value)\n        }\n        fragment Shared($size: Int) on Type {\n          a(x: $size)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: allows repeated spreads with the same local variable definitions",
+  "query": "\n        query Query($size: Int) {\n          ...Wrapper(size: $size)\n          ...Wrapper(size: $size)\n        }\n        fragment Wrapper($size: Int) on Type {\n          a(x: $size)\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: encounters nested field conflict in fragments that could otherwise merge",
+  "query": "\n        query ValidDifferingFragmentArgs($command1: DogCommand, $command2: DogCommand) {\n          dog {\n            ...DoesKnowCommandNested(command: $command1)\n            mother {\n              ...DoesKnowCommandNested(command: $command2)\n            }\n          }\n        }\n        fragment DoesKnowCommandNested($command: DogCommand) on Dog {\n          doesKnowCommand(dogCommand: $command)\n          mother {\n            doesKnowCommand(dogCommand: $command)\n          }\n        }\n      "
+ },
+ {
+  "name": "OverlappingFieldsCanBeMergedRule: encounters nested conflict in fragments",
+  "query": "\n        {\n          connection {\n            edges {\n              ...WithArgs(x: 3)\n            }\n          }\n          ...Connection\n        }\n        fragment Connection on Type {\n          connection {\n            edges {\n              ...WithArgs(x: 4)\n            }\n          }\n        }\n        fragment WithArgs($x: Int) on Type {\n          a(x: $x)\n        }\n      "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: of the same object",
+  "query": "\n      fragment objectWithinObject on Dog { ...dogFragment }\n      fragment dogFragment on Dog { barkVolume }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: of the same object with inline fragment",
+  "query": "\n      fragment objectWithinObjectAnon on Dog { ... on Dog { barkVolume } }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: object into an implemented interface",
+  "query": "\n      fragment objectWithinInterface on Pet { ...dogFragment }\n      fragment dogFragment on Dog { barkVolume }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: object into containing union",
+  "query": "\n      fragment objectWithinUnion on CatOrDog { ...dogFragment }\n      fragment dogFragment on Dog { barkVolume }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: union into contained object",
+  "query": "\n      fragment unionWithinObject on Dog { ...catOrDogFragment }\n      fragment catOrDogFragment on CatOrDog { __typename }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: union into overlapping interface",
+  "query": "\n      fragment unionWithinInterface on Pet { ...catOrDogFragment }\n      fragment catOrDogFragment on CatOrDog { __typename }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: union into overlapping union",
+  "query": "\n      fragment unionWithinUnion on DogOrHuman { ...catOrDogFragment }\n      fragment catOrDogFragment on CatOrDog { __typename }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: interface into implemented object",
+  "query": "\n      fragment interfaceWithinObject on Dog { ...petFragment }\n      fragment petFragment on Pet { name }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: interface into overlapping interface",
+  "query": "\n      fragment interfaceWithinInterface on Pet { ...beingFragment }\n      fragment beingFragment on Being { name }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: interface into overlapping interface in inline fragment",
+  "query": "\n      fragment interfaceWithinInterface on Pet { ... on Being { name } }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: interface into overlapping union",
+  "query": "\n      fragment interfaceWithinUnion on CatOrDog { ...petFragment }\n      fragment petFragment on Pet { name }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: ignores incorrect type (caught by FragmentsOnCompositeTypesRule)",
+  "query": "\n      fragment petFragment on Pet { ...badInADifferentWay }\n      fragment badInADifferentWay on String { name }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: ignores unknown fragments (caught by KnownFragmentNamesRule)",
+  "query": "\n      fragment petFragment on Pet { ...UnknownFragment }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: different object into object",
+  "query": "\n      fragment invalidObjectWithinObject on Cat { ...dogFragment }\n      fragment dogFragment on Dog { barkVolume }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: different object into object in inline fragment",
+  "query": "\n      fragment invalidObjectWithinObjectAnon on Cat {\n        ... on Dog { barkVolume }\n      }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: object into not implementing interface",
+  "query": "\n      fragment invalidObjectWithinInterface on Pet { ...humanFragment }\n      fragment humanFragment on Human { pets { name } }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: object into not containing union",
+  "query": "\n      fragment invalidObjectWithinUnion on CatOrDog { ...humanFragment }\n      fragment humanFragment on Human { pets { name } }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: union into not contained object",
+  "query": "\n      fragment invalidUnionWithinObject on Human { ...catOrDogFragment }\n      fragment catOrDogFragment on CatOrDog { __typename }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: union into non overlapping interface",
+  "query": "\n      fragment invalidUnionWithinInterface on Pet { ...humanOrAlienFragment }\n      fragment humanOrAlienFragment on HumanOrAlien { __typename }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: union into non overlapping union",
+  "query": "\n      fragment invalidUnionWithinUnion on CatOrDog { ...humanOrAlienFragment }\n      fragment humanOrAlienFragment on HumanOrAlien { __typename }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: interface into non implementing object",
+  "query": "\n      fragment invalidInterfaceWithinObject on Cat { ...intelligentFragment }\n      fragment intelligentFragment on Intelligent { iq }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: interface into non overlapping interface",
+  "query": "\n      fragment invalidInterfaceWithinInterface on Pet {\n        ...intelligentFragment\n      }\n      fragment intelligentFragment on Intelligent { iq }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: interface into non overlapping interface in inline fragment",
+  "query": "\n      fragment invalidInterfaceWithinInterfaceAnon on Pet {\n        ...on Intelligent { iq }\n      }\n    "
+ },
+ {
+  "name": "PossibleFragmentSpreadsRule: interface into non overlapping union",
+  "query": "\n      fragment invalidInterfaceWithinUnion on HumanOrAlien { ...petFragment }\n      fragment petFragment on Pet { name }\n    "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: ignores unknown arguments",
+  "query": "\n      {\n        dog {\n          isHouseTrained(unknownArgument: true)\n        }\n      }\n    "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Arg on optional arg",
+  "query": "\n        {\n          dog {\n            isHouseTrained(atOtherHomes: true)\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: No Arg on optional arg",
+  "query": "\n        {\n          dog {\n            isHouseTrained\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: No arg on non-null field with default",
+  "query": "\n        {\n          complicatedArgs {\n            nonNullFieldWithDefault\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Multiple args",
+  "query": "\n        {\n          complicatedArgs {\n            multipleReqs(req1: 1, req2: 2)\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Multiple args reverse order",
+  "query": "\n        {\n          complicatedArgs {\n            multipleReqs(req2: 2, req1: 1)\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: No args on multiple optional",
+  "query": "\n        {\n          complicatedArgs {\n            multipleOpts\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: One arg on multiple optional",
+  "query": "\n        {\n          complicatedArgs {\n            multipleOpts(opt1: 1)\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Second arg on multiple optional",
+  "query": "\n        {\n          complicatedArgs {\n            multipleOpts(opt2: 1)\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Multiple required args on mixedList",
+  "query": "\n        {\n          complicatedArgs {\n            multipleOptAndReq(req1: 3, req2: 4)\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Multiple required and one optional arg on mixedList",
+  "query": "\n        {\n          complicatedArgs {\n            multipleOptAndReq(req1: 3, req2: 4, opt1: 5)\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: All required and optional args on mixedList",
+  "query": "\n        {\n          complicatedArgs {\n            multipleOptAndReq(req1: 3, req2: 4, opt1: 5, opt2: 6)\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Missing one non-nullable argument",
+  "query": "\n        {\n          complicatedArgs {\n            multipleReqs(req2: 2)\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Missing multiple non-nullable arguments",
+  "query": "\n        {\n          complicatedArgs {\n            multipleReqs\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Incorrect value and missing argument",
+  "query": "\n        {\n          complicatedArgs {\n            multipleReqs(req1: \"one\")\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: ignores unknown directives",
+  "query": "\n        {\n          dog @unknown\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: with directives of valid types",
+  "query": "\n        {\n          dog @include(if: true) {\n            name\n          }\n          human @skip(if: false) {\n            name\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: with directive with missing types",
+  "query": "\n        {\n          dog @include {\n            name @skip\n          }\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: ignores unknown arguments",
+  "query": "\n        {\n          ...Foo(unknownArgument: true)\n        }\n        fragment Foo on Query {\n          dog\n        }\n      "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Missing nullable argument with default is allowed",
+  "query": "\n          {\n            ...F\n          }\n          fragment F($x: Int = 3) on Query {\n            foo\n          }\n        "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Missing nullable argument is allowed",
+  "query": "\n          {\n            ...F\n          }\n          fragment F($x: Int) on Query {\n            foo\n          }\n        "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Missing non-nullable argument with default is allowed",
+  "query": "\n          {\n            ...F\n          }\n          fragment F($x: Int! = 3) on Query {\n            foo\n          }\n        "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Missing non-nullable argument is not allowed",
+  "query": "\n          {\n            ...F\n          }\n          fragment F($x: Int!) on Query {\n            foo\n          }\n        "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Supplies required variables",
+  "query": "\n          {\n            ...F(x: 3)\n          }\n          fragment F($x: Int!) on Query {\n            foo\n          }\n        "
+ },
+ {
+  "name": "ProvidedRequiredArgumentsRule: Skips missing fragments",
+  "query": "\n          {\n            ...Missing(x: 3)\n          }\n        "
+ },
+ {
+  "name": "ScalarLeafsRule: valid scalar selection",
+  "query": "\n      fragment scalarSelection on Dog {\n        barks\n      }\n    "
+ },
+ {
+  "name": "ScalarLeafsRule: object type missing selection",
+  "query": "\n      query directQueryOnObjectWithoutSubFields {\n        human\n      }\n    "
+ },
+ {
+  "name": "ScalarLeafsRule: interface type missing selection",
+  "query": "\n      {\n        human { pets }\n      }\n    "
+ },
+ {
+  "name": "ScalarLeafsRule: valid scalar selection with args",
+  "query": "\n      fragment scalarSelectionWithArgs on Dog {\n        doesKnowCommand(dogCommand: SIT)\n      }\n    "
+ },
+ {
+  "name": "ScalarLeafsRule: scalar selection not allowed on Boolean",
+  "query": "\n      fragment scalarSelectionsNotAllowedOnBoolean on Dog {\n        barks { sinceWhen }\n      }\n    "
+ },
+ {
+  "name": "ScalarLeafsRule: scalar selection not allowed on Enum",
+  "query": "\n      fragment scalarSelectionsNotAllowedOnEnum on Cat {\n        furColor { inHexDec }\n      }\n    "
+ },
+ {
+  "name": "ScalarLeafsRule: scalar selection not allowed with args",
+  "query": "\n      fragment scalarSelectionsNotAllowedWithArgs on Dog {\n        doesKnowCommand(dogCommand: SIT) { sinceWhen }\n      }\n    "
+ },
+ {
+  "name": "ScalarLeafsRule: Scalar selection not allowed with directives",
+  "query": "\n      fragment scalarSelectionsNotAllowedWithDirectives on Dog {\n        name @include(if: true) { isAlsoHumanName }\n      }\n    "
+ },
+ {
+  "name": "ScalarLeafsRule: Scalar selection not allowed with directives and args",
+  "query": "\n      fragment scalarSelectionsNotAllowedWithDirectivesAndArgs on Dog {\n        doesKnowCommand(dogCommand: SIT) @include(if: true) { sinceWhen }\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: valid subscription",
+  "query": "\n      subscription ImportantEmails {\n        importantEmails\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: valid subscription with fragment",
+  "query": "\n      subscription sub {\n        ...newMessageFields\n      }\n\n      fragment newMessageFields on SubscriptionRoot {\n        newMessage {\n          body\n          sender\n        }\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: valid subscription with fragment and field",
+  "query": "\n      subscription sub {\n        newMessage {\n          body\n        }\n        ...newMessageFields\n      }\n\n      fragment newMessageFields on SubscriptionRoot {\n        newMessage {\n          body\n          sender\n        }\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: fails with more than one root field",
+  "query": "\n      subscription ImportantEmails {\n        importantEmails\n        notImportantEmails\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: fails with more than one root field including introspection",
+  "query": "\n      subscription ImportantEmails {\n        importantEmails\n        __typename\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: fails with more than one root field including aliased introspection via fragment",
+  "query": "\n      subscription ImportantEmails {\n        importantEmails\n        ...Introspection\n      }\n      fragment Introspection on SubscriptionRoot {\n        typename: __typename\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: fails with many more than one root field",
+  "query": "\n      subscription ImportantEmails {\n        importantEmails\n        notImportantEmails\n        spamEmails\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: fails with many more than one root field via fragments",
+  "query": "\n      subscription ImportantEmails {\n        importantEmails\n        ... {\n          more: moreImportantEmails\n        }\n        ...NotImportantEmails\n      }\n      fragment NotImportantEmails on SubscriptionRoot {\n        notImportantEmails\n        deleted: deletedEmails\n        ...SpamEmails\n      }\n      fragment SpamEmails on SubscriptionRoot {\n        spamEmails\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: does not infinite loop on recursive fragments",
+  "query": "\n      subscription NoInfiniteLoop {\n        ...A\n      }\n      fragment A on SubscriptionRoot {\n        ...A\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: fails with many more than one root field via fragments (anonymous)",
+  "query": "\n      subscription {\n        importantEmails\n        ... {\n          more: moreImportantEmails\n          ...NotImportantEmails\n        }\n        ...NotImportantEmails\n      }\n      fragment NotImportantEmails on SubscriptionRoot {\n        notImportantEmails\n        deleted: deletedEmails\n        ... {\n          ... {\n            archivedEmails\n          }\n        }\n        ...SpamEmails\n      }\n      fragment SpamEmails on SubscriptionRoot {\n        spamEmails\n        ...NonExistentFragment\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: fails with more than one root field in anonymous subscriptions",
+  "query": "\n      subscription {\n        importantEmails\n        notImportantEmails\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: fails with introspection field",
+  "query": "\n      subscription ImportantEmails {\n        __typename\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: fails with introspection field in anonymous subscription",
+  "query": "\n      subscription {\n        __typename\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: fails with @skip or @include directive",
+  "query": "\n      subscription RequiredRuntimeValidation($bool: Boolean!) {\n        newMessage @include(if: $bool) {\n          body\n          sender\n        }\n        disallowedSecondRootField @skip(if: $bool)\n      }\n    "
+ },
+ {
+  "name": "SingleFieldSubscriptionsRule: fails with @skip or @include directive in anonymous subscription",
+  "query": "\n      subscription ($bool: Boolean!) {\n        newMessage @include(if: $bool) {\n          body\n          sender\n        }\n        disallowedSecondRootField @skip(if: $bool)\n      }\n    "
+ },
+ {
+  "name": "StreamDirectiveOnListFieldRule: Stream on list field",
+  "query": "\n      fragment objectFieldSelection on Human {\n        pets @stream(initialCount: 0) {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "StreamDirectiveOnListFieldRule: Stream on non-null list field",
+  "query": "\n      fragment objectFieldSelection on Human {\n        relatives @stream(initialCount: 0) {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "StreamDirectiveOnListFieldRule: Stream on non-null list field",
+  "query": "\n    fragment objectFieldSelection on Human {\n      pets @include(if: true) {\n        name\n      }\n    }\n    "
+ },
+ {
+  "name": "StreamDirectiveOnListFieldRule: Stream on non-null list field",
+  "query": "\n      fragment objectFieldSelection on Human {\n        pets {\n          name @include(if: true)\n        }\n      }\n    "
+ },
+ {
+  "name": "StreamDirectiveOnListFieldRule: Stream on non-null list field",
+  "query": "\n      fragment objectFieldSelection on Human {\n        ... @stream(initialCount: 0) {\n          name\n        }\n      }\n    "
+ },
+ {
+  "name": "StreamDirectiveOnListFieldRule: reports errors when stream is used on non-list field",
+  "query": "\n      fragment objectFieldSelection on Human {\n        name @stream(initialCount: 0)\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: no arguments on directive",
+  "query": "\n      {\n        field @directive\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: argument on field",
+  "query": "\n      {\n        field(arg: \"value\")\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: argument on directive",
+  "query": "\n      {\n        field @directive(arg: \"value\")\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: same argument on two fields",
+  "query": "\n      {\n        one: field(arg: \"value\")\n        two: field(arg: \"value\")\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: same argument on field and directive",
+  "query": "\n      {\n        field(arg: \"value\") @directive(arg: \"value\")\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: same argument on two directives",
+  "query": "\n      {\n        field @directive1(arg: \"value\") @directive2(arg: \"value\")\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: multiple field arguments",
+  "query": "\n      {\n        field(arg1: \"value\", arg2: \"value\", arg3: \"value\")\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: multiple directive arguments",
+  "query": "\n      {\n        field @directive(arg1: \"value\", arg2: \"value\", arg3: \"value\")\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: duplicate field arguments",
+  "query": "\n      {\n        field(arg1: \"value\", arg1: \"value\")\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: many duplicate field arguments",
+  "query": "\n      {\n        field(arg1: \"value\", arg1: \"value\", arg1: \"value\")\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: duplicate directive arguments",
+  "query": "\n      {\n        field @directive(arg1: \"value\", arg1: \"value\")\n      }\n    "
+ },
+ {
+  "name": "UniqueArgumentNamesRule: many duplicate directive arguments",
+  "query": "\n      {\n        field @directive(arg1: \"value\", arg1: \"value\", arg1: \"value\")\n      }\n    "
+ },
+ {
+  "name": "UniqueDirectivesPerLocationRule: no directives",
+  "query": "\n      fragment Test on Type {\n        field\n      }\n    "
+ },
+ {
+  "name": "UniqueDirectivesPerLocationRule: unique directives in different locations",
+  "query": "\n      fragment Test on Type @directiveA {\n        field @directiveB\n      }\n    "
+ },
+ {
+  "name": "UniqueDirectivesPerLocationRule: unique directives in same locations",
+  "query": "\n      fragment Test on Type @directiveA @directiveB {\n        field @directiveA @directiveB\n      }\n    "
+ },
+ {
+  "name": "UniqueDirectivesPerLocationRule: same directives in different locations",
+  "query": "\n      fragment Test on Type @directiveA {\n        field @directiveA\n      }\n    "
+ },
+ {
+  "name": "UniqueDirectivesPerLocationRule: same directives in similar locations",
+  "query": "\n      fragment Test on Type {\n        field @directive\n        field @directive\n      }\n    "
+ },
+ {
+  "name": "UniqueDirectivesPerLocationRule: repeatable directives in same location",
+  "query": "\n      fragment Test on Type @repeatable @repeatable {\n        field @repeatable @repeatable\n      }\n    "
+ },
+ {
+  "name": "UniqueDirectivesPerLocationRule: unknown directives must be ignored",
+  "query": "\n      type Test @unknown @unknown {\n        field: String! @unknown @unknown\n      }\n\n      extend type Test @unknown {\n        anotherField: String!\n      }\n    "
+ },
+ {
+  "name": "UniqueDirectivesPerLocationRule: duplicate directives in one location",
+  "query": "\n      fragment Test on Type {\n        field @directive @directive\n      }\n    "
+ },
+ {
+  "name": "UniqueDirectivesPerLocationRule: many duplicate directives in one location",
+  "query": "\n      fragment Test on Type {\n        field @directive @directive @directive\n      }\n    "
+ },
+ {
+  "name": "UniqueDirectivesPerLocationRule: different duplicate directives in one location",
+  "query": "\n      fragment Test on Type {\n        field @directiveA @directiveB @directiveA @directiveB\n      }\n    "
+ },
+ {
+  "name": "UniqueDirectivesPerLocationRule: duplicate directives in many locations",
+  "query": "\n      fragment Test on Type @directive @directive {\n        field @directive @directive\n      }\n    "
+ },
+ {
+  "name": "UniqueFragmentNamesRule: one fragment",
+  "query": "\n      {\n        ...fragA\n      }\n\n      fragment fragA on Type {\n        field\n      }\n    "
+ },
+ {
+  "name": "UniqueFragmentNamesRule: many fragments",
+  "query": "\n      {\n        ...fragA\n        ...fragB\n        ...fragC\n      }\n      fragment fragA on Type {\n        fieldA\n      }\n      fragment fragB on Type {\n        fieldB\n      }\n      fragment fragC on Type {\n        fieldC\n      }\n    "
+ },
+ {
+  "name": "UniqueFragmentNamesRule: inline fragments are always unique",
+  "query": "\n      {\n        ...on Type {\n          fieldA\n        }\n        ...on Type {\n          fieldB\n        }\n      }\n    "
+ },
+ {
+  "name": "UniqueFragmentNamesRule: fragment and operation named the same",
+  "query": "\n      query Foo {\n        ...Foo\n      }\n      fragment Foo on Type {\n        field\n      }\n    "
+ },
+ {
+  "name": "UniqueFragmentNamesRule: fragments named the same",
+  "query": "\n      {\n        ...fragA\n      }\n      fragment fragA on Type {\n        fieldA\n      }\n      fragment fragA on Type {\n        fieldB\n      }\n    "
+ },
+ {
+  "name": "UniqueFragmentNamesRule: fragments named the same without being referenced",
+  "query": "\n      fragment fragA on Type {\n        fieldA\n      }\n      fragment fragA on Type {\n        fieldB\n      }\n    "
+ },
+ {
+  "name": "UniqueInputFieldNamesRule: input object with fields",
+  "query": "\n      {\n        field(arg: { f: true })\n      }\n    "
+ },
+ {
+  "name": "UniqueInputFieldNamesRule: same input object within two args",
+  "query": "\n      {\n        field(arg1: { f: true }, arg2: { f: true })\n      }\n    "
+ },
+ {
+  "name": "UniqueInputFieldNamesRule: multiple input object fields",
+  "query": "\n      {\n        field(arg: { f1: \"value\", f2: \"value\", f3: \"value\" })\n      }\n    "
+ },
+ {
+  "name": "UniqueInputFieldNamesRule: allows for nested input objects with similar fields",
+  "query": "\n      {\n        field(arg: {\n          deep: {\n            deep: {\n              id: 1\n            }\n            id: 1\n          }\n          id: 1\n        })\n      }\n    "
+ },
+ {
+  "name": "UniqueInputFieldNamesRule: duplicate input object fields",
+  "query": "\n      {\n        field(arg: { f1: \"value\", f1: \"value\" })\n      }\n    "
+ },
+ {
+  "name": "UniqueInputFieldNamesRule: many duplicate input object fields",
+  "query": "\n      {\n        field(arg: { f1: \"value\", f1: \"value\", f1: \"value\" })\n      }\n    "
+ },
+ {
+  "name": "UniqueInputFieldNamesRule: nested duplicate input object fields",
+  "query": "\n      {\n        field(arg: { f1: {f2: \"value\", f2: \"value\" }})\n      }\n    "
+ },
+ {
+  "name": "UniqueOperationNamesRule: one named operation",
+  "query": "\n      query Foo {\n        field\n      }\n    "
+ },
+ {
+  "name": "UniqueOperationNamesRule: multiple operations of different types",
+  "query": "\n      query Foo {\n        field\n      }\n\n      mutation Bar {\n        field\n      }\n\n      subscription Baz {\n        field\n      }\n    "
+ },
+ {
+  "name": "UniqueOperationNamesRule: multiple operations of same name",
+  "query": "\n      query Foo {\n        fieldA\n      }\n      query Foo {\n        fieldB\n      }\n    "
+ },
+ {
+  "name": "UniqueOperationNamesRule: multiple ops of same name of different types (mutation)",
+  "query": "\n      query Foo {\n        fieldA\n      }\n      mutation Foo {\n        fieldB\n      }\n    "
+ },
+ {
+  "name": "UniqueOperationNamesRule: multiple ops of same name of different types (subscription)",
+  "query": "\n      query Foo {\n        fieldA\n      }\n      subscription Foo {\n        fieldB\n      }\n    "
+ },
+ {
+  "name": "UniqueVariableNamesRule: unique variable names",
+  "query": "\n      query A($x: Int, $y: String) { __typename }\n      query B($x: String, $y: Int) { __typename }\n    "
+ },
+ {
+  "name": "UniqueVariableNamesRule: duplicate variable names",
+  "query": "\n      query A($x: Int, $x: Int, $x: String) { __typename }\n      query B($x: String, $x: Int) { __typename }\n      query C($x: Int, $x: Int) { __typename }\n    "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Good int value",
+  "query": "\n        {\n          complicatedArgs {\n            intArgField(intArg: 2)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Good negative int value",
+  "query": "\n        {\n          complicatedArgs {\n            intArgField(intArg: -2)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Good boolean value",
+  "query": "\n        {\n          complicatedArgs {\n            booleanArgField(booleanArg: true)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Good string value",
+  "query": "\n        {\n          complicatedArgs {\n            stringArgField(stringArg: \"foo\")\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Good float value",
+  "query": "\n        {\n          complicatedArgs {\n            floatArgField(floatArg: 1.1)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Good negative float value",
+  "query": "\n        {\n          complicatedArgs {\n            floatArgField(floatArg: -1.1)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Int into Float",
+  "query": "\n        {\n          complicatedArgs {\n            floatArgField(floatArg: 1)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Int into ID",
+  "query": "\n        {\n          complicatedArgs {\n            idArgField(idArg: 1)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: String into ID",
+  "query": "\n        {\n          complicatedArgs {\n            idArgField(idArg: \"someIdString\")\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Good enum value",
+  "query": "\n        {\n          dog {\n            doesKnowCommand(dogCommand: SIT)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Enum with undefined value",
+  "query": "\n        {\n          complicatedArgs {\n            enumArgField(enumArg: UNKNOWN)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Enum with null value",
+  "query": "\n        {\n          complicatedArgs {\n            enumArgField(enumArg: NO_FUR)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: null into nullable type",
+  "query": "\n        {\n          complicatedArgs {\n            intArgField(intArg: null)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: null into nullable type",
+  "query": "\n        {\n          dog(a: null, b: null, c:{ requiredField: true, intField: null }) {\n            name\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Int into String",
+  "query": "\n        {\n          complicatedArgs {\n            stringArgField(stringArg: 1)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Float into String",
+  "query": "\n        {\n          complicatedArgs {\n            stringArgField(stringArg: 1.0)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Boolean into String",
+  "query": "\n        {\n          complicatedArgs {\n            stringArgField(stringArg: true)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Unquoted String into String",
+  "query": "\n        {\n          complicatedArgs {\n            stringArgField(stringArg: BAR)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: String into Int",
+  "query": "\n        {\n          complicatedArgs {\n            intArgField(intArg: \"3\")\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Big Int into Int",
+  "query": "\n        {\n          complicatedArgs {\n            intArgField(intArg: 829384293849283498239482938)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Unquoted String into Int",
+  "query": "\n        {\n          complicatedArgs {\n            intArgField(intArg: FOO)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Simple Float into Int",
+  "query": "\n        {\n          complicatedArgs {\n            intArgField(intArg: 3.0)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Float into Int",
+  "query": "\n        {\n          complicatedArgs {\n            intArgField(intArg: 3.333)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: String into Float",
+  "query": "\n        {\n          complicatedArgs {\n            floatArgField(floatArg: \"3.333\")\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Boolean into Float",
+  "query": "\n        {\n          complicatedArgs {\n            floatArgField(floatArg: true)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Unquoted into Float",
+  "query": "\n        {\n          complicatedArgs {\n            floatArgField(floatArg: FOO)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Int into Boolean",
+  "query": "\n        {\n          complicatedArgs {\n            booleanArgField(booleanArg: 2)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Float into Boolean",
+  "query": "\n        {\n          complicatedArgs {\n            booleanArgField(booleanArg: 1.0)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: String into Boolean",
+  "query": "\n        {\n          complicatedArgs {\n            booleanArgField(booleanArg: \"true\")\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Unquoted into Boolean",
+  "query": "\n        {\n          complicatedArgs {\n            booleanArgField(booleanArg: TRUE)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Float into ID",
+  "query": "\n        {\n          complicatedArgs {\n            idArgField(idArg: 1.0)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Boolean into ID",
+  "query": "\n        {\n          complicatedArgs {\n            idArgField(idArg: true)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Unquoted into ID",
+  "query": "\n        {\n          complicatedArgs {\n            idArgField(idArg: SOMETHING)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Int into Enum",
+  "query": "\n        {\n          dog {\n            doesKnowCommand(dogCommand: 2)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Float into Enum",
+  "query": "\n        {\n          dog {\n            doesKnowCommand(dogCommand: 1.0)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: String into Enum",
+  "query": "\n        {\n          dog {\n            doesKnowCommand(dogCommand: \"SIT\")\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Boolean into Enum",
+  "query": "\n        {\n          dog {\n            doesKnowCommand(dogCommand: true)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Unknown Enum Value into Enum",
+  "query": "\n        {\n          dog {\n            doesKnowCommand(dogCommand: JUGGLE)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Different case Enum Value into Enum",
+  "query": "\n        {\n          dog {\n            doesKnowCommand(dogCommand: sit)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Good list value",
+  "query": "\n        {\n          complicatedArgs {\n            stringListArgField(stringListArg: [\"one\", null, \"two\"])\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Empty list value",
+  "query": "\n        {\n          complicatedArgs {\n            stringListArgField(stringListArg: [])\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Null value",
+  "query": "\n        {\n          complicatedArgs {\n            stringListArgField(stringListArg: null)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Single value into List",
+  "query": "\n        {\n          complicatedArgs {\n            stringListArgField(stringListArg: \"one\")\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Incorrect item type",
+  "query": "\n        {\n          complicatedArgs {\n            stringListArgField(stringListArg: [\"one\", 2])\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Single value of incorrect type",
+  "query": "\n        {\n          complicatedArgs {\n            stringListArgField(stringListArg: 1)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Incorrect value type",
+  "query": "\n        {\n          complicatedArgs {\n            multipleReqs(req2: \"two\", req1: \"one\")\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Null value",
+  "query": "\n        {\n          complicatedArgs {\n            multipleReqs(req1: null)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Optional arg, despite required field in type",
+  "query": "\n        {\n          complicatedArgs {\n            complexArgField\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Partial object, only required",
+  "query": "\n        {\n          complicatedArgs {\n            complexArgField(complexArg: { requiredField: true })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Partial object, required field can be falsy",
+  "query": "\n        {\n          complicatedArgs {\n            complexArgField(complexArg: { requiredField: false })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Partial object, including required",
+  "query": "\n        {\n          complicatedArgs {\n            complexArgField(complexArg: { requiredField: true, intField: 4 })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Full object",
+  "query": "\n        {\n          complicatedArgs {\n            complexArgField(complexArg: {\n              requiredField: true,\n              intField: 4,\n              stringField: \"foo\",\n              booleanField: false,\n              stringListField: [\"one\", \"two\"]\n            })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Full object with fields in different order",
+  "query": "\n        {\n          complicatedArgs {\n            complexArgField(complexArg: {\n              stringListField: [\"one\", \"two\"],\n              booleanField: false,\n              requiredField: true,\n              stringField: \"foo\",\n              intField: 4,\n            })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Exactly one field",
+  "query": "\n        {\n          complicatedArgs {\n            oneOfArgField(oneOfArg: { stringField: \"abc\" })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Exactly one non-nullable variable",
+  "query": "\n        query ($string: String!) {\n          complicatedArgs {\n            oneOfArgField(oneOfArg: { stringField: $string })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Partial object, missing required",
+  "query": "\n        {\n          complicatedArgs {\n            complexArgField(complexArg: { intField: 4 })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Partial object, invalid field type",
+  "query": "\n        {\n          complicatedArgs {\n            complexArgField(complexArg: {\n              stringListField: [\"one\", 2],\n              requiredField: true,\n            })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Partial object, null to non-null field",
+  "query": "\n        {\n          complicatedArgs {\n            complexArgField(complexArg: {\n              requiredField: true,\n              nonNullField: null,\n            })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Partial object, unknown field arg",
+  "query": "\n        {\n          complicatedArgs {\n            complexArgField(complexArg: {\n              requiredField: true,\n              invalidField: \"value\"\n            })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Invalid field type",
+  "query": "\n        {\n          complicatedArgs {\n            oneOfArgField(oneOfArg: { stringField: 2 })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Exactly one null field",
+  "query": "\n        {\n          complicatedArgs {\n            oneOfArgField(oneOfArg: { stringField: null })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: More than one field",
+  "query": "\n        {\n          complicatedArgs {\n            oneOfArgField(oneOfArg: { stringField: \"abc\", intField: 123 })\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: Unknown field does not add a oneOf error",
+  "query": "\n          {\n            complicatedArgs {\n              oneOfArgField(oneOfArg: {\n                stringField: \"abc\",\n                invalidField: 123\n              })\n            }\n          }\n        "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: with directive with incorrect types",
+  "query": "\n        {\n          dog @include(if: \"yes\") {\n            name @skip(if: ENUM)\n          }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: variables with valid default values",
+  "query": "\n        query WithDefaultValues(\n          $a: Int = 1,\n          $b: String = \"ok\",\n          $c: ComplexInput = { requiredField: true, intField: 3 }\n          $d: Int! = 123\n        ) {\n          dog { name }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: variables with valid default null values",
+  "query": "\n        query WithDefaultValues(\n          $a: Int = null,\n          $b: String = null,\n          $c: ComplexInput = { requiredField: true, intField: null }\n        ) {\n          dog { name }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: variables with invalid default null values",
+  "query": "\n        query WithDefaultValues(\n          $a: Int! = null,\n          $b: String! = null,\n          $c: ComplexInput = { requiredField: null, intField: null }\n        ) {\n          dog { name }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: variables with invalid default values",
+  "query": "\n        query InvalidDefaultValues(\n          $a: Int = \"one\",\n          $b: String = 4,\n          $c: ComplexInput = \"NotVeryComplex\"\n        ) {\n          dog { name }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: variables with complex invalid default values",
+  "query": "\n        query WithDefaultValues(\n          $a: ComplexInput = { requiredField: 123, intField: \"abc\" }\n        ) {\n          dog { name }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: complex variables missing required field",
+  "query": "\n        query MissingRequiredField($a: ComplexInput = {intField: 3}) {\n          dog { name }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: list variables with invalid item",
+  "query": "\n        query InvalidItem($a: [String] = [\"one\", 2]) {\n          dog { name }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: list variables with invalid item",
+  "query": "\n        fragment InvalidItem($a: [String] = [\"one\", 2]) on Query {\n          dog { name }\n        }\n      "
+ },
+ {
+  "name": "ValuesOfCorrectTypeRule: fragment spread with invalid argument value",
+  "query": "\n        fragment GivesString on Query {\n          ...ExpectsInt(a: \"three\")\n        }\n        fragment ExpectsInt($a: Int) on Query {\n          dog { name }\n        }\n      "
+ },
+ {
+  "name": "VariablesAreInputTypesRule: unknown types are ignored",
+  "query": "\n      query Foo($a: Unknown, $b: [[Unknown!]]!) {\n        field(a: $a, b: $b)\n      }\n      fragment Bar($a: Unknown, $b: [[Unknown!]]!) on Query {\n        field(a: $a, b: $b)\n      }\n    "
+ },
+ {
+  "name": "VariablesAreInputTypesRule: input types are valid",
+  "query": "\n      query Foo($a: String, $b: [Boolean!]!, $c: ComplexInput) {\n        field(a: $a, b: $b, c: $c)\n      }\n      fragment Bar($a: String, $b: [Boolean!]!, $c: ComplexInput) on Query {\n        field(a: $a, b: $b, c: $c)\n      }\n    "
+ },
+ {
+  "name": "VariablesAreInputTypesRule: output types are invalid",
+  "query": "\n      query Foo($a: Dog, $b: [[CatOrDog!]]!, $c: Pet) {\n        field(a: $a, b: $b, c: $c)\n      }\n    "
+ },
+ {
+  "name": "VariablesAreInputTypesRule: output types on fragment arguments are invalid",
+  "query": "\n      fragment Bar($a: Dog, $b: [[CatOrDog!]]!, $c: Pet) on Query {\n        field(a: $a, b: $b, c: $c)\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Boolean => Boolean",
+  "query": "\n      query Query($booleanArg: Boolean)\n      {\n        complicatedArgs {\n          booleanArgField(booleanArg: $booleanArg)\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Boolean => Boolean within fragment",
+  "query": "\n      fragment booleanArgFrag on ComplicatedArgs {\n        booleanArgField(booleanArg: $booleanArg)\n      }\n      query Query($booleanArg: Boolean)\n      {\n        complicatedArgs {\n          ...booleanArgFrag\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Boolean => Boolean within fragment",
+  "query": "\n      query Query($booleanArg: Boolean)\n      {\n        complicatedArgs {\n          ...booleanArgFrag\n        }\n      }\n      fragment booleanArgFrag on ComplicatedArgs {\n        booleanArgField(booleanArg: $booleanArg)\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Boolean! => Boolean",
+  "query": "\n      query Query($nonNullBooleanArg: Boolean!)\n      {\n        complicatedArgs {\n          booleanArgField(booleanArg: $nonNullBooleanArg)\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Boolean! => Boolean within fragment",
+  "query": "\n      fragment booleanArgFrag on ComplicatedArgs {\n        booleanArgField(booleanArg: $nonNullBooleanArg)\n      }\n\n      query Query($nonNullBooleanArg: Boolean!)\n      {\n        complicatedArgs {\n          ...booleanArgFrag\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: [String] => [String]",
+  "query": "\n      query Query($stringListVar: [String])\n      {\n        complicatedArgs {\n          stringListArgField(stringListArg: $stringListVar)\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: [String!] => [String]",
+  "query": "\n      query Query($stringListVar: [String!])\n      {\n        complicatedArgs {\n          stringListArgField(stringListArg: $stringListVar)\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: String => [String] in item position",
+  "query": "\n      query Query($stringVar: String)\n      {\n        complicatedArgs {\n          stringListArgField(stringListArg: [$stringVar])\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: String! => [String] in item position",
+  "query": "\n      query Query($stringVar: String!)\n      {\n        complicatedArgs {\n          stringListArgField(stringListArg: [$stringVar])\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: ComplexInput => ComplexInput",
+  "query": "\n      query Query($complexVar: ComplexInput)\n      {\n        complicatedArgs {\n          complexArgField(complexArg: $complexVar)\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: ComplexInput => ComplexInput in field position",
+  "query": "\n      query Query($boolVar: Boolean = false)\n      {\n        complicatedArgs {\n          complexArgField(complexArg: {requiredArg: $boolVar})\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Boolean! => Boolean! in directive",
+  "query": "\n      query Query($boolVar: Boolean!)\n      {\n        dog @include(if: $boolVar)\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Int => Int!",
+  "query": "\n      query Query($intArg: Int) {\n        complicatedArgs {\n          nonNullIntArgField(nonNullIntArg: $intArg)\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Int => Int! within fragment",
+  "query": "\n      fragment nonNullIntArgFieldFrag on ComplicatedArgs {\n        nonNullIntArgField(nonNullIntArg: $intArg)\n      }\n\n      query Query($intArg: Int) {\n        complicatedArgs {\n          ...nonNullIntArgFieldFrag\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Int => Int! within nested fragment",
+  "query": "\n      fragment outerFrag on ComplicatedArgs {\n        ...nonNullIntArgFieldFrag\n      }\n\n      fragment nonNullIntArgFieldFrag on ComplicatedArgs {\n        nonNullIntArgField(nonNullIntArg: $intArg)\n      }\n\n      query Query($intArg: Int) {\n        complicatedArgs {\n          ...outerFrag\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: String over Boolean",
+  "query": "\n      query Query($stringVar: String) {\n        complicatedArgs {\n          booleanArgField(booleanArg: $stringVar)\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: String => [String]",
+  "query": "\n      query Query($stringVar: String) {\n        complicatedArgs {\n          stringListArgField(stringListArg: $stringVar)\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Boolean => Boolean! in directive",
+  "query": "\n      query Query($boolVar: Boolean) {\n        dog @include(if: $boolVar)\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: String => Boolean! in directive",
+  "query": "\n      query Query($stringVar: String) {\n        dog @include(if: $stringVar)\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: [String] => [String!]",
+  "query": "\n      query Query($stringListVar: [String])\n      {\n        complicatedArgs {\n          stringListNonNullArgField(stringListNonNullArg: $stringListVar)\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Int => Int! fails when variable provides null default value",
+  "query": "\n        query Query($intVar: Int = null) {\n          complicatedArgs {\n            nonNullIntArgField(nonNullIntArg: $intVar)\n          }\n        }\n      "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Int => Int! when variable provides non-null default value",
+  "query": "\n        query Query($intVar: Int = 1) {\n          complicatedArgs {\n            nonNullIntArgField(nonNullIntArg: $intVar)\n          }\n        }"
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Int => Int! when optional argument provides default value",
+  "query": "\n        query Query($intVar: Int) {\n          complicatedArgs {\n            nonNullFieldWithDefault(nonNullIntArg: $intVar)\n          }\n        }"
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Boolean => Boolean! in directive with default value with option",
+  "query": "\n        query Query($boolVar: Boolean = false) {\n          dog @include(if: $boolVar)\n        }"
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: undefined in directive with default value with option",
+  "query": "\n        {\n          dog @include(if: $x)\n        }"
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Forbids one nullable variable",
+  "query": "\n        query ($string: String) {\n          complicatedArgs {\n            oneOfArgField(oneOfArg: { stringField: $string })\n          }\n        }\n      "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: validates fragment variables defined before the operation",
+  "query": "\n        fragment A($intVar: Int) on ComplicatedArgs {\n          nonNullIntArgField(nonNullIntArg: $intVar)\n        }\n        query Query($intVar: Int!) {\n          complicatedArgs {\n            ...A(i: $intVar)\n          }\n        }\n      "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Boolean => Boolean",
+  "query": "\n        query Query($booleanArg: Boolean)\n        {\n          complicatedArgs {\n            ...A(b: $booleanArg)\n          }\n        }\n        fragment A($b: Boolean) on ComplicatedArgs {\n          booleanArgField(booleanArg: $b)\n        }\n      "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Boolean => Boolean with default value",
+  "query": "\n        query Query($booleanArg: Boolean)\n        {\n          complicatedArgs {\n            ...A(b: $booleanArg)\n          }\n        }\n        fragment A($b: Boolean = true) on ComplicatedArgs {\n          booleanArgField(booleanArg: $b)\n        }\n      "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Boolean => Boolean!",
+  "query": "\n        query Query($ab: Boolean)\n        {\n          complicatedArgs {\n            ...A(b: $ab)\n          }\n        }\n        fragment A($b: Boolean!) on ComplicatedArgs {\n          booleanArgField(booleanArg: $b)\n        }\n      "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Int => Int! fails when variable provides null default value",
+  "query": "\n        query Query($intVar: Int = null) {\n          complicatedArgs {\n            ...A(i: $intVar)\n          }\n        }\n        fragment A($i: Int!) on ComplicatedArgs {\n          nonNullIntArgField(nonNullIntArg: $i)\n        }\n      "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Int fragment arg => Int! field arg fails even when shadowed by Int! variable",
+  "query": "\n        query Query($intVar: Int!) {\n          complicatedArgs {\n            ...A(i: $intVar)\n          }\n        }\n        fragment A($intVar: Int) on ComplicatedArgs {\n          nonNullIntArgField(nonNullIntArg: $intVar)\n        }\n      "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Allows exactly one non-nullable variable",
+  "query": "\n      query ($string: String!) {\n        complicatedArgs {\n          oneOfArgField(oneOfArg: { stringField: $string })\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Undefined variable in oneOf input object",
+  "query": "\n      {\n        complicatedArgs {\n          oneOfArgField(oneOfArg: { stringField: $undefinedVariable })\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Forbids one nullable variable",
+  "query": "\n      query ($string: String) {\n        complicatedArgs {\n          oneOfArgField(oneOfArg: { stringField: $string })\n        }\n      }\n    "
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Allows using variables inside object literal in custom scalar",
+  "query": "\n      query Query($x: Float) {\n        dog {\n          distanceFrom(loc: {x: $x, y: 10.0})\n        }\n      }"
+ },
+ {
+  "name": "VariablesInAllowedPositionRule: Allows using variables inside list literal in custom scalar",
+  "query": "\n      query Query($x: Float) {\n        dog {\n          distanceFrom(loc: [$x, 10.0])\n        }\n      }"
+ }
+]

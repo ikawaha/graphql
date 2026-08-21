@@ -1,0 +1,19 @@
+[
+  {"name": "one event", "field": "messageAdded", "query": "subscription { messageAdded { body } }", "events": [{"body": "one"}]},
+  {"name": "several events, in order", "field": "messageAdded", "query": "subscription { messageAdded { body } }", "events": [{"body": "one"}, {"body": "two"}, {"body": "three"}]},
+  {"name": "no events at all", "field": "messageAdded", "query": "subscription { messageAdded { body } }", "events": []},
+  {"name": "an event with a field missing", "field": "messageAdded", "query": "subscription { messageAdded { body sender } }", "events": [{"body": "one"}]},
+  {"name": "an event that is null", "field": "messageAdded", "query": "subscription { messageAdded { body } }", "events": [null]},
+  {"name": "an alias", "field": "messageAdded", "query": "subscription { m: messageAdded { b: body } }", "events": [{"body": "one"}]},
+  {"name": "typename", "field": "messageAdded", "query": "subscription { messageAdded { __typename body } }", "events": [{"body": "one"}]},
+  {"name": "a fragment", "field": "messageAdded", "query": "subscription { messageAdded { ...F } } fragment F on Message { body }", "events": [{"body": "one"}]},
+  {"name": "a nested object", "field": "messageAdded", "query": "subscription { messageAdded { body author { name } } }", "events": [{"body": "one", "author": {"name": "Ada"}}]},
+  {"name": "a nested object that is null", "field": "messageAdded", "query": "subscription { messageAdded { author { name } } }", "events": [{"author": null}]},
+  {"name": "a non-null field given null", "field": "messageAdded", "query": "subscription { messageAdded { nonNullBody } }", "events": [{"nonNullBody": null}]},
+  {"name": "a list", "field": "messageAdded", "query": "subscription { messageAdded { tags } }", "events": [{"tags": ["a", "b"]}]},
+  {"name": "skip and include", "field": "messageAdded", "query": "subscription { messageAdded { body @skip(if: true) author @include(if: false) { name } } }", "events": [{"body": "one"}]},
+  {"name": "an argument", "field": "messageAdded", "query": "subscription { messageAdded { body } }", "events": [{"body": "one"}]},
+  {"name": "an event of the wrong shape", "field": "messageAdded", "query": "subscription { messageAdded { body } }", "events": ["not an object"]},
+  {"name": "a scalar field on the event", "field": "countAdded", "query": "subscription { countAdded }", "events": [1, 2, 3]},
+  {"name": "a scalar event that is null", "field": "countAdded", "query": "subscription { countAdded }", "events": [null]}
+]

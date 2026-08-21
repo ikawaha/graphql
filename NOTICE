@@ -1,0 +1,27 @@
+github.com/ikawaha/graphql
+
+This project is a Go port of graphql-js, the reference implementation of
+GraphQL for JavaScript.
+
+    Original work: https://github.com/graphql/graphql-js
+    Ported from:   v17.0.2 (commit 9c24501)
+    License:       MIT (Copyright (c) GraphQL Contributors)
+
+The original MIT license and copyright notice are retained in LICENSE.
+
+Test material taken from graphql-js, under the same license:
+
+    language/testdata/kitchen-sink.graphql      copied unmodified
+    language/testdata/github-schema.graphql     copied unmodified
+    validation/upstream_harness_test.go         the validation harness schema,
+                                                copied unmodified
+    validation/ported_*_test.go                 the validation rule test cases,
+                                                translated into Go tables from
+                                                src/validation/__tests__
+    schema/ported_validation_test.go            the schema validation test
+                                                cases, translated from
+                                                src/type/__tests__
+
+This is an independent port and is not endorsed by or affiliated with the
+GraphQL Foundation or the graphql-js maintainers. Behavior intentionally
+diverges from graphql-js in several places; see COMPATIBILITY.md.
