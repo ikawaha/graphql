@@ -6,11 +6,6 @@ implementation of GraphQL, targeting v17.
 Parsing, validation, execution, subscriptions, introspection and `@defer` /
 `@stream`, with no dependencies outside the standard library.
 
-> **Status.** Everything described here works and is tested. No version has
-> been tagged yet, and the library has not been through anyone else's hands, so
-> a name may still change; nothing is deprecated and nothing is planned to be
-> removed.
-
 ## Requirements
 
 Go 1.24 or later. The `omitzero` JSON tag is what lets a field that was not
@@ -237,6 +232,12 @@ Message wording is not among the differences. One corpus goes through both
 implementations and the answers are compared as text — 1,197 validation
 messages, and every response the execution corpora produce. What still differs
 is listed, and asserted to *still* differ, so closing one cannot go unnoticed.
+
+## Coming from graphql-go/graphql
+
+[MIGRATING.md](MIGRATING.md) maps the API across name by name, and lists the
+places where the two libraries give different answers to the same request —
+which is the part worth reading first, since none of them stop a build.
 
 ## Licence
 
