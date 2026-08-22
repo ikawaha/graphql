@@ -271,6 +271,11 @@ write `resolve: (payload) => payload` even when the event already is the value.
 In Go a subscriber naturally returns `<-chan Message`, so the event is used
 directly.
 
+The specification is on graphql-js's side here: `ExecuteSubscriptionEvent`
+runs the root selection set with the event as its `initialValue`. This is the
+one place the port departs from it on purpose, for what a Go channel is
+naturally a channel of.
+
 A server publishing envelopes — `{ messageAdded: msg }`, the graphql-js idiom —
 keeps working: give the root field a resolver and it is called with the event,
 exactly as in graphql-js.
@@ -388,7 +393,7 @@ that field. Go has two, and only one of them is a return value. A panic is
 caught at the same place, so a bug in one resolver costs that field and not the
 whole server, and the fields beside it still answer.
 
-What the field comes down to is an [`execution.PanicError`], carrying the value
+What the field comes down to is an `execution.PanicError`, carrying the value
 passed to panic and the stack where it happened. Neither reaches the client:
 the response says `panic in resolver: …`, and the stack is there for the server
 to log. `errors.As` reaches the PanicError and `errors.Is` reaches through it
@@ -397,8 +402,6 @@ resolver panics with can still be recognised.
 
 A resolver run alongside others is caught the same way, on the goroutine it ran
 on.
-
-[`execution.PanicError`]: https://pkg.go.dev/github.com/ikawaha/graphql/execution#PanicError
 
 **A Go zero value is not null.** A struct field of type `string` answers `""`
 for a field that can be null, because Go has no way to tell an unset string
