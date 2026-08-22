@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   pull_request:
+  schedule:
+    # Fuzzing goes looking rather than checking, so it runs on its own clock
+    # rather than holding up a pull request.
+    - cron: "17 3 * * 1"
 
 permissions:
   contents: read
@@ -35,3 +39,37 @@ jobs:
         run: go test -race -coverprofile=coverage.out ./...
       - name: coverage summary
         run: go tool cover -func=coverage.out | tail -1
+
+  # The seed corpus of every target runs in the job above, as an ordinary test.
+  # This is the part that goes looking for inputs nobody wrote down.
+  fuzz:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - package: ./language
+            target: FuzzParse
+          - package: ./language
+            target: FuzzPrintParse
+          - package: ./language
+            target: FuzzParseValue
+          - package: ./language
+            target: FuzzParseType
+          - package: ./utilities
+            target: FuzzStripIgnoredCharacters
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          check-latest: true
+      - name: go test -fuzz ${{ matrix.target }}
+        run: go test ${{ matrix.package }} -run '^$' -fuzz '^${{ matrix.target }}$' -fuzztime 120s
+      - name: upload the failing input
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuzz-${{ matrix.target }}
+          path: ${{ matrix.package }}/testdata/fuzz

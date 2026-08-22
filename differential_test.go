@@ -681,8 +681,8 @@ func TestIncremental(t *testing.T) {
 			})
 
 			payloads := []any{got.Initial}
-			// Nothing deferred leaves the channel nil, and ranging over a nil
-			// channel waits for ever.
+			// Nothing deferred leaves the sequence nil, and ranging over a
+			// nil sequence panics.
 			if got.Subsequent != nil {
 				for part := range got.Subsequent {
 					payloads = append(payloads, part)

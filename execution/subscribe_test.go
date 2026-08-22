@@ -669,3 +669,60 @@ func TestSubscribe_ANonNullRootField(t *testing.T) {
 		t.Errorf("response = %s, want data to be null", responses[0])
 	}
 }
+
+// TestSubscribe_ExactlyOneRootField covers where the "one field" rule is
+// enforced.
+//
+// The specification puts it in CreateSourceEventStream, which raises a request
+// error when the root selection set does not collect to exactly one field.
+// graphql-js leaves it to the SingleFieldSubscriptions validation rule alone,
+// so an unchecked document there starts a stream for one of the fields; here
+// the executor asks as well, and refuses.
+//
+// What counts is the collected field, so a field skipped by a directive is not
+// one, and the same field twice is one.
+func TestSubscribe_ExactlyOneRootField(t *testing.T) {
+	tests := []struct {
+		name    string
+		query   string
+		refused bool
+	}{
+		{"one field", `subscription { messageAdded { body } }`, false},
+		{"two fields", `subscription { messageAdded { body } numbers }`, true},
+		{"one of them skipped", `subscription { messageAdded { body } numbers @skip(if: true) }`, false},
+		{"the same field twice", `subscription { messageAdded { body } messageAdded { sender } }`, false},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			source := make(chan message, 1)
+			source <- message{Body: "hello"}
+			close(source)
+
+			s := buildSchema(t, subscriptionSDL)
+			doc, err := language.ParseString(test.query)
+			if err != nil {
+				t.Fatal(err)
+			}
+			// Not validated: the point is that the executor asks too.
+			got := execution.Subscribe(context.Background(), execution.Request{
+				Schema:    s,
+				Document:  doc,
+				RootValue: map[string]any{"messageAdded": source},
+			})
+			if !test.refused {
+				if got.Events == nil {
+					t.Fatalf("refused: %v", got.Errors)
+				}
+				collect(t, got.Events)
+				return
+			}
+			if got.Events != nil {
+				t.Fatal("a stream was started for a subscription selecting more than one field")
+			}
+			if len(got.Errors) != 1 ||
+				!strings.Contains(got.Errors[0].Message, "must select exactly one field") {
+				t.Errorf("errors were %v", got.Errors)
+			}
+		})
+	}
+}

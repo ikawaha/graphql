@@ -358,6 +358,16 @@ behind them needs no resolver at all. A value says its own name through a
 `GraphQLTypeName() string` method, a `__typename` key, or the name of its
 struct, in that order.
 
+**A subscription selecting more than one field is refused before it starts.**
+The specification's `CreateSourceEventStream` raises a request error where the
+root selection set does not collect to exactly one field. graphql-js leaves
+that to the `SingleFieldSubscriptions` validation rule, so `subscribe` on an
+unchecked document picks one of the fields and starts a stream for it. Here the
+check is where the specification puts it as well, so a document that skipped
+validation is refused rather than answered arbitrarily. What counts is the
+collected field, as it is there: `{ a b @skip(if: true) }` is one field, and
+`{ a a }` is one field.
+
 **A subscription's stream is a channel.** graphql-js asks a subscribe resolver
 for an async iterable; here it is a channel, and the error for a resolver that
 returns something else says so rather than repeating a name for something Go
