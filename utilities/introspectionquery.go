@@ -90,21 +90,25 @@ const typeRefDepth = 9
 
 // maxTypeRefDepth is as far as [WithTypeDepth] will go. Past this the query
 // says more about the client than about the schema, and a server reading it
-// pays for every level.
+// pays for every level. graphql-js draws the line at the same hundred.
 const maxTypeRefDepth = 100
 
 // WithTypeDepth sets how many wrappers a type reference is asked to unfold,
 // which defaults to nine.
 //
 // A depth of zero asks for none, which suits a client that only wants the
-// names of things. Anything beyond a hundred, or below zero, is left at the
-// default; graphql-js raises an error there, and this is the same refusal
-// without a way to fail.
+// names of things, and so does any negative depth: graphql-js unfolds nothing
+// once the level it is counting down reaches zero, whichever side of it the
+// caller started on.
+//
+// A depth beyond a hundred is brought back to a hundred. graphql-js refuses
+// one outright, but this returns a query rather than an error or nothing, so
+// there is no way to refuse; answering with the most that was ever going to be
+// useful is the nearest thing to it, and is at least more than was asked for
+// rather than less.
 func WithTypeDepth(n int) IntrospectionOption {
 	return func(o *introspectionOptions) {
-		if n >= 0 && n <= maxTypeRefDepth {
-			o.typeDepth = n
-		}
+		o.typeDepth = min(max(n, 0), maxTypeRefDepth)
 	}
 }
 

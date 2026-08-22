@@ -196,12 +196,23 @@ deprecated `parseLiteral` took. The older incremental payload format is *not*
 among them — graphql-js keeps it and so does this; see the incremental
 delivery section below.
 
+**An introspection depth beyond a hundred is brought back rather than
+refused.** `getIntrospectionQuery({ typeDepth })` throws above a hundred;
+`utilities.WithTypeDepth` is an option on a function that returns a query and
+nothing else, so it has no way to fail. It answers with a hundred — the most
+graphql-js would ever have allowed — rather than quietly with the default,
+which would hand back a query the caller did not ask for and could not tell
+apart from one they did. Below zero the two agree: graphql-js unfolds nothing
+once the level it counts down reaches zero, and so does this.
+
 **No tracing channels, no dev mode, no version constant.** graphql-js's
 `diagnostics` publishes to Node's `diagnostics_channel`, and `devMode` turns on
 the cross-realm `instanceof` check that a Go build cannot need. Neither has a
-counterpart. A Go program that wants to time a request wraps `Do`, or reaches
-for `runtime/trace`. There is no `version` either: a Go module's version is the
-one the module system resolved, and a constant beside it could only disagree.
+counterpart. A Go program that wants to time a request reaches for
+`runtime/trace`, or stands in for a stage with `Params.Harness` — graphql-js's
+own harness, which is ported and does cover parse, validate and execute. There
+is no `version` either: a Go module's version is the one the module system
+resolved, and a constant beside it could only disagree.
 
 ## Walking a tree
 

@@ -104,23 +104,33 @@ func TestPortedIntrospectionQuery(t *testing.T) {
 }
 
 // TestPortedIntrospectionQuery_TypeDepth is graphql-js's typeDepth option:
-// how many wrappers a type reference is asked to unfold. graphql-js throws
-// above a hundred; an option cannot fail here, so the depth is left at the
-// default instead.
+// how many wrappers a type reference is asked to unfold.
+//
+// The counts are what graphql-js produces for the same option, taken from
+// running it. The one place the two part is a depth beyond a hundred, where
+// graphql-js throws and an option here cannot.
 func TestPortedIntrospectionQuery_TypeDepth(t *testing.T) {
 	count := func(q string) int { return strings.Count(q, "ofType {") }
 
 	if got, want := count(utilities.IntrospectionQuery()), 9; got != want {
 		t.Errorf("by default unfolds %d levels, want %d", got, want)
 	}
-	for _, depth := range []int{0, 1, 3, 100} {
-		if got := count(utilities.IntrospectionQuery(utilities.WithTypeDepth(depth))); got != depth {
-			t.Errorf("WithTypeDepth(%d) unfolds %d levels", depth, got)
-		}
-	}
-	for _, depth := range []int{101, -1} {
-		if got, want := count(utilities.IntrospectionQuery(utilities.WithTypeDepth(depth))), 9; got != want {
-			t.Errorf("WithTypeDepth(%d) unfolds %d levels, want the default %d", depth, got, want)
+	for _, test := range []struct{ asked, want int }{
+		{0, 0},
+		{1, 1},
+		{3, 3},
+		{100, 100},
+		// graphql-js unfolds nothing once the level it counts down reaches
+		// zero, whichever side of it the caller started on.
+		{-1, 0},
+		{-99, 0},
+		// Beyond what graphql-js allows at all, brought back to the most it
+		// does allow rather than quietly to the default.
+		{101, 100},
+		{1000, 100},
+	} {
+		if got := count(utilities.IntrospectionQuery(utilities.WithTypeDepth(test.asked))); got != test.want {
+			t.Errorf("WithTypeDepth(%d) unfolds %d levels, want %d", test.asked, got, test.want)
 		}
 	}
 	// Asking for everything says nothing about how deep to unfold.
