@@ -7,7 +7,6 @@ import (
 	"reflect"
 	"strings"
 	"testing"
-	"time"
 
 	"github.com/ikawaha/graphql/execution"
 	"github.com/ikawaha/graphql/language"
@@ -59,18 +58,10 @@ func runIncrementally(
 	if result.Subsequent == nil {
 		return payloads
 	}
-	timeout := time.After(5 * time.Second)
-	for {
-		select {
-		case payload, open := <-result.Subsequent:
-			if !open {
-				return payloads
-			}
-			payloads = append(payloads, marshal(t, payload))
-		case <-timeout:
-			t.Fatal("the response did not finish within five seconds")
-		}
+	for payload := range result.Subsequent {
+		payloads = append(payloads, marshal(t, payload))
 	}
+	return payloads
 }
 
 func marshal(t *testing.T, v any) string {
@@ -531,14 +522,8 @@ func assemble(ctx context.Context, t *testing.T, s *schema.Schema, query string,
 	}
 
 	seen := map[string]bool{}
-	timeout := time.After(5 * time.Second)
-	for done := false; !done; {
-		select {
-		case payload, open := <-result.Subsequent:
-			if !open {
-				done = true
-				break
-			}
+	for payload := range result.Subsequent {
+		{
 			for _, pending := range payload.Pending {
 				paths[pending.ID] = pending.Path
 			}
@@ -577,8 +562,6 @@ func assemble(ctx context.Context, t *testing.T, s *schema.Schema, query string,
 					}
 				}
 			}
-		case <-timeout:
-			t.Fatal("the response did not finish within five seconds")
 		}
 	}
 	return assembled
@@ -754,47 +737,63 @@ func TestExecuteIncrementally_ErrorsInAPayload(t *testing.T) {
 	})
 }
 
-// A caller who has given up should not be made to wait for the rest, and the
-// channel closes rather than leaving them reading for ever.
+// A caller who has given up is not made to do the rest of the work: the
+// deferred part runs while the sequence is ranged over, so not ranging it, or
+// stopping part way, is how a caller stops paying for it.
 func TestExecuteIncrementally_Cancellation(t *testing.T) {
 	s := buildSchema(t, incrementalSDL)
 	root := map[string]any{"names": make([]any, 100)}
 	for i := range root["names"].([]any) {
 		root["names"].([]any)[i] = "name"
 	}
-
-	ctx, cancel := context.WithCancel(context.Background())
 	doc, err := language.ParseString(`{ names @stream(initialCount: 1) }`)
 	if err != nil {
 		t.Fatal(err)
 	}
-	result := execution.ExecuteIncrementally(ctx,
-		execution.Request{Schema: s, Document: doc, RootValue: root})
-	if result.Subsequent == nil {
-		t.Fatal("nothing was deferred")
+	start := func(ctx context.Context) execution.IncrementalResult {
+		t.Helper()
+		result := execution.ExecuteIncrementally(ctx,
+			execution.Request{Schema: s, Document: doc, RootValue: root})
+		if result.Subsequent == nil {
+			t.Fatal("nothing was deferred")
+		}
+		return result
 	}
 
-	// Take a couple, then give up.
-	for range 2 {
-		select {
-		case <-result.Subsequent:
-		case <-time.After(5 * time.Second):
-			t.Fatal("no payload arrived")
+	t.Run("a cancelled request gives nothing", func(t *testing.T) {
+		ctx, cancel := context.WithCancel(context.Background())
+		result := start(ctx)
+		cancel()
+		for range result.Subsequent {
+			t.Error("a payload arrived after the request was cancelled")
 		}
-	}
-	cancel()
+	})
 
-	timeout := time.After(5 * time.Second)
-	for {
-		select {
-		case _, open := <-result.Subsequent:
-			if !open {
-				return
-			}
-		case <-timeout:
-			t.Fatal("the stream did not close after the context was cancelled")
+	t.Run("stopping part way is allowed", func(t *testing.T) {
+		result := start(context.Background())
+		taken := 0
+		for range result.Subsequent {
+			taken++
+			break
 		}
-	}
+		if taken != 1 {
+			t.Errorf("took %d payloads, wanted one", taken)
+		}
+	})
+
+	t.Run("ranging again gives nothing", func(t *testing.T) {
+		result := start(context.Background())
+		first := 0
+		for range result.Subsequent {
+			first++
+		}
+		if first == 0 {
+			t.Fatal("the first range gave nothing")
+		}
+		for range result.Subsequent {
+			t.Error("the response came a second time")
+		}
+	})
 }
 
 // A mutation's root fields run in order, and deferring part of one must not

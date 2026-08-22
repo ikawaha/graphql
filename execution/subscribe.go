@@ -186,27 +186,25 @@ func createSourceEventStream(ctx context.Context, req Request) (*startedSubscrip
 		VariableValues: variables.Values(),
 	}
 
-	// Where the source comes from, in the order graphql-js looks: the field's
-	// own subscriber, then the one the request supplied, then the ordinary
-	// resolver — which, by default, reads the root value, so a server can put
-	// the channel there and write no resolver at all.
+	// Where the source comes from: the field's own subscriber, then the one
+	// the request supplied, then the default resolver — which reads the root
+	// value, so a server can put the channel there and write no subscriber at
+	// all.
+	//
+	// The field's ordinary resolver is not in this list, and neither is
+	// [Request.FieldResolver]. The specification gives a subscription root
+	// field two internal functions, ResolveFieldEventStream for the stream and
+	// ResolveFieldValue for each event's value, and says the first is
+	// "intentionally similar" to the second rather than the same. Both are
+	// used, at different moments, so a field that has only a value resolver
+	// must not have it called here: it would be asked for a channel and answer
+	// with a value. graphql-js looks in the same three places.
 	resolver := def.Subscribe
 	if resolver == nil {
 		resolver = req.SubscribeResolver
 	}
 	if resolver == nil {
-		resolver = def.Resolve
-	}
-	if resolver == nil {
-		resolver = req.FieldResolver
-	}
-	if resolver == nil {
 		resolver = DefaultResolver
-	}
-	if resolver == nil {
-		return none, []*gqlerror.Error{gqlerror.New(
-			fmt.Sprintf("Field %q of the subscription root type has no subscriber.", name),
-			gqlerror.WithNodes(field))}
 	}
 
 	// A caller who has already given up must not have a stream opened for

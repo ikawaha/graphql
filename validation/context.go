@@ -172,7 +172,9 @@ func (c *Context) ReportError(err *gqlerror.Error) {
 	if c.full || err == nil {
 		return
 	}
-	if len(c.errors) >= c.maxErrors {
+	// A negative bound is no bound, which is how a caller asks for all of
+	// them; graphql-js passes Infinity, which Go has no int for.
+	if c.maxErrors >= 0 && len(c.errors) >= c.maxErrors {
 		c.errors = append(c.errors, gqlerror.New(
 			"Too many validation errors, error limit reached. Validation aborted."))
 		c.full = true

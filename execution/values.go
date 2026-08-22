@@ -55,7 +55,9 @@ func coerceVariableValuesUpTo(
 	// reached is kept, with one last error saying there was more.
 	add := func(found ...*gqlerror.Error) bool {
 		for _, one := range found {
-			if maxErrors > 0 && len(errs) >= maxErrors {
+			// A negative bound is no bound, which is how a caller asks for
+			// all of them; graphql-js passes Infinity.
+			if maxErrors >= 0 && len(errs) >= maxErrors {
 				errs = append(errs, gqlerror.New(
 					"Too many errors processing variables, error limit reached. Execution aborted."))
 				return true
@@ -165,6 +167,54 @@ func (o argumentOwner) blame(name string) string {
 		owner = "@" + o.directive.Name()
 	}
 	return "Argument " + quote(owner+"("+name+":)")
+}
+
+// ArgumentValues returns the arguments a field was written with, coerced into
+// the form a resolver receives.
+//
+// The executor does this for every field it resolves, so a server answering
+// requests has no reason to call it. It is here for a caller doing the
+// executor's job itself — walking a document against a schema, or working out
+// what a field would be called with without running it.
+//
+// An argument left out falls back to its default, and so does one whose value
+// is a variable the request omitted. A value that will not coerce is returned
+// as an error rather than left out, which is the difference between this and
+// what validation would have said about the same document.
+//
+// graphql-js calls this getArgumentValues, and throws where this returns.
+func ArgumentValues(
+	def *schema.Field,
+	node *language.Field,
+	variables schema.VariableValues,
+) (schema.Arguments, *gqlerror.Error) {
+	if def == nil || node == nil {
+		return schema.Arguments{}, nil
+	}
+	return coerceArgumentValues(
+		argumentOwner{field: def}, def.Args, node.Arguments, variables, node)
+}
+
+// DirectiveValues returns the arguments a directive was written with, and
+// whether it was written at all.
+//
+// The directives are those of one node — a field's, a fragment spread's — and
+// the definition says which of them is being asked about. Nothing written
+// means no arguments and false, which is how @skip and @include tell "not
+// there" from "there and false".
+//
+// A directive whose arguments will not coerce is reported as not written.
+// Validation has already refused such a document, and for one that skipped
+// validation this is the reading that leaves the response closest to what was
+// asked for.
+//
+// graphql-js calls this getDirectiveValues.
+func DirectiveValues(
+	def *schema.Directive,
+	directives []*language.Directive,
+	variables schema.VariableValues,
+) (schema.Arguments, bool) {
+	return directiveValues(def, directives, variables)
 }
 
 // coerceArgumentValues turns the arguments written on a field or directive

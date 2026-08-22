@@ -3,6 +3,7 @@ package execution
 import (
 	"context"
 	"encoding/json"
+	"iter"
 	"sort"
 	"strconv"
 	"strings"
@@ -18,13 +19,21 @@ import (
 type IncrementalResult struct {
 	// Initial is the response that can be sent straight away.
 	Initial InitialResult
-	// Subsequent carries the rest and is closed when there is no more. It is
-	// nil when the document deferred nothing after all, in which case Initial
-	// is the whole response — a nil channel never yields, so a caller ranging
-	// over this without looking would wait for ever.
+	// Subsequent carries the rest. It is nil when the document deferred
+	// nothing after all, in which case Initial is the whole response, so a
+	// caller has to look before ranging over it: ranging over a nil sequence
+	// is a panic, not an empty one.
 	//
-	// A caller must read from it until it closes, or cancel the context.
-	Subsequent <-chan SubsequentResult
+	// Nothing deferred is worked on until this is ranged over, and the work
+	// happens on the goroutine that ranges. A caller that reads the initial
+	// response and stops has cost itself nothing, which is what a client
+	// hanging up should come to; graphql-js is lazy in the same place and for
+	// the same reason. Stopping part way through is allowed and asks for no
+	// cleanup — breaking out of the range is how a caller gives up.
+	//
+	// It carries the response once. Ranging a second time gives nothing, as
+	// ranging a drained channel would.
+	Subsequent iter.Seq[SubsequentResult]
 }
 
 // InitialResult is the first payload of an incremental response.
@@ -122,11 +131,18 @@ type CompletedResult struct {
 // few. Both let a server answer the parts of a query it can answer quickly
 // without waiting for the parts it cannot.
 //
-// The first payload comes back directly. The rest arrive on
+// The first payload comes back directly. The rest are ranged over on
 // [IncrementalResult.Subsequent], and the last of them says hasNext: false. A
 // document that defers nothing gets a first payload that is the whole response
-// and a nil channel, which is the way to tell an ordinary response from one
-// that has more to come.
+// and a nil sequence, which is the way to tell an ordinary response from one
+// that has more to come — and which a caller has to check, since ranging over
+// a nil sequence panics.
+//
+// The deferred part does not run until it is ranged over. A caller that writes
+// the first response and stops, because the client hung up or because it only
+// ever wanted that much, has not paid for the rest. graphql-js waits for the
+// same moment, and its enableEarlyExecution asks not to; there is no such
+// option here, since the work would have nowhere to go.
 //
 // The schema must declare @defer and @stream for a document to use them, since
 // neither is one of the directives every schema has; [schema.Defer] and
@@ -189,7 +205,7 @@ func ExecuteIncrementally(ctx context.Context, req Request) IncrementalResult {
 	return IncrementalResult{Initial: initial, Subsequent: e.publish(ctx, work)}
 }
 
-// publish runs the deferred work and sends what it produced.
+// publish runs the deferred work and gives what it produced.
 //
 // Everything ready at the same moment goes in one payload, which is what a
 // client is best served by: it merges a whole payload into the response at
@@ -198,10 +214,18 @@ func ExecuteIncrementally(ctx context.Context, req Request) IncrementalResult {
 // too and joins the same one; a synchronous run therefore has exactly one
 // payload after the first, as graphql-js does when nothing it is waiting on
 // is a promise.
-func (e *executor) publish(ctx context.Context, work []*pendingItem) <-chan SubsequentResult {
-	out := make(chan SubsequentResult)
-	go func() {
-		defer close(out)
+//
+// None of it runs until the sequence is ranged over. That is what makes the
+// work a client never waits for work a server never does.
+func (e *executor) publish(ctx context.Context, work []*pendingItem) iter.Seq[SubsequentResult] {
+	// Ranging a second time gives nothing, as ranging a drained channel
+	// would: the work has been done and the pieces handed over already.
+	spent := false
+	return func(yield func(SubsequentResult) bool) {
+		if spent {
+			return
+		}
+		spent = true
 
 		var result SubsequentResult
 		// What a piece produced is held until the run is over rather than put
@@ -256,12 +280,11 @@ func (e *executor) publish(ctx context.Context, work []*pendingItem) <-chan Subs
 			result.Incremental = append(result.Incremental, piece.payload)
 		}
 
-		select {
-		case out <- result:
-		case <-ctx.Done():
+		if ctx.Err() != nil {
+			return
 		}
-	}()
-	return out
+		yield(result)
+	}
 }
 
 // finish records that a piece was delivered, and says which announcements had

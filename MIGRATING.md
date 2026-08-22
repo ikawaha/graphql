@@ -282,51 +282,128 @@ for result := range sub.Events {
 }
 ```
 
-The event value becomes the root value in both, so payload shapes carry over.
-graphql-go requires the `Subscribe` resolver to return exactly a
+**The payload means something different.** graphql-go, like graphql-js, makes
+each event the root value and resolves the root field from it, so a server
+publishes envelopes — `{"messageAdded": msg}` — and the default resolver reads
+the key out. Here the event *is* the root field's value, because a Go
+subscriber naturally returns `<-chan Message` rather than a channel of
+envelopes. A server that publishes envelopes keeps working by giving the root
+field a resolver, which is called with the event exactly as in graphql-go:
+
+```go
+s.SubscriptionType().Field("messageAdded").Resolve = func(
+    _ context.Context, event any, _ graphql.Arguments, _ *graphql.ResolveInfo,
+) (any, error) {
+    return event.(map[string]any)["messageAdded"], nil
+}
+```
+
+graphql-go also requires the `Subscribe` resolver to return exactly a
 `chan interface{}`; here any channel that can be received from will do,
 including a typed one.
 
 ## What is not here
 
-**Extension hooks.** graphql-go's `Extension` interface — `ParseDidStart`,
-`ValidationDidStart`, `ExecutionDidStart`, `ResolveFieldDidStart` — has no
-counterpart, and `Result` has no `Extensions` member to report into. `Do` is
-only the composition of `language.ParseString`,
-`validation.ValidateWithOptions` and `execution.Execute`, so a server that
-wants to time the three stages, or to do anything between them, calls them
-itself. Per-field timing means wrapping the resolvers.
+**Per-field and result-level extension data.** graphql-go's `Extension`
+interface has four hooks. Three of them — `ParseDidStart`,
+`ValidationDidStart`, `ExecutionDidStart` — are `Params.Harness` here, which
+stands in for any of those stages:
+
+```go
+graphql.Do(ctx, graphql.Params{
+    Schema: s, Query: q,
+    Harness: &graphql.Harness{
+        Execute: func(ctx context.Context, req execution.Request) execution.Result {
+            defer trace(ctx, "execute")()
+            return execution.Execute(ctx, req)
+        },
+    },
+})
+```
+
+What is missing is the fourth, `ResolveFieldDidStart`, which means wrapping the
+resolvers; and `Result` has no `Extensions` member, so a server wanting one in
+the response adds it when it writes the response out.
 
 **The `DateTime` scalar.** graphql-go ships one; graphql-js does not, so
-neither does this. It is a dozen lines to write:
+neither does this. Written out, with the three things worth getting right:
 
 ```go
 var DateTime = schema.NewScalar(schema.ScalarConfig{
     Name:        "DateTime",
-    Description: value.Just("An RFC 3339 date and time."),
+    Description: value.Just("An RFC 3339 date and time, to nanosecond precision."),
     CoerceOutputValue: func(internal any) (value.Maybe[any], error) {
         t, ok := internal.(time.Time)
         if !ok {
             return value.Nothing[any](), nil
         }
-        return value.Just[any](t.Format(time.RFC3339)), nil
+        text, err := t.MarshalText()
+        if err != nil {
+            return value.Nothing[any](), err
+        }
+        return value.Just[any](string(text)), nil
     },
     CoerceInputValue: func(external any) (value.Maybe[any], error) {
         s, ok := external.(string)
         if !ok {
             return value.Nothing[any](), nil
         }
-        t, err := time.Parse(time.RFC3339, s)
-        if err != nil {
+        var t time.Time
+        if err := t.UnmarshalText([]byte(s)); err != nil {
             return value.Nothing[any](), err
         }
         return value.Just[any](t), nil
+    },
+    ValueToLiteral: func(external any, _ schema.Type) (language.Value, error) {
+        s, ok := external.(string)
+        if !ok {
+            return nil, fmt.Errorf("DateTime: expected a string, got %T", external)
+        }
+        var t time.Time
+        if err := t.UnmarshalText([]byte(s)); err != nil {
+            return nil, err
+        }
+        return &language.StringValue{Value: s}, nil
     },
 })
 ```
 
 Answering with nothing says the value does not fit; returning an error says so
-in the coercer's own words.
+in the coercer's own words, which is what the caller sees.
+
+**`MarshalText`, not `Format(time.RFC3339)`.** That layout carries no
+fractional second, so formatting with it drops the sub-second part silently.
+`MarshalText` writes RFC 3339 to nanoseconds and also refuses the timestamps Go
+can hold but the format cannot carry — a year outside `[0,9999]`, an offset of
+a day or more — which `Format` would emit as a string no client can parse. It
+is what graphql-go's own scalar uses, and what `encoding/json` does for a
+`time.Time`, so the wire format is unchanged by the move.
+
+Trailing zeros are trimmed, so a whole second is written without a fraction and
+a tenth as `.1`. A schema promising a constant width wants the layout spelt out
+— `"2006-01-02T15:04:05.000000000Z07:00"` — on output only; parsing with it
+would reject every timestamp that has no fraction.
+
+**A default is the external value.** `ArgumentConfig.Default` holds the value
+in the form a caller would send, not the form a resolver receives, so it is the
+string:
+
+```go
+schema.NewArgument("since", schema.ArgumentConfig{
+    Type:    DateTime,
+    Default: schema.DefaultValue("2024-01-01T00:00:00Z"),
+})
+```
+
+A default is checked by running it through the *input* coercer, so a
+`time.Time` there is rejected by `ValidateSchema`, which names the string it
+should have been. `ValueToLiteral` is what writes the default back out when the
+schema is printed, and it too is handed the external value — omit it and the
+default validates but goes missing from the printed schema.
+
+**`*time.Time` needs no handling.** graphql-go's scalar has a case for it; here
+the executor follows the pointer before the coercer is reached, and a nil one
+is null.
 
 **A `func() interface{}` in a source map.** graphql-go calls a map value of
 that type. Here it is returned as it is; use a resolver.

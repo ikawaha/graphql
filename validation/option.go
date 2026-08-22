@@ -37,17 +37,20 @@ func WithRules(rules ...Rule) Option {
 }
 
 // WithMaxErrors bounds how many problems are reported before the check gives
-// up. It defaults to 100.
+// up. Saying nothing bounds it at 100.
 //
 // The cap is there because a document that is wrong in a thousand ways
 // produces a response nobody reads to the end, and finding all thousand costs
 // the server something. Raising it is for tooling that really does want them
 // all; lowering it is for a server that would rather answer quickly.
+//
+// Zero is a bound like any other: the first problem is already one too many,
+// so the answer is the "Too many validation errors" message alone. A negative
+// number asks for no bound at all, which is what graphql-js says with
+// Infinity.
 func WithMaxErrors(n int) Option {
 	return func(o *options) {
-		if n > 0 {
-			o.maxErrors = n
-		}
+		o.maxErrors = n
 	}
 }
 

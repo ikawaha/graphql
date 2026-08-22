@@ -81,7 +81,7 @@ func TestDo_MaxErrors(t *testing.T) {
 	}
 
 	capped := graphql.Do(context.Background(), graphql.Params{
-		Schema: s, Query: query, MaxErrors: 2,
+		Schema: s, Query: query, MaxErrors: graphql.Just(2),
 	})
 	// The cap is reached and the walk gives up, which is itself reported.
 	if len(capped.Errors) > 3 {

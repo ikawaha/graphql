@@ -139,6 +139,11 @@ type Params struct {
 	// wants; a rule of a server's own goes alongside them:
 	//
 	//	Rules: append(slices.Clone(validation.SpecifiedRules), myRule)
+	//
+	// A list that is empty but not nil checks nothing, which is not the same
+	// as nil. Say [Params.SkipValidation] instead where that is what is meant:
+	// it says so in its name, and execution is written to assume its input has
+	// been checked.
 	Rules []validation.Rule
 	// SkipValidation runs the document without checking it first.
 	//
@@ -165,13 +170,22 @@ type Params struct {
 	// value is one of it.
 	TypeResolver schema.TypeResolver
 
+	// Harness replaces the stages the request goes through — parsing,
+	// checking, running — with a server's own. Nil runs the standard ones,
+	// which is what almost every request wants; see [Harness].
+	Harness *Harness
+
 	// MaxErrors bounds how many problems checking the document reports before
-	// it gives up. Zero means the default, which is 100.
-	MaxErrors int
+	// it gives up.
+	//
+	// Unset means the default, which is 100. Zero is a bound like any other:
+	// the first problem is already one too many. A negative number means no
+	// bound at all.
+	MaxErrors Maybe[int]
 	// MaxCoercionErrors bounds how many problems with the request's variables
-	// are reported before the rest are given up on. Zero means the default,
-	// which is fifty; a negative number means no bound at all.
-	MaxCoercionErrors int
+	// are reported before the rest are given up on, on the same terms as
+	// MaxErrors. Unset means the default, which is fifty.
+	MaxCoercionErrors Maybe[int]
 	// HideSuggestions leaves the "Did you mean …?" out of every message, both
 	// while the document is being checked and while it runs.
 	//
@@ -195,24 +209,25 @@ type Params struct {
 // A document using @defer or @stream cannot be answered with one response; use
 // [DoIncrementally] for those, and [Subscribe] for a subscription.
 func Do(ctx context.Context, params Params) Result {
-	req, errs := params.request()
+	req, h, errs := params.request()
 	if len(errs) > 0 {
 		return Result{Errors: errs}
 	}
-	return execution.Execute(ctx, req)
+	return h.Execute(ctx, req)
 }
 
 // DoIncrementally parses, checks and runs a request, delivering what @defer
 // and @stream ask to be delayed after the rest.
 //
-// The first payload comes back directly and the rest arrive on a channel; see
-// [execution.ExecuteIncrementally] for what a caller owes that channel.
+// The first payload comes back directly and the rest are ranged over. Nothing
+// deferred runs until they are, so a caller that sends the first response and
+// stops has not paid for the rest; see [execution.ExecuteIncrementally].
 func DoIncrementally(ctx context.Context, params Params) IncrementalResult {
-	req, errs := params.request()
+	req, h, errs := params.request()
 	if len(errs) > 0 {
 		return IncrementalResult{Initial: execution.InitialResult{Errors: errs}}
 	}
-	return execution.ExecuteIncrementally(ctx, req)
+	return h.ExecuteIncrementally(ctx, req)
 }
 
 // DoLegacyIncrementally is [DoIncrementally] in the payload format that came
@@ -222,11 +237,11 @@ func DoIncrementally(ctx context.Context, params Params) IncrementalResult {
 // See [execution.ExecuteLegacyIncrementally] for how the two differ, which is
 // in more than the shape of a payload.
 func DoLegacyIncrementally(ctx context.Context, params Params) LegacyIncrementalResult {
-	req, errs := params.request()
+	req, h, errs := params.request()
 	if len(errs) > 0 {
 		return LegacyIncrementalResult{Initial: execution.LegacyInitialResult{Errors: errs}}
 	}
-	return execution.ExecuteLegacyIncrementally(ctx, req)
+	return h.ExecuteLegacyIncrementally(ctx, req)
 }
 
 // Subscribe parses, checks and starts a subscription.
@@ -235,57 +250,61 @@ func DoLegacyIncrementally(ctx context.Context, params Params) LegacyIncremental
 // [execution.Subscribe] for what a caller owes that channel and for how a
 // server produces the events.
 func Subscribe(ctx context.Context, params Params) SubscriptionResult {
-	req, errs := params.request()
+	req, h, errs := params.request()
 	if len(errs) > 0 {
 		return SubscriptionResult{Errors: errs}
 	}
-	return execution.Subscribe(ctx, req)
+	return h.Subscribe(ctx, req)
 }
 
 // request turns the parameters into something to run, parsing and checking the
 // document on the way.
-func (p Params) request() (execution.Request, []*Error) {
+func (p Params) request() (execution.Request, Harness, []*Error) {
+	h := p.harness()
 	if p.Schema == nil {
-		return execution.Request{}, []*Error{gqlerror.New("Must provide a schema.")}
+		return execution.Request{}, h, []*Error{gqlerror.New("Must provide a schema.")}
 	}
 	// What is wrong with the schema is answered before the document is looked
 	// at, and each thing separately, as graphql-js answers it. A schema the
 	// server never checked is caught here rather than part way through a
 	// response. The answer is worked out once per schema.
 	if problems := schema.ValidateSchema(p.Schema); len(problems) > 0 {
-		return execution.Request{}, problems
+		return execution.Request{}, h, problems
 	}
 
 	doc := p.Document
 	if doc == nil {
 		if p.Query == "" {
-			return execution.Request{}, []*Error{gqlerror.New("Must provide a query.")}
+			return execution.Request{}, h, []*Error{gqlerror.New("Must provide a query.")}
 		}
-		parsed, err := language.ParseString(p.Query, p.ParseOptions...)
+		parsed, err := h.Parse(p.Query, p.ParseOptions...)
 		if err != nil {
 			// A syntax error already knows where it is; this keeps that.
-			return execution.Request{}, []*Error{gqlerror.Ensure(err)}
+			return execution.Request{}, h, []*Error{gqlerror.Ensure(err)}
 		}
 		doc = parsed
 	}
 
 	if !p.SkipValidation {
-		// An empty list of rules means the ones the specification requires,
-		// not "check nothing": leaving a document unchecked is what
-		// SkipValidation is for, and it says so in its name.
+		// Nil means the specified rules; a list that is empty but not nil
+		// means no rules, as it does for [schema.Config.Directives] and for
+		// [validation.WithRules]. The specification has nothing to say about
+		// this — it describes no way of choosing rules at all — so what
+		// settles it is that a caller who wrote an empty list wrote it on
+		// purpose.
 		rules := p.Rules
-		if len(rules) == 0 {
+		if rules == nil {
 			rules = validation.SpecifiedRules
 		}
-		opts := []validation.Option{
-			validation.WithRules(rules...),
-			validation.WithMaxErrors(p.MaxErrors),
+		opts := []validation.Option{validation.WithRules(rules...)}
+		if asked, given := p.MaxErrors.Get(); given {
+			opts = append(opts, validation.WithMaxErrors(asked))
 		}
 		if p.HideSuggestions {
 			opts = append(opts, validation.WithoutSuggestions())
 		}
-		if errs := validation.ValidateWithOptions(p.Schema, doc, opts...); len(errs) > 0 {
-			return execution.Request{}, errs
+		if errs := h.Validate(p.Schema, doc, opts...); len(errs) > 0 {
+			return execution.Request{}, h, errs
 		}
 	}
 
@@ -301,7 +320,7 @@ func (p Params) request() (execution.Request, []*Error) {
 
 		HideSuggestions:   p.HideSuggestions,
 		MaxCoercionErrors: p.MaxCoercionErrors,
-	}, nil
+	}, h, nil
 }
 
 // BuildSchema reads SDL and returns the schema it describes, checking that it

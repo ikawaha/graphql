@@ -70,6 +70,19 @@ var Int = NewScalar(ScalarConfig{
 		}
 		return value.Just[any](int32(n)), nil
 	},
+	// Only a whole number that an Int can hold is written as one. A string of
+	// digits is not: the input coercer would take it, but a literal has to say
+	// what it is, and `"5"` in a document is a String.
+	ValueToLiteral: func(external any, _ Type) (language.Value, error) {
+		num, ok := asNumber(external)
+		if !ok || !num.isInteger {
+			return nil, refuse("Int cannot represent non-integer value: %s", inspect(external))
+		}
+		if num.exact != "" || num.i > MaxInt || num.i < MinInt {
+			return nil, refuse("Int cannot represent non 32-bit signed integer value: %s", num.String())
+		}
+		return &language.IntValue{Value: num.String()}, nil
+	},
 })
 
 // Float is a double-precision number. Its internal representation is float64.
@@ -123,6 +136,15 @@ var Float = NewScalar(ScalarConfig{
 		}
 		return value.Just[any](n), nil
 	},
+	// A whole number is written as one, as a document may: 1 is a valid Float
+	// literal. What is refused is anything that is not a number at all.
+	ValueToLiteral: keepKinds("Float", func(literal language.Value) bool {
+		switch literal.(type) {
+		case *language.FloatValue, *language.IntValue:
+			return true
+		}
+		return false
+	}),
 })
 
 // String is a sequence of characters. Its internal representation is string.
@@ -160,6 +182,10 @@ var String = NewScalar(ScalarConfig{
 		}
 		return value.Just[any](lit.Value), nil
 	},
+	ValueToLiteral: keepKinds("String", func(literal language.Value) bool {
+		_, ok := literal.(*language.StringValue)
+		return ok
+	}),
 })
 
 // Boolean is true or false. Its internal representation is bool.
@@ -189,6 +215,10 @@ var Boolean = NewScalar(ScalarConfig{
 		}
 		return value.Just[any](lit.Value), nil
 	},
+	ValueToLiteral: keepKinds("Boolean", func(literal language.Value) bool {
+		_, ok := literal.(*language.BooleanValue)
+		return ok
+	}),
 })
 
 // ID is a unique identifier. Its internal representation is string, even when
@@ -231,12 +261,12 @@ var ID = NewScalar(ScalarConfig{
 	},
 	// An identifier made of digits is written as an integer, which is what a
 	// document would have written and what reads back as the same ID.
-	ValueToLiteral: func(internal any, _ Type) (language.Value, error) {
-		text, isText := internal.(string)
+	ValueToLiteral: func(external any, _ Type) (language.Value, error) {
+		text, isText := external.(string)
 		if !isText {
-			num, isNumber := asNumber(internal)
+			num, isNumber := asNumber(external)
 			if !isNumber || !num.isInteger {
-				return nil, refuse("ID cannot represent value: %s", inspect(internal))
+				return nil, refuse("ID cannot represent value: %s", inspect(external))
 			}
 			text = num.String()
 		}
@@ -246,6 +276,25 @@ var ID = NewScalar(ScalarConfig{
 		return &language.StringValue{Value: text}, nil
 	},
 })
+
+// keepKinds builds the [ValueToLiteral] the specified scalars other than Int
+// and ID share: render the value by its Go shape, then keep the result only if
+// it is the kind of literal this type accepts.
+//
+// It is what makes rendering type-aware. Rendering alone is type-blind — a Go
+// string becomes a string literal whatever type it is being written for — so
+// without the second half a String default would be accepted for a Boolean
+// field and written into the schema as one. graphql-js draws the line in the
+// same place, and for the same reason.
+func keepKinds(name string, accepts func(language.Value) bool) ValueToLiteral {
+	return func(external any, _ Type) (language.Value, error) {
+		literal, ok := LiteralFromGoValue(external)
+		if !ok || !accepts(literal) {
+			return nil, refuse("%s cannot represent value: %s", name, inspect(external))
+		}
+		return literal, nil
+	}
+}
 
 // isDigits reports whether a string is a whole number written out, which is
 // what may be written as an integer rather than as a string.

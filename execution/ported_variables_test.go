@@ -680,7 +680,7 @@ func TestPortedVariables_MaxCoercionErrors(t *testing.T) {
 			`Variable "$input" has invalid value at [%d]: String cannot represent a non string value: %d`,
 			index, v)
 	}
-	run := func(t *testing.T, bound int) []*gqlerror.Error {
+	run := func(t *testing.T, bound value.Maybe[int]) []*gqlerror.Error {
 		t.Helper()
 		doc, err := language.ParseString(query)
 		if err != nil {
@@ -705,20 +705,31 @@ func TestPortedVariables_MaxCoercionErrors(t *testing.T) {
 		}
 	}
 
-	t.Run("all of them, when the bound is above what there is", func(t *testing.T) {
-		expect(t, run(t, 0), []string{invalid(0, 0), invalid(1, 1), invalid(2, 2)})
+	const tooMany = "Too many errors processing variables, error limit reached. Execution aborted."
+
+	t.Run("no bound asked for, so the default", func(t *testing.T) {
+		expect(t, run(t, value.Nothing[int]()),
+			[]string{invalid(0, 0), invalid(1, 1), invalid(2, 2)})
+	})
+	t.Run("a bound above what there is", func(t *testing.T) {
+		expect(t, run(t, value.Just(9)),
+			[]string{invalid(0, 0), invalid(1, 1), invalid(2, 2)})
 	})
 	t.Run("a bound equal to what there is", func(t *testing.T) {
-		expect(t, run(t, 3), []string{invalid(0, 0), invalid(1, 1), invalid(2, 2)})
+		expect(t, run(t, value.Just(3)),
+			[]string{invalid(0, 0), invalid(1, 1), invalid(2, 2)})
 	})
 	t.Run("a bound below what there is", func(t *testing.T) {
-		expect(t, run(t, 2), []string{
-			invalid(0, 0), invalid(1, 1),
-			"Too many errors processing variables, error limit reached. Execution aborted.",
-		})
+		expect(t, run(t, value.Just(2)), []string{invalid(0, 0), invalid(1, 1), tooMany})
+	})
+	// Zero is a bound like any other, which is what graphql-js makes of it:
+	// the first problem is already one too many.
+	t.Run("a bound of zero", func(t *testing.T) {
+		expect(t, run(t, value.Just(0)), []string{tooMany})
 	})
 	t.Run("no bound at all", func(t *testing.T) {
-		expect(t, run(t, -1), []string{invalid(0, 0), invalid(1, 1), invalid(2, 2)})
+		expect(t, run(t, value.Just(-1)),
+			[]string{invalid(0, 0), invalid(1, 1), invalid(2, 2)})
 	})
 }
 

@@ -59,20 +59,19 @@ func LiteralFromValue(v any, t Type) (language.Value, bool) {
 			}
 			return literal, true
 		}
-		// Without a rendering of its own, the value is put through the
-		// scalar's ordinary input conversion first. That is what makes the
-		// result fit the type: rendering a Go value directly is type-blind and
-		// would happily write a string where an Int belongs, producing a
-		// literal the schema it lands in could not accept.
-		coerced, err := typ.CoerceInputValue(v)
-		if err != nil {
-			return nil, false
-		}
-		held, fits := coerced.Get()
-		if !fits {
-			return nil, false
-		}
-		return LiteralFromGoValue(held)
+		// Without a rendering of its own, the value is written by its Go shape
+		// alone. That is graphql-js's default, and it is right for a scalar
+		// whose external form is already a string, a number or a boolean —
+		// which a custom scalar's usually is, whatever its internal form.
+		//
+		// Coercing first would be wrong here: the value being rendered is the
+		// external one, and putting it through the input coercer would turn it
+		// into the internal one, which is the form that cannot be written. A
+		// DateTime taking an RFC 3339 string and giving out a time.Time would
+		// lose its default that way. The type checking that coercing used to
+		// provide lives in the specified scalars instead, each of which now
+		// carries a ValueToLiteral that keeps only the kind it accepts.
+		return LiteralFromGoValue(v)
 	default:
 		return nil, false
 	}
@@ -150,6 +149,22 @@ func inputObjectLiteral(v any, t *InputObjectType) (language.Value, bool) {
 // everything textual becomes a string; that is right for a scalar, which is
 // the only place this is reached.
 func LiteralFromGoValue(v any) (language.Value, bool) {
+	return literalFromGoValue(v, 0)
+}
+
+// maxGoValueDepth is how far into a value this will follow lists and maps.
+//
+// A value that refers to itself has no bottom, and Go cannot recover from
+// running out of stack, so the walk has to stop somewhere rather than find
+// out. The bound is far past anything written by hand: a default value nested
+// this deeply is a mistake either way, and refusing it reads the same as
+// refusing any other value that cannot be written as a literal.
+const maxGoValueDepth = 32
+
+func literalFromGoValue(v any, depth int) (language.Value, bool) {
+	if depth > maxGoValueDepth {
+		return nil, false
+	}
 	switch value := v.(type) {
 	case nil:
 		return &language.NullValue{}, true
@@ -178,7 +193,7 @@ func LiteralFromGoValue(v any) (language.Value, bool) {
 	case reflect.Slice, reflect.Array:
 		values := make([]language.Value, rv.Len())
 		for i := range values {
-			node, ok := LiteralFromGoValue(rv.Index(i).Interface())
+			node, ok := literalFromGoValue(rv.Index(i).Interface(), depth+1)
 			if !ok {
 				return nil, false
 			}
@@ -186,7 +201,7 @@ func LiteralFromGoValue(v any) (language.Value, bool) {
 		}
 		return &language.ListValue{Values: values}, true
 	case reflect.Map:
-		return mapLiteral(rv)
+		return mapLiteral(rv, depth)
 	default:
 		return nil, false
 	}
@@ -213,7 +228,7 @@ func numberLiteral(text string) language.Value {
 
 // mapLiteral renders a map as an object literal, with its fields in name order
 // so that the same map always produces the same text.
-func mapLiteral(rv reflect.Value) (language.Value, bool) {
+func mapLiteral(rv reflect.Value, depth int) (language.Value, bool) {
 	if rv.Type().Key().Kind() != reflect.String {
 		return nil, false
 	}
@@ -225,7 +240,7 @@ func mapLiteral(rv reflect.Value) (language.Value, bool) {
 
 	fields := make([]*language.ObjectField, 0, len(names))
 	for _, name := range names {
-		node, ok := LiteralFromGoValue(rv.MapIndex(reflect.ValueOf(name)).Interface())
+		node, ok := literalFromGoValue(rv.MapIndex(reflect.ValueOf(name)).Interface(), depth+1)
 		if !ok {
 			return nil, false
 		}

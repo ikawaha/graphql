@@ -3,6 +3,7 @@ package execution
 import (
 	"context"
 	"encoding/json"
+	"iter"
 
 	"github.com/ikawaha/graphql/gqlerror"
 	"github.com/ikawaha/graphql/language"
@@ -18,11 +19,10 @@ import (
 type LegacyIncrementalResult struct {
 	// Initial is the response that can be sent straight away.
 	Initial LegacyInitialResult
-	// Subsequent carries the rest and is closed when there is no more. It is
-	// nil when the document deferred nothing after all, in which case Initial
-	// is the whole response — a nil channel never yields, so a caller ranging
-	// over this without looking would wait for ever.
-	Subsequent <-chan LegacySubsequentResult
+	// Subsequent carries the rest, on the same terms as
+	// [IncrementalResult.Subsequent]: nil when the document deferred nothing,
+	// and nothing worked on until it is ranged over.
+	Subsequent iter.Seq[LegacySubsequentResult]
 }
 
 // LegacyInitialResult is the first payload of a response in the older format.
@@ -155,10 +155,17 @@ func ExecuteLegacyIncrementally(ctx context.Context, req Request) LegacyIncremen
 // [executor.publish] gives. Nothing is held back to be reported together: in
 // this format a piece names where it goes, so there is no announcement for a
 // later failure to contradict.
-func (e *executor) publishLegacy(ctx context.Context, work []*pendingItem) <-chan LegacySubsequentResult {
-	out := make(chan LegacySubsequentResult)
-	go func() {
-		defer close(out)
+func (e *executor) publishLegacy(
+	ctx context.Context, work []*pendingItem,
+) iter.Seq[LegacySubsequentResult] {
+	// Ranging a second time gives nothing, as ranging a drained channel
+	// would: the work has been done and the pieces handed over already.
+	spent := false
+	return func(yield func(LegacySubsequentResult) bool) {
+		if spent {
+			return
+		}
+		spent = true
 
 		var result LegacySubsequentResult
 		for len(work) > 0 {
@@ -169,12 +176,11 @@ func (e *executor) publishLegacy(ctx context.Context, work []*pendingItem) <-cha
 			result.Incremental = append(result.Incremental, item.legacyPayload(step))
 		}
 
-		select {
-		case out <- result:
-		case <-ctx.Done():
+		if ctx.Err() != nil {
+			return
 		}
-	}()
-	return out
+		yield(result)
+	}
 }
 
 // legacyPayload says what one piece of work comes to in the older format.

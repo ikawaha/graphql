@@ -150,9 +150,9 @@ for result := range sub.Events {
 }
 ```
 
-A field with no `Subscribe` of its own falls back to its ordinary resolver and
-then to the default one, so putting the channel in the root value is enough
-when a server has nothing else to say:
+A field with no `Subscribe` of its own falls back to `Params.SubscribeResolver`
+and then to the default resolver, so putting the channel in the root value is
+enough when a server has nothing else to say:
 
 ```go
 graphql.Subscribe(ctx, graphql.Params{
@@ -160,6 +160,12 @@ graphql.Subscribe(ctx, graphql.Params{
     RootValue: map[string]any{"messageAdded": broker.Subscribe(ctx)},
 })
 ```
+
+The field's ordinary `Resolve` is not in that list. A subscription root field
+has two jobs — producing the stream, and turning each event into the field's
+value — and the specification gives it a separate function for each. `Resolve`
+is the second, so a server can have both: the channel from the root value, and
+a resolver called once per event.
 
 Cancelling the context ends the subscription.
 
@@ -181,6 +187,10 @@ for payload := range result.Subsequent {
 
 A nil `Subsequent` is how an ordinary response is told from one that has more
 to come, which is the fork a server takes before it decides what to write.
+
+The deferred part does not run until it is ranged over, and it runs on the
+goroutine that ranges. A server that writes the first response and stops —
+because the client hung up — has not paid for the rest.
 
 `graphql.DoLegacyIncrementally` answers in the payload format that came before
 the current one, for a client written against the earlier draft.

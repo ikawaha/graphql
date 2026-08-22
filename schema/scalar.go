@@ -33,9 +33,18 @@ type InputValueCoercer func(external any) (value.Maybe[any], error)
 // coercer therefore sees a constant, which is what graphql-js hands its own.
 type InputLiteralCoercer func(literal language.Value) (value.Maybe[any], error)
 
-// ValueToLiteral turns an internal value back into a literal, which is how a
-// default value supplied in code gets printed in a schema.
-type ValueToLiteral func(internal any, t Type) (language.Value, error)
+// ValueToLiteral turns a value into the literal that stands for it, which is
+// how a default value supplied in code gets printed in a schema.
+//
+// The value handed over is the external one — what a caller would send — not
+// the internal one a resolver receives, because that is what a default holds.
+// A scalar whose two forms differ therefore reads its own input form here: a
+// DateTime taking an RFC 3339 string and giving out a time.Time sees the
+// string. graphql-js says the same of its own valueToLiteral.
+//
+// Answering with no literal and no error says the value cannot be written as
+// one of this type, which is what returning undefined says there.
+type ValueToLiteral func(external any, t Type) (language.Value, error)
 
 // ScalarConfig describes a scalar type.
 type ScalarConfig struct {
@@ -54,8 +63,9 @@ type ScalarConfig struct {
 	// literal is first turned into a plain Go value and then passed to
 	// CoerceInputValue, which is right for most scalars.
 	CoerceInputLiteral InputLiteralCoercer
-	// ValueToLiteral renders an internal value as a literal. When it is nil a
-	// generic conversion is used.
+	// ValueToLiteral renders an external value as a literal. When it is nil
+	// the value is rendered by its Go shape alone, which is right for a scalar
+	// whose external form is already a string, a number or a boolean.
 	ValueToLiteral ValueToLiteral
 
 	ASTNode           *language.ScalarTypeDefinition
@@ -78,7 +88,7 @@ type ScalarType struct {
 	// CoerceInputLiteral accepts a literal from a document, or is nil when the
 	// scalar has no special handling for literals.
 	CoerceInputLiteral InputLiteralCoercer
-	// ValueToLiteral renders an internal value as a literal, or is nil.
+	// ValueToLiteral renders an external value as a literal, or is nil.
 	ValueToLiteral ValueToLiteral
 
 	ASTNode           *language.ScalarTypeDefinition

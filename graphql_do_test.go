@@ -161,13 +161,22 @@ func TestDo_Validation(t *testing.T) {
 		}
 	})
 
-	// An empty list means the ones the specification requires, not "check
-	// nothing": leaving a document unchecked is what SkipValidation is for.
+	// Nil means the ones the specification requires; a list that is empty but
+	// not nil means none of them, as it does everywhere else this distinction
+	// comes up. SkipValidation is the way to say it that reads as what it is.
+	t.Run("no rules given", func(t *testing.T) {
+		got := jsonOf(t, graphql.Do(context.Background(),
+			graphql.Params{Schema: s, Query: bad}))
+		if !strings.Contains(got, "Cannot query field") {
+			t.Errorf("a nil rule list turned checking off: %s", got)
+		}
+	})
+
 	t.Run("an empty list of rules", func(t *testing.T) {
 		got := jsonOf(t, graphql.Do(context.Background(),
 			graphql.Params{Schema: s, Query: bad, Rules: []validation.Rule{}}))
-		if !strings.Contains(got, "Cannot query field") {
-			t.Errorf("an empty rule list turned checking off: %s", got)
+		if strings.Contains(got, "Cannot query field") {
+			t.Errorf("an empty rule list still checked: %s", got)
 		}
 	})
 }

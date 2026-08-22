@@ -431,9 +431,15 @@ func TestSubscribe_WrongSortOfRequest(t *testing.T) {
 	})
 }
 
-// A field with no Subscribe resolver falls back to its ordinary one, which
-// covers a server producing its events from the same function.
-func TestSubscribe_FallsBackToTheOrdinaryResolver(t *testing.T) {
+// A subscription root field's ordinary resolver is not asked for the stream.
+//
+// The specification gives such a field two internal functions —
+// ResolveFieldEventStream for the stream and ResolveFieldValue for each
+// event's value — and both are used, at different moments. A field with only
+// the second must not have it called for the first, or it would be asked for a
+// channel and answer with a value. graphql-js refuses the same case with
+// "Subscription field must return Async Iterable. Received: undefined."
+func TestSubscribe_TheOrdinaryResolverIsNotTheSubscriber(t *testing.T) {
 	source := make(chan message, 1)
 	source <- message{Body: "hello"}
 	close(source)
@@ -446,16 +452,49 @@ func TestSubscribe_FallsBackToTheOrdinaryResolver(t *testing.T) {
 
 	got := startSubscription(context.Background(), t, s,
 		`subscription { messageAdded { body } }`, execution.Request{})
-	if got.Events == nil {
-		t.Fatalf("the subscription did not start: %v", got.Errors)
+	if got.Events != nil {
+		t.Fatal("the ordinary resolver was asked for the stream")
 	}
-	if responses := collect(t, got.Events); len(responses) != 1 {
-		t.Errorf("%d responses, want 1", len(responses))
+	if len(got.Errors) != 1 ||
+		!strings.Contains(got.Errors[0].Message, "must return a channel of events") {
+		t.Errorf("errors were %v", got.Errors)
 	}
 }
 
-// The last step of that fall-back is the default resolver, so a channel put in
-// the root value is a whole subscription with no resolver written at all.
+// The two roles together: the channel comes from the root value and the
+// ordinary resolver shapes each event, which is what a server publishing
+// envelopes writes.
+func TestSubscribe_TheOrdinaryResolverShapesEachEvent(t *testing.T) {
+	source := make(chan any, 2)
+	source <- map[string]any{"messageAdded": message{Body: "one"}}
+	source <- map[string]any{"messageAdded": message{Body: "two"}}
+	close(source)
+
+	s := buildSchema(t, subscriptionSDL)
+	s.SubscriptionType().Field("messageAdded").Resolve = func(
+		_ context.Context, event any, _ schema.Arguments, _ *schema.ResolveInfo,
+	) (any, error) {
+		return event.(map[string]any)["messageAdded"], nil
+	}
+
+	got := startSubscription(context.Background(), t, s,
+		`subscription { messageAdded { body } }`,
+		execution.Request{RootValue: map[string]any{"messageAdded": source}})
+	if got.Events == nil {
+		t.Fatalf("the subscription did not start: %v", got.Errors)
+	}
+	want := []string{
+		`{"data":{"messageAdded":{"body":"one"}}}`,
+		`{"data":{"messageAdded":{"body":"two"}}}`,
+	}
+	if responses := collect(t, got.Events); strings.Join(responses, "\n") != strings.Join(want, "\n") {
+		t.Errorf("responses =\n  %s\nwant\n  %s",
+			strings.Join(responses, "\n  "), strings.Join(want, "\n  "))
+	}
+}
+
+// The last place looked is the default resolver, so a channel put in the root
+// value is a whole subscription with no resolver written at all.
 func TestSubscribe_AChannelInTheRootValue(t *testing.T) {
 	source := make(chan message, 2)
 	source <- message{Body: "one"}

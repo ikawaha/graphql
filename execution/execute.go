@@ -55,8 +55,12 @@ type Request struct {
 	TypeResolver schema.TypeResolver
 	// SubscribeResolver stands in for a subscription root field that has no
 	// Subscribe of its own, and answers with the channel the events arrive
-	// on. Leaving it unset falls through to the field's ordinary resolver and
-	// then to [DefaultResolver], which reads the root value.
+	// on. Leaving it unset falls through to [DefaultResolver], which reads the
+	// root value.
+	//
+	// The field's own Resolve is not consulted for this. It is what turns each
+	// event into the field's value, which is a different job, and a field may
+	// have both.
 	SubscribeResolver schema.FieldResolver
 
 	// HideSuggestions leaves the "Did you mean …?" out of every message.
@@ -74,7 +78,12 @@ type Request struct {
 	// A request can name a variable of a deeply nested input type and supply
 	// something wrong at every leaf, and working all of them out costs the
 	// server something for an answer nobody reads to the end.
-	MaxCoercionErrors int
+	//
+	// It is a [value.Maybe] so that zero can be asked for: unset means the
+	// default of fifty, zero means the first problem is already one too many,
+	// and a negative number means no bound at all — which is what graphql-js
+	// says with Infinity.
+	MaxCoercionErrors value.Maybe[int]
 }
 
 // defaultMaxCoercionErrors is how many problems with a request's variables
@@ -83,10 +92,11 @@ const defaultMaxCoercionErrors = 50
 
 // maxCoercionErrors is what a request's MaxCoercionErrors comes to.
 func (r Request) maxCoercionErrors() int {
-	if r.MaxCoercionErrors == 0 {
+	asked, given := r.MaxCoercionErrors.Get()
+	if !given {
 		return defaultMaxCoercionErrors
 	}
-	return r.MaxCoercionErrors
+	return asked
 }
 
 // checkOptions is what a request's HideSuggestions comes to when the schema
