@@ -3,6 +3,7 @@ package utilities
 import (
 	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/ikawaha/graphql/language"
 	"github.com/ikawaha/graphql/schema"
@@ -162,16 +163,23 @@ func (b *clientSchemaBuilder) resolveRef(ref *IntrospectionTypeRef) (schema.Type
 		return nil, fmt.Errorf("build client schema: a type reference is missing")
 	}
 	switch ref.Kind {
-	case "LIST":
+	case "LIST", "NON_NULL":
+		// A wrapper with nothing inside it is what an introspection query that
+		// stopped unfolding leaves behind: the answer says the type is a list
+		// but not a list of what. Saying so names the fix, which is to ask
+		// again and further; see [WithTypeDepth].
+		if ref.OfType == nil {
+			return nil, fmt.Errorf(
+				"build client schema: a %s is described with nothing inside it, "+
+					"which is what an introspection query that did not unfold far "+
+					"enough leaves behind", strings.ToLower(strings.ReplaceAll(ref.Kind, "_", "-")))
+		}
 		inner, err := b.resolveRef(ref.OfType)
 		if err != nil {
 			return nil, err
 		}
-		return schema.NewList(inner), nil
-	case "NON_NULL":
-		inner, err := b.resolveRef(ref.OfType)
-		if err != nil {
-			return nil, err
+		if ref.Kind == "LIST" {
+			return schema.NewList(inner), nil
 		}
 		return schema.NewNonNull(inner), nil
 	}

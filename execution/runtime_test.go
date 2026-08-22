@@ -64,6 +64,32 @@ func TestExecute_ResolverPanic(t *testing.T) {
 			t.Error("the panicked error is not reachable with errors.Is")
 		}
 	})
+
+	// A field resolved alongside others panics on a goroutine of its own, and
+	// a panic left alone on one of those takes the process with it rather than
+	// only the request. It is caught where it happens.
+	t.Run("panicking alongside other fields", func(t *testing.T) {
+		s := buildSchema(t, `type Query { a: String b: String c: String d: String }`)
+		s.QueryType().Field("c").Resolve =
+			func(context.Context, any, schema.Arguments, *schema.ResolveInfo) (any, error) {
+				panic("on a worker")
+			}
+		result := run(t, s, `{ a b c d }`, execution.Request{
+			Concurrency: 4,
+			RootValue:   map[string]any{"a": "1", "b": "2", "d": "4"},
+		})
+		if len(result.Errors) != 1 {
+			t.Fatalf("%d errors, want 1: %v", len(result.Errors), result.Errors)
+		}
+		var panicked *execution.PanicError
+		if !errors.As(result.Errors[0], &panicked) {
+			t.Fatal("the panic is not reachable through the error")
+		}
+		// The fields beside it still answered, in the order the document asked.
+		if got, want := jsonOf(t, result), `"a":"1","b":"2","c":null,"d":"4"`; !strings.Contains(got, want) {
+			t.Errorf("response = %s", got)
+		}
+	})
 }
 
 // A mutation's root fields are expected to happen in order, each seeing what

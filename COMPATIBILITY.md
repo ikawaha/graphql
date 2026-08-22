@@ -381,6 +381,25 @@ graphql-js reads any `Error` this way; here only `gqlerror.Error` counts, since
 any Go value may happen to have an `Error` method and a server returning one as
 data should get it back as data.
 
+**A resolver that panics fails its field rather than the process.** JavaScript
+has one way for a resolver to go wrong, and graphql-js turns a thrown value —
+whether the resolver threw it on purpose or the runtime did — into an error on
+that field. Go has two, and only one of them is a return value. A panic is
+caught at the same place, so a bug in one resolver costs that field and not the
+whole server, and the fields beside it still answer.
+
+What the field comes down to is an [`execution.PanicError`], carrying the value
+passed to panic and the stack where it happened. Neither reaches the client:
+the response says `panic in resolver: …`, and the stack is there for the server
+to log. `errors.As` reaches the PanicError and `errors.Is` reaches through it
+to the panic value where that value was itself an error, so a sentinel a
+resolver panics with can still be recognised.
+
+A resolver run alongside others is caught the same way, on the goroutine it ran
+on.
+
+[`execution.PanicError`]: https://pkg.go.dev/github.com/ikawaha/graphql/execution#PanicError
+
 **A Go zero value is not null.** A struct field of type `string` answers `""`
 for a field that can be null, because Go has no way to tell an unset string
 from an empty one. A field that can be null needs a Go type that can be nil —

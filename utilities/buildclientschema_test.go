@@ -1,6 +1,7 @@
 package utilities_test
 
 import (
+	"context"
 	"encoding/json"
 	"strings"
 	"testing"
@@ -412,6 +413,49 @@ func TestIntrospectionQuery(t *testing.T) {
 		if !strings.Contains(utilities.IntrospectionQuery(utilities.WithSchemaDescription()),
 			"__schema {\n    description") {
 			t.Error("the schema's own description was not asked for")
+		}
+	})
+}
+
+// TestBuildClientSchema_TruncatedTypeReference covers an answer whose type
+// references stop part way, which is what an introspection query asked to
+// unfold fewer levels than the schema needs comes back with.
+//
+// graphql-js throws "Decorated type deeper than introspection query."; the
+// refusal here says the same thing in its own words rather than only that
+// something is missing, since the fix is to ask again and further.
+func TestBuildClientSchema_TruncatedTypeReference(t *testing.T) {
+	s, err := utilities.BuildSchema(`type Query { deep: [[[String!]!]!]! }`)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Run("deep enough", func(t *testing.T) {
+		answer, err := utilities.IntrospectionFromSchema(context.Background(), s)
+		if err != nil {
+			t.Fatal(err)
+		}
+		rebuilt, err := utilities.BuildClientSchema(answer)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if got := utilities.PrintSchema(rebuilt); !strings.Contains(got, "deep: [[[String!]!]!]!") {
+			t.Errorf("the type came back as\n%s", got)
+		}
+	})
+
+	t.Run("not deep enough", func(t *testing.T) {
+		answer, err := utilities.IntrospectionFromSchema(context.Background(), s,
+			utilities.WithTypeDepth(2))
+		if err != nil {
+			t.Fatal(err)
+		}
+		_, err = utilities.BuildClientSchema(answer)
+		if err == nil {
+			t.Fatal("a truncated answer built a schema")
+		}
+		if !strings.Contains(err.Error(), "did not unfold far enough") {
+			t.Errorf("the refusal does not name the cause: %v", err)
 		}
 	})
 }

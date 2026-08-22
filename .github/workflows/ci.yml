@@ -73,3 +73,69 @@ jobs:
         with:
           name: fuzz-${{ matrix.target }}
           path: ${{ matrix.package }}/testdata/fuzz
+
+  # graphql-js is pinned, and the recording under testdata/differential is what
+  # the pinned commit answered. When upstream moves, the port has to decide
+  # whether the change reaches it -- so the moving is worth noticing rather
+  # than discovering later.
+  upstream:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: check the pinned commit against graphql-js
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          pin=$(sed -n 's/.*Ported from:.*(commit \([0-9a-f]*\)).*/\1/p' NOTICE)
+          also=$(sed -n 's/.*pinned at commit `\([0-9a-f]*\)`.*/\1/p' testdata/differential/README.md)
+          if [ -z "$pin" ]; then
+            echo "NOTICE does not say which commit this was ported from." >&2
+            exit 1
+          fi
+          if [ "$pin" != "$also" ]; then
+            echo "NOTICE says $pin and testdata/differential/README.md says $also." >&2
+            exit 1
+          fi
+
+          branch=$(gh api repos/graphql/graphql-js --jq .default_branch)
+          compare=$(gh api "repos/graphql/graphql-js/compare/$pin...$branch")
+          ahead=$(echo "$compare" | jq -r .ahead_by)
+
+          {
+            echo "## graphql-js"
+            echo
+            echo "Pinned at \`$pin\`, compared with \`$branch\`."
+            echo
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$ahead" = "0" ]; then
+            echo "Up to date." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          # What matters is src/: everything else is their build and release.
+          echo "$compare" | jq -r '.commits[] | [.sha[0:9], (.commit.message | split("\n")[0])] | @tsv' \
+            > /tmp/commits.tsv
+          touched=$(echo "$compare" | jq -r '[.files[]?.filename | select(startswith("src/"))] | length')
+
+          {
+            echo "**$ahead commits ahead**, $touched of the changed files under \`src/\`."
+            echo
+            echo "| commit | subject |"
+            echo "|---|---|"
+            head -40 /tmp/commits.tsv | while IFS=$'\t' read -r sha subject; do
+              echo "| \`$sha\` | ${subject//|/\\|} |"
+            done
+            if [ "$ahead" -gt 40 ]; then echo; echo "… and $((ahead - 40)) more."; fi
+            echo
+            echo "Moving the pin means regenerating the recording; see"
+            echo "\`testdata/differential/README.md\`."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          echo "graphql-js has moved $ahead commits past the pinned $pin." >&2
+          exit 1

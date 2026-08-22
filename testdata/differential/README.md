@@ -11,9 +11,16 @@ recorded under `expected/`, and the Go side compares against the recording.
 
 Needed when the pinned graphql-js moves, or when a case is added to `corpus/`.
 
-graphql-js is pinned at commit `9c24501` (v17.0.2). It asks for Node 22 or
-later, but only to strip its own types, so esbuild is enough to run it on an
-older Node:
+graphql-js is pinned at commit `9c24501` (v17.0.2). CI checks weekly whether
+upstream has moved past it, and says which commits if it has; the same question
+by hand is
+
+```sh
+gh api repos/graphql/graphql-js/compare/9c24501...17.x.x --jq .ahead_by
+```
+
+It asks for Node 22 or later, but only to strip its own types, so esbuild is
+enough to run it on an older Node:
 
 ```sh
 npm install --no-save esbuild
