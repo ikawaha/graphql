@@ -30,12 +30,22 @@ func OverlappingFieldsCanBeMergedRule(ctx *Context) language.Visitor {
 		comparedWithFields: pairSet{},
 	}
 	return language.Visitor{
-		Enter: func(node language.Node, _ language.VisitContext) language.VisitAction {
+		Enter: func(node language.Node, vctx language.VisitContext) language.VisitAction {
 			set, isSelectionSet := node.(*language.SelectionSet)
 			if !isSelectionSet {
 				return language.VisitContinue
 			}
-			for _, found := range c.conflictsWithin(ctx.ParentType(), set) {
+			// A selection set written inside a fragment definition is checked
+			// under that fragment's own variable scope, so that a fragment's
+			// `$x` is not taken for an operation variable of the same name and
+			// the comparison cache does not confuse spreads that only look
+			// alike. graphql-js does this by keying getVarMap on the fragment
+			// name while visiting the FragmentDefinition.
+			sc := scope{}
+			if def := enclosingFragmentDefinition(vctx.Ancestors); def != nil {
+				sc = c.fragmentOwnScope(def)
+			}
+			for _, found := range c.conflictsWithin(ctx.ParentType(), set, sc) {
 				blamed := append(append([]language.Node{}, found.fields1...), found.fields2...)
 				ctx.Reportf(blamed,
 					"Fields %s conflict because %s. Use different aliases on the fields to fetch both if this was intentional.",
@@ -172,10 +182,12 @@ func (r conflictReason) String() string {
 	return strings.Join(parts, " and ")
 }
 
-// conflictsWithin finds every disagreement inside one selection set.
-func (c *overlapChecker) conflictsWithin(parent schema.CompositeType, set *language.SelectionSet) []conflict {
+// conflictsWithin finds every disagreement inside one selection set. sc is the
+// scope in force: the zero scope for a selection set at operation level, and a
+// fragment definition's own scope for one written inside it.
+func (c *overlapChecker) conflictsWithin(parent schema.CompositeType, set *language.SelectionSet, sc scope) []conflict {
 	var found []conflict
-	contents := c.fieldsAndFragmentsOf(parent, set, scope{})
+	contents := c.fieldsAndFragmentsOf(parent, set, sc)
 
 	// Two selections written in the same set always both apply.
 	c.collectWithin(&found, contents)
@@ -544,6 +556,42 @@ func (c *overlapChecker) spreadOf(node *language.FragmentSpread, outer scope) fr
 		rename[variable] = key + "\x00" + variable
 	}
 	return fragmentSpread{name: name, node: node, key: key, inner: scope{key: key, rename: rename}}
+}
+
+// enclosingFragmentDefinition returns the fragment definition a node is written
+// inside, or nil when it is at operation level. Fragment definitions do not
+// nest, so at most one appears among the ancestors.
+func enclosingFragmentDefinition(ancestors []language.Node) *language.FragmentDefinition {
+	for _, node := range ancestors {
+		if def, is := node.(*language.FragmentDefinition); is {
+			return def
+		}
+	}
+	return nil
+}
+
+// fragmentOwnScope is the scope in force while checking a fragment definition's
+// own selections: the variables it declares, renamed under its name. It mirrors
+// graphql-js keying getVarMap by the fragment name on entering the
+// FragmentDefinition. A fragment that declares no variables of its own renames
+// nothing and so keeps the zero scope.
+func (c *overlapChecker) fragmentOwnScope(fragment *language.FragmentDefinition) scope {
+	if fragment == nil || fragment.Name == nil {
+		return scope{}
+	}
+	key := fragment.Name.Value
+	rename := make(map[string]string, len(fragment.VariableDefinitions))
+	for _, def := range fragment.VariableDefinitions {
+		if def == nil || def.Variable == nil || def.Variable.Name == nil {
+			continue
+		}
+		variable := def.Variable.Name.Value
+		rename[variable] = key + "\x00" + variable
+	}
+	if len(rename) == 0 {
+		return scope{}
+	}
+	return scope{key: key, rename: rename}
 }
 
 // combineSubfieldConflicts folds conflicts found beneath two fields into one

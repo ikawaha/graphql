@@ -4,7 +4,7 @@ This project is a Go port of graphql-js, the reference implementation of
 GraphQL for JavaScript.
 
     Original work: https://github.com/graphql/graphql-js
-    Ported from:   v17.0.2 (commit 9c24501)
+    Ported from:   v17.0.2 and one later fix (commit 3b9d3d4)
     License:       MIT (Copyright (c) GraphQL Contributors)
 
 The original MIT license and copyright notice are retained in LICENSE.
