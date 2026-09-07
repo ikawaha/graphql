@@ -2210,6 +2210,30 @@ func TestPorted_OverlappingFieldsCanBeMerged(t *testing.T) {
 			},
 		},
 		{
+			name: `checks fragment arguments in each variable scope`,
+			steps: []portedStep{
+				{
+					query: `
+        fragment Outer($x: Int, $y: Int) on Type {
+          ...WithArgs(x: $x)
+          ...WithArgs(x: $y)
+        }
+        fragment WithArgs($x: Int) on Type {
+          a(x: $x)
+        }
+        query Example($x: Int, $y: Int) {
+          ...WithArgs(x: $x)
+          ...WithArgs(x: $y)
+        }
+      `,
+					want: []want{
+						{At: []at{{3, 11}, {4, 11}}},
+						{At: []at{{10, 11}, {11, 11}}},
+					},
+				},
+			},
+		},
+		{
 			name: `allows operations with overlapping fields with arguments using identical operation variables`,
 			steps: []portedStep{
 				{
