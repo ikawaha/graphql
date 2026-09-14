@@ -11,12 +11,13 @@ recorded under `expected/`, and the Go side compares against the recording.
 
 Needed when the pinned graphql-js moves, or when a case is added to `corpus/`.
 
-graphql-js is pinned at commit `3b9d3d4` (v17.0.2 plus graphql-js#4853, a fix
-to OverlappingFieldsCanBeMergedRule). CI checks weekly whether upstream has
+graphql-js is pinned at commit `ee5ce41d` (v17.0.2 plus graphql-js#4853, a fix
+to OverlappingFieldsCanBeMergedRule, and #4855–#4857, non-behavioral
+refactors/polish to the same rule). CI checks weekly whether upstream has
 moved past it, and says which commits if it has; the same question by hand is
 
 ```sh
-gh api repos/graphql/graphql-js/compare/3b9d3d4...17.x.x --jq .ahead_by
+gh api repos/graphql/graphql-js/compare/ee5ce41d...17.x.x --jq .ahead_by
 ```
 
 It asks for Node 22 or later, but only to strip its own types, so esbuild is
